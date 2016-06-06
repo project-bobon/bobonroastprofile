@@ -17,18 +17,43 @@ class Header extends React.Component {
 
     if (this.props.authStatus === C.LOGGED_IN) {
       profilePhoto = (
-          <a class="mdl-navigation__link" href=""
-            style={ {
-                display: 'inline-block',
-                width: '50px',
-                height: '50px',
-                overflow: 'hidden',
-                borderRadius: '50%',
-                marginLeft: '15px'
-              } }
-          >
-            <img src={this.props.photoURL} style={ {width: '100%'} } title={ this.props.userName }/>
-          </a>
+        <a class="mdl-navigation__link"
+          onClick={ (e) => {
+              e.preventDefault();
+              history.push('/');
+            } }
+          style={ {
+              display: 'inline-block',
+              width: '50px',
+              height: '50px',
+              overflow: 'hidden',
+              borderRadius: '50%',
+              marginLeft: '15px'
+            } }
+        >
+          <img src={this.props.photoURL} style={ {width: '100%'} } title={ this.props.userName }/>
+        </a>
+      );
+    } else {
+      profilePhoto = (
+        <a class="mdl-navigation__link"
+          onClick={ (e) => {
+              e.preventDefault();
+              history.push('/');
+            } }
+          style={ {
+              display: 'inline-block',
+              width: '50px',
+              height: '50px',
+              overflow: 'hidden',
+              marginLeft: '15px'
+            } }
+        >
+          <img src={ require('../../images/logo_white_small.png') }
+            style={ {width: '100%'} }
+            title={ this.props.userName }
+          />
+        </a>
       );
     }
 

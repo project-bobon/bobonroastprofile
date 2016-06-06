@@ -1,5 +1,5 @@
-import C from './constants';
-import history from './history';
+import C from '../constants';
+import history from '../history';
 
 const initialState = {
   authStatus: C.LOGGING_IN,
@@ -10,7 +10,7 @@ const initialState = {
   listeningToAuth: false
 };
 
-const rootReducer = (currentState = initialState, action) => {
+const authReducer = (currentState = initialState, action) => {
 
   switch(action.type) {
 
@@ -29,9 +29,9 @@ const rootReducer = (currentState = initialState, action) => {
       break;
 
     case C.LOGIN_SUCCESS:
-      let userName = null;
+    let userName = null;
 
-      history.push(action.nextPath);
+    history.push(action.nextPath);
 
       return {
         ...currentState,
@@ -57,4 +57,4 @@ const rootReducer = (currentState = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default authReducer;

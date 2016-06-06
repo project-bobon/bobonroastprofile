@@ -3,7 +3,7 @@ import Main from '../components/Main';
 
 const mapStateToProps = state => {
   return {
-    authStatus: state.authStatus
+    authStatus: state.auth.authStatus
   };
 };
 

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import AppContainer from './containers/AppContainer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
-import rootReducer from './reducers';
+import rootReducer from './reducers/index';
 import { listeningToAuth, loginSuccess, logout } from './actions';
 import auth from './auth';
 import C from './constants';
@@ -16,7 +16,6 @@ import history from './history';
 import MainContainer from './containers/MainContainer';
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
-  ,window.devToolsExtension && window.devToolsExtension()
 );
 
 const routes = (

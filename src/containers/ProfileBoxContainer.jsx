@@ -3,10 +3,10 @@ import ProfileBox from '../components/ProfileBox';
 
 const mapStateToProps = state => {
   return {
-    userName: state.userName,
-    uid: state.uid,
-    authStatus: state.authStatus,
-    photoURL: state.photoURL
+    userName: state.auth.userName,
+    uid: state.auth.uid,
+    authStatus: state.auth.authStatus,
+    photoURL: state.auth.photoURL
   };
 };
 

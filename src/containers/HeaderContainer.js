@@ -3,9 +3,9 @@ import Header from '../components/Header';
 
 const mapStateToProps = state => {
   return {
-    authStatus: state.authStatus,
-    userName: state.userName,
-    photoURL: state.photoURL
+    authStatus: state.auth.authStatus,
+    userName: state.auth.userName,
+    photoURL: state.auth.photoURL
   };
 };
 

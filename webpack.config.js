@@ -31,6 +31,10 @@ module.exports = {
         test: /\.(jpg|png)$/,
         loader: 'url?limit=25000',
         include: path.resolve(__dirname, 'images')
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css?sourceMap", "sass?sourceMap"]
       }
     ]
   },

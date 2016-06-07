@@ -1,0 +1,19 @@
+.bobon-page-content {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.bobon-textfield-wrapper {
+  padding: 0 10px;
+  box-sizing: border-box;
+  float: left;
+
+  > .mdl-textfield {
+    width: 100%;
+  }
+}
+
+.bobon-main-content {
+  width: 90%;
+  margin: 0 auto;
+}

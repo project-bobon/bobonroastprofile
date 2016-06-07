@@ -35,6 +35,6 @@ const auth = {
     }
     cb();
   }
-}
+};
 
 export default auth;

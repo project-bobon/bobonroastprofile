@@ -86,7 +86,7 @@ class Header extends React.Component {
           <span className="mdl-layout-title">
           </span>
           <div className="mdl-layout-spacer"></div>
-          <nav className="mdl-navigation mdl-layout--large-screen-only">
+          <nav className="mdl-navigation">
             { this._actionButton() }
             { this._profilePhoto() }
           </nav>

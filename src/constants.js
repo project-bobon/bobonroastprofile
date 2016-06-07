@@ -9,12 +9,18 @@ const firebaseConf = {
 firebase.initializeApp(firebaseConf);
 
 const C = {
-  // Actions.
+  // Auth actions.
   LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAILED: 'LOGIN_FAILED',
   LOGOUT: 'LOGOUT',
   LISTENING_TO_AUTH: 'LISTENING_TO_AUTH',
+
+  // Roasts actions.
+  FETCHING_ROASTS: 'FETCHING_ROASTS',
+  FETCHED_ROASTS: 'FETCHED_ROASTS',
+  CREATE_NEW_ROAST: 'CREATE_NEW_ROAST',
+  UPDATE_CURRENT_ROAST_VALUE: 'UPDATE_CURRENT_ROAST_VALUE',
 
   // Auth states.
   LOGGED_IN: 'LOGGED_IN',

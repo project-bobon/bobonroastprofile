@@ -9,19 +9,23 @@ import AppContainer from './containers/AppContainer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import rootReducer from './reducers/index';
-import { listeningToAuth, loginSuccess, logout } from './actions';
+import { listeningToAuth, loginSuccess, logout, fetchedRoasts } from './actions';
 import auth from './auth';
 import C from './constants';
 import history from './history';
 import MainContainer from './containers/MainContainer';
+import NewRoastFormContainer from './containers/NewRoastFormContainer';
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
+  ,window.devToolsExtension && window.devToolsExtension()
 );
 
 const routes = (
   <Router history={ history }>
     <Route path="/" component={ AppContainer }>
       <IndexRoute component={ MainContainer }/>
+
+      <Route path="/new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
     </Route>
   </Router>
 );
@@ -40,6 +44,16 @@ C.FIREBASE.auth().onAuthStateChanged((user) => {
   // If logged in.
   if (user) {
     store.dispatch(loginSuccess(user));
+
+    // Listen to roast changes
+    let roastsRef = C.FIREBASE.app().database().ref('users/' + user.uid);
+    roastsRef.on('value', snapshot => {
+      console.log(snapshot.val());
+      store.dispatch(fetchedRoasts(snapshot.val()));
+    }, err => {
+      console.log(err);
+    });
+
   } else {
     store.dispatch(logout());
   }

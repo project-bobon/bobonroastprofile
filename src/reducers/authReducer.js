@@ -29,10 +29,7 @@ const authReducer = (currentState = initialState, action) => {
       break;
 
     case C.LOGIN_SUCCESS:
-    let userName = null;
-
-    history.push(action.nextPath);
-
+      let userName = null;
       return {
         ...currentState,
         authStatus: C.LOGGED_IN,
@@ -40,6 +37,7 @@ const authReducer = (currentState = initialState, action) => {
         photoURL: action.user.photoURL,
         userName: action.user.displayName
       };
+      history.push(action.nextPath);
       break;
 
     case C.LOGOUT:
@@ -53,7 +51,7 @@ const authReducer = (currentState = initialState, action) => {
       break;
 
     default:
-      return initialState;
+      return currentState;
   }
 };
 

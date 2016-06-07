@@ -19,8 +19,8 @@ export const loginRequest = (method = 'google', nextPath = '/') => {
 export const loginSuccess = (user, nextPath = '/') => {
   return {
     type: C.LOGIN_SUCCESS,
-    nextPath,
-    user
+    user,
+    nextPath
   };
 };
 
@@ -47,3 +47,44 @@ export const startListeningToAuth = () => {
 };
 
 // Roasts actions.
+export const startListeningToRoasts = () => {
+  if (C.FIREBASE.auth().currentUser) {
+    const uid = C.FIREBASE.auth().currentUser.uid;
+    return (dispatch, getState) => {
+      let roastsRef = C.FIREBASE.app().database().ref('roasts').equalTo('uid', uid);
+      roastsRef.on('value', snapshot => {
+        console.log(snapshot.val());
+        dispatch(fetchedRoasts(snapshot.val()));
+      }, err => {
+        console.log(err);
+      });
+    };
+  } else {
+    return (dispatch, getState) => {
+      dispatch(logout());
+    };
+  }
+};
+
+export const fetchedRoasts = (roasts) => {
+  return {
+    type: C.FETCHED_ROASTS,
+    roasts
+  };
+};
+
+// New roast actions.
+export const createNewRoast = (roastDetails) => {
+  return {
+    type: C.CREATE_NEW_ROAST,
+    roastDetails: roastDetails
+  };
+};
+
+export const updateCurrentRoastValue = (field, value) => {
+  return {
+    type: C.UPDATE_CURRENT_ROAST_VALUE,
+    field,
+    value
+  };
+};

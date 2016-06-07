@@ -5,6 +5,9 @@ import HeaderContainer from '../containers/HeaderContainer';
 import DrawerContainer from '../containers/DrawerContainer';
 import C from '../constants';
 
+require('../../scss/app.scss');
+require('../../scss/utils.scss');
+
 class App extends React.Component {
 
   static propTypes() {
@@ -13,6 +16,11 @@ class App extends React.Component {
       authStatus: PropTypes.string.isRequired,
       userName: PropTypes.string
     };
+  }
+
+  componentDidUpdate() {
+    // Upgrades all upgradable components (i.e. with 'mdl-js-*' class).
+    componentHandler.upgradeDom();
   }
 
   _containerClass() {
@@ -29,7 +37,7 @@ class App extends React.Component {
         <HeaderContainer/>
         <DrawerContainer/>
         <main className="mdl-layout__content">
-          <div className="page-content">
+          <div className="bobon-page-content page-content">
             { this.props.children }
           </div>
         </main>

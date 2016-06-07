@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import C from '../constants';
+import NavigationLink from './NavigationLink';
 
 class Drawer extends React.Component {
   static propTypes() {
@@ -25,10 +26,10 @@ class Drawer extends React.Component {
       <div className="mdl-layout__drawer">
         <span className="mdl-layout-title">{ this._title() }</span>
         <nav className="mdl-navigation">
-          <a className="mdl-navigation__link" href="">Link</a>
-          <a className="mdl-navigation__link" href="">Link</a>
-          <a className="mdl-navigation__link" href="">Link</a>
-          <a className="mdl-navigation__link" href="">Link</a>
+          <NavigationLink className="mdl-navigation__link" path="/new" >
+            <i className="material-icons">timer</i>
+            Start a roast
+          </NavigationLink>
         </nav>
       </div>
     );

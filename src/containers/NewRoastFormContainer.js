@@ -1,22 +1,25 @@
 import { connect } from 'react-redux';
 import NewRoastForm from '../components/NewRoastForm';
-import { createNewRoast, updateCurrentRoastValue } from '../actions';
+import { createNewRoast, createNewRoastFailed, updateCurrentRoastValue, createNewRoastSuccess } from '../actions';
+import C from '../constants';
+import history from '../history';
 
 const mapStateToProps = state => {
-  const roast = state.currentRoast;
+  const roast = state.newRoast;
   let disabled = true;
 
-  if (roast.roastDate && roast.roastTitle && roast.beansName && roast.batchSize) {
+  if (roast.roastNote && roast.beansName && roast.batchSize) {
     disabled = false;
   }
 
   return {
-    roastDate: roast.roastDate || '',
-    roastTitle: roast.roastTitle || '',
+    roastNote: roast.roastNote || '',
     beansName: roast.beansName || '',
     beansMoisture: roast.beansMoisture || '',
     batchSize: roast.batchSize || '',
-    disabled
+    uid: state.auth.uid,
+    disabled,
+    processing: roast.status === C.ROAST_PENDING
   };
 };
 
@@ -26,20 +29,38 @@ const mapDispatchToProps = dispatch => {
       e.preventDefault();
 
       const els = e.target.elements;
-      let roastDate = els.namedItem('roastDate').value;
-      let roastTitle = els.namedItem('roastTitle').value;
+      let roastNote = els.namedItem('roastNote').value;
       let beansName = els.namedItem('beansName').value;
-      let beansMoisture = els.namedItem('beansMoisture').value;
-      let batchSize = els.namedItem('batchSize').value;
+      let beansMoisture = parseFloat(els.namedItem('beansMoisture').value);
+      let batchSize = parseFloat(els.namedItem('batchSize').value);
+      let uid = els.namedItem('uid').value;
 
-      if (roastDate !== '' && roastTitle !== '' && beansName !== '' && batchSize !== '') {
+      if (beansName !== '' && batchSize !== '') {
         dispatch(createNewRoast({
-          roastTitle,
-          roastDate,
+          roastNote,
           beansName,
           batchSize,
-          beansMoisture
+          beansMoisture,
+          uid
         }));
+
+        let roastRef = C.FIREBASE.database().ref(`/roasts/${uid}`);
+
+        roastRef.push({
+          created: Date.now(),
+          status: C.ROAST_PENDING,
+          roastStart: 0,
+          roastNote,
+          beansMoisture,
+          beansName,
+          batchSize,
+          uid
+        }, err => {
+          dispatch(createNewRoastFailed(err));
+        }).then((newRoast) => {
+          dispatch(createNewRoastSuccess(newRoast));
+          history.push(`roasts/${newRoast.key}`)
+        });
       }
     },
 

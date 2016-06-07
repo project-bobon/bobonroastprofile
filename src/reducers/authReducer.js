@@ -37,7 +37,6 @@ const authReducer = (currentState = initialState, action) => {
         photoURL: action.user.photoURL,
         userName: action.user.displayName
       };
-      history.push(action.nextPath);
       break;
 
     case C.LOGOUT:

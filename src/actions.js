@@ -76,8 +76,22 @@ export const fetchedRoasts = (roasts) => {
 // New roast actions.
 export const createNewRoast = (roastDetails) => {
   return {
-    type: C.CREATE_NEW_ROAST,
+    type: C.CREATING_NEW_ROAST,
     roastDetails: roastDetails
+  };
+};
+
+export const createNewRoastSuccess = (roastData) => {
+  return {
+    type: C.CREATE_NEW_ROAST_SUCCESS,
+    roastData: roastData
+  };
+};
+
+export const createNewRoastFailed = (error) => {
+  return {
+    type: C.CREATE_NEW_ROAST_FAILED,
+    error
   };
 };
 
@@ -86,5 +100,28 @@ export const updateCurrentRoastValue = (field, value) => {
     type: C.UPDATE_CURRENT_ROAST_VALUE,
     field,
     value
+  };
+};
+
+export const startStopWatch = (roastId, roastStart, tick) => {
+  return {
+    type: C.STOPWATCH_START,
+    roastId,
+    roastStart,
+    tick
+  };
+};
+
+export const tickStopWatch = (roastStart) => {
+  return {
+    type: C.STOPWATCH_TICK,
+    roastStart
+  };
+};
+
+export const stopStopWatch = (roastId) => {
+  return {
+    type: C.STOPWATCH_STOP,
+    roastId
   };
 };

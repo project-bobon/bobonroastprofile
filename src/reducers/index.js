@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import roastsReducer from './roastsReducer';
-import currentRoastReducer from './currentRoastReducer';
+import newRoastReducer from './newRoastReducer';
+import stopWatchReducer from './stopWatchReducer';
 
 export default combineReducers({
   auth: authReducer,
   roasts: roastsReducer,
-  currentRoast: currentRoastReducer
+  newRoast: newRoastReducer,
+  stopWatch: stopWatchReducer
 });

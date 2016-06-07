@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import C from '../constants';
-import DashBoard from './Dashboard';
+import RoastListContainer from '../containers/RoastListContainer';
 import Home from './Home';
 
 class Main extends React.Component {
@@ -12,7 +12,7 @@ class Main extends React.Component {
 
   _getContent() {
     if (this.props.authStatus === C.LOGGED_IN) {
-      return <DashBoard/>;
+      return <RoastListContainer/>;
     } else {
       return <Home/>;
     }

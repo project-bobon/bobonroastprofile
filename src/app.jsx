@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Link } from 'react-router';
+import { Router, Route, IndexRoute, Link, Redirect } from 'react-router';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -15,9 +15,10 @@ import C from './constants';
 import history from './history';
 import MainContainer from './containers/MainContainer';
 import NewRoastFormContainer from './containers/NewRoastFormContainer';
+import RoastProfileContainer from './containers/RoastProfileContainer';
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
-  ,window.devToolsExtension && window.devToolsExtension()
+,window.devToolsExtension && window.devToolsExtension()
 );
 
 const routes = (
@@ -25,7 +26,10 @@ const routes = (
     <Route path="/" component={ AppContainer }>
       <IndexRoute component={ MainContainer }/>
 
-      <Route path="/new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
+      <Route path="new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
+
+      <Redirect from="roasts" to="/"/>
+      <Route path="roasts/:roastId" component={ RoastProfileContainer }/>
     </Route>
   </Router>
 );
@@ -46,9 +50,8 @@ C.FIREBASE.auth().onAuthStateChanged((user) => {
     store.dispatch(loginSuccess(user));
 
     // Listen to roast changes
-    let roastsRef = C.FIREBASE.app().database().ref('users/' + user.uid);
+    let roastsRef = C.FIREBASE.app().database().ref(`/roasts/${user.uid}`);
     roastsRef.on('value', snapshot => {
-      console.log(snapshot.val());
       store.dispatch(fetchedRoasts(snapshot.val()));
     }, err => {
       console.log(err);

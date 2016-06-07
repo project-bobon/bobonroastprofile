@@ -15,7 +15,6 @@ const auth = {
         break;
 
       default:
-        console.log(provider);
         break;
     }
 

@@ -3,8 +3,45 @@ import StopWatchContainer from '../containers/StopWatchContainer';
 import RoastPointInputContainer from '../containers/RoastPointInputContainer';
 import RoastChart from './RoastChart';
 import moment from 'moment';
+import C from '../constants';
 
 class RoastProfile extends React.Component {
+  stopWatch() {
+    let content = null;
+
+    if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
+      content = (
+        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
+          <StopWatchContainer
+            roastId={ this.props.roastId }
+            roastStart={ this.props.roastStart }
+            status={ this.props.status }
+          />
+        </div>
+      );
+    }
+
+    return content;
+  }
+
+  tempInput() {
+    let content = null;
+
+    if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
+      content = (
+        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
+          <RoastPointInputContainer
+            roastId={ this.props.roastId }
+            roastStart={ this.props.roastStart }
+            status={ this.props.status }
+          />
+        </div>
+      );
+    }
+
+    return content;
+  }
+
   render() {
     return (
       <div className="mdl-grid">
@@ -34,22 +71,8 @@ class RoastProfile extends React.Component {
           </div>
         </div>
 
-
-        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
-          <StopWatchContainer
-            roastId={ this.props.roastId }
-            roastStart={ this.props.roastStart }
-            status={ this.props.status }
-          />
-        </div>
-
-        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
-          <RoastPointInputContainer
-            roastId={ this.props.roastId }
-            roastStart={ this.props.roastStart }
-            status={ this.props.status }
-          />
-        </div>
+        { this.stopWatch() }
+        { this.tempInput() }
 
       </div>
     );

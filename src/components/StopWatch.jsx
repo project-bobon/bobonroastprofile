@@ -6,6 +6,19 @@ require('../../scss/stopwatch.scss');
 
 class StopWatch extends React.Component {
 
+  componentWillMount() {
+    // If already in progress, continue stopwatch.
+    if (this.props.status === C.ROAST_IN_PROGRESS && !this.props.tick) {
+      this.props.resumeStopWatch(
+        this.props.roastId,
+        this.props.roastStart,
+        setInterval(() => {
+          this.props.tickStopWatch(this.props.roastStart);
+        }, 1000)
+      );
+    }
+  }
+
   startButton() {
     let content = null;
 
@@ -19,7 +32,7 @@ class StopWatch extends React.Component {
                 roastStart,
                 setInterval(() => {
                   this.props.tickStopWatch(roastStart);
-                }, 100)
+                }, 1000)
               );
             } }
         >
@@ -38,7 +51,7 @@ class StopWatch extends React.Component {
       content = (
         <button className="bobon-stopwatch-button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--red-600 mdl-color-text--white"
           onClick={ () => {
-              this.props.stopStopWatch(this.props.roastId);
+              this.props.stopStopWatch(this.props.roastId, this.props.tick);
             } }
         >
           STOP
@@ -54,7 +67,6 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
       let t = this.props.elapsed;
-      let fsec = (t / 100) % 10 << 0;
       let min = (t / 1000 / 60) << 0;
       let sec = (t / 1000) % 60 << 0;
 
@@ -69,7 +81,7 @@ class StopWatch extends React.Component {
       content = (
         <div className="mdl-cell mdl-cell--12-col bobon-stopwatch">
           <div className="bobon-stopwatch-time">
-            { `${min} : ${sec} : ${fsec}0` }
+            { `${min} : ${sec}` }
           </div>
 
           { this.startButton() }

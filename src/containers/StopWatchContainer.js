@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { startStopWatch, tickStopWatch, stopStopWatch } from '../actions';
+import { startStopWatch, resumeStopWatch, tickStopWatch, stopStopWatch } from '../actions';
 import StopWatch from '../components/StopWatch';
 
 const mapStateToProps = (state, ownProps) => {
@@ -7,7 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     elapsed: state.stopWatch.elapsed,
     status: ownProps.status,
     roastId: ownProps.roastId,
-    roastStart: ownProps.roastStart
+    roastStart: ownProps.roastStart,
+    tick: state.stopWatch.tick
   };
 };
 
@@ -17,11 +18,16 @@ const mapDispatchToProps = dispatch => {
       dispatch(startStopWatch(roastId, roastStart, tick));
     },
 
+    resumeStopWatch: (roastId, roastStart, tick) => {
+      dispatch(resumeStopWatch(roastId, roastStart, tick));
+    },
+
     tickStopWatch: (roastStart) => {
       dispatch(tickStopWatch(roastStart));
     },
 
-    stopStopWatch: (roastId) => {
+    stopStopWatch: (roastId, tick) => {
+      clearInterval(tick);
       dispatch(stopStopWatch(roastId));
     }
   };

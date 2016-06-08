@@ -9,27 +9,27 @@ const stopWatchReducer = (currentState = initialState, action) => {
   switch(action.type) {
 
     case C.STOPWATCH_START:
+    case C.STOPWATCH_RESUME:
       return {
-        elapsed: 0,
+        elapsed: Date.now() - action.roastStart,
         tick: action.tick
-      }
+      };
       break;
 
     case C.STOPWATCH_TICK:
       return {
         ...currentState,
         elapsed: Date.now() - action.roastStart
-      }
+      };
       break;
 
     case C.STOPWATCH_STOP:
-      clearInterval(currentState.tick);
-      return currentState;
+      return initialState;
       break;
 
     default:
       return currentState;
   }
-}
+};
 
 export default stopWatchReducer;

@@ -7,7 +7,7 @@ const roastsReducer = (currentState = initialState, action) => {
   switch(action.type) {
 
     case C.FETCHED_ROASTS:
-      return action.roasts
+      return action.roasts;
       break;
 
     default:

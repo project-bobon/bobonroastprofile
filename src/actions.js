@@ -109,11 +109,19 @@ export const startStopWatch = (roastId, roastStart, tick) => {
 
   roastRef.update({
     status: C.ROAST_IN_PROGRESS,
-    roastStart: Date.now()
+    roastStart
   });
 
   return {
     type: C.STOPWATCH_START,
+    roastId,
+    tick
+  };
+};
+
+export const resumeStopWatch = (roastId, roastStart, tick) => {
+  return {
+    type: C.STOPWATCH_RESUME,
     roastId,
     tick
   };

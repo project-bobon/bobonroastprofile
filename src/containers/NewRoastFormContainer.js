@@ -17,6 +17,7 @@ const mapStateToProps = state => {
     beansName: roast.beansName || '',
     beansMoisture: roast.beansMoisture || '',
     batchSize: roast.batchSize || '',
+    initialTemp: roast.initialTemp || '',
     uid: state.auth.uid,
     disabled,
     processing: roast.status === C.ROAST_PENDING
@@ -28,19 +29,21 @@ const mapDispatchToProps = dispatch => {
     onSubmit: e => {
       e.preventDefault();
 
-      const els = e.target.elements;
-      let roastNote = els.namedItem('roastNote').value;
-      let beansName = els.namedItem('beansName').value;
-      let beansMoisture = parseFloat(els.namedItem('beansMoisture').value);
-      let batchSize = parseFloat(els.namedItem('batchSize').value);
-      let uid = els.namedItem('uid').value;
+      const f = e.target;
+      let roastNote = f.roastNote.value;
+      let beansName = f.beansName.value;
+      let beansMoisture = parseFloat(f.beansMoisture.value);
+      let batchSize = parseFloat(f.batchSize.value);
+      let initialTemp = parseFloat(f.initialTemp.value);
+      let uid = f.uid.value;
 
-      if (beansName !== '' && batchSize !== '') {
+      if (beansName !== '' && batchSize !== '' && initialTemp !== '' && uid !== '') {
         dispatch(createNewRoast({
           roastNote,
           beansName,
           batchSize,
           beansMoisture,
+          initialTemp,
           uid
         }));
 
@@ -50,15 +53,26 @@ const mapDispatchToProps = dispatch => {
           created: Date.now(),
           status: C.ROAST_PENDING,
           roastStart: 0,
+          initialTemp,
           roastNote,
           beansMoisture,
           beansName,
           batchSize,
+          roastPoints: [],
           uid
         }, err => {
           dispatch(createNewRoastFailed(err));
         }).then((newRoast) => {
           dispatch(createNewRoastSuccess(newRoast));
+
+          // Create initial roast point.
+          let ref = C.FIREBASE.app().database().ref(`roasts/${uid}/${newRoast.key}/roastPoints`);
+
+          ref.push({
+            elapsed: 0,
+            temperature: initialTemp
+          });
+
           history.push(`roasts/${newRoast.key}`)
         });
       }

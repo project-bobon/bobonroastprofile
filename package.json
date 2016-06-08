@@ -40,5 +40,8 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "react-chartist": "^0.10.2"
   }
 }

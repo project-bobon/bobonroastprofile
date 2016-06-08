@@ -14,13 +14,8 @@ const LoginForm = ({ authStatus, onLoginBtnClick }) => {
   if (authStatus !== C.LOGGED_IN) {
     content = (
       <div className="demo-card-wide mdl-card mdl-shadow--2dp" style={ style }>
-        <div className="mdl-card__title"
-          style={{
-            background: "url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover",
-            height: "170px"
-          }}
-        >
-          <h2 className="mdl-card__title-text">Welcome</h2>
+        <div className="mdl-card__title">
+          <h2 className="mdl-card__title-text">Welcome to Bobon Roast Profiles Beta</h2>
         </div>
         <div className="mdl-card__supporting-text">
           To continue, please login as a user

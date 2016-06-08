@@ -12,7 +12,8 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.jsx', '.js']
+    extensions: ['', '.jsx', '.js'],
+    modulesDirectories: ['node_modules', 'bower_components']
   },
 
   module: {
@@ -25,7 +26,7 @@ module.exports = {
     loaders: [
       {
         loader: 'babel',
-        exclude: /(node_modules)/
+        exclude: /(node_modules|bower_components)/
       },
       {
         test: /\.(jpg|png)$/,
@@ -38,6 +39,12 @@ module.exports = {
       }
     ]
   },
+
+  plugins: [
+    new webpack.ResolverPlugin(
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
+    )
+  ],
 
   devSever: {
     contentBase: path.resolve(__dirname, './public'),

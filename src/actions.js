@@ -104,10 +104,17 @@ export const updateCurrentRoastValue = (field, value) => {
 };
 
 export const startStopWatch = (roastId, roastStart, tick) => {
+  let uid = C.FIREBASE.auth().currentUser.uid;
+  let roastRef = C.FIREBASE.app().database().ref(`roasts/${uid}/${roastId}`);
+
+  roastRef.update({
+    status: C.ROAST_IN_PROGRESS,
+    roastStart: Date.now()
+  });
+
   return {
     type: C.STOPWATCH_START,
     roastId,
-    roastStart,
     tick
   };
 };
@@ -120,8 +127,23 @@ export const tickStopWatch = (roastStart) => {
 };
 
 export const stopStopWatch = (roastId) => {
+  let uid = C.FIREBASE.auth().currentUser.uid;
+  let roastRef = C.FIREBASE.app().database().ref(`roasts/${uid}/${roastId}`);
+
+  roastRef.update({
+    status: C.ROAST_COMPLETED
+  });
+
   return {
     type: C.STOPWATCH_STOP,
     roastId
   };
+};
+
+// Roast progress actions.
+export const checkRoastInProgress = roasts => {
+  return {
+    type: C.CHECK_ROAST_IN_PROGRESS,
+    roasts
+  }
 };

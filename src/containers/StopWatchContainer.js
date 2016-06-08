@@ -6,7 +6,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     elapsed: state.stopWatch.elapsed,
     status: ownProps.status,
-    roastId: ownProps.roastId
+    roastId: ownProps.roastId,
+    roastStart: ownProps.roastStart
   };
 };
 

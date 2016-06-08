@@ -10,7 +10,7 @@ const stopWatchReducer = (currentState = initialState, action) => {
 
     case C.STOPWATCH_START:
       return {
-        elapsed: Date.now() - action.roastStart,
+        elapsed: 0,
         tick: action.tick
       }
       break;

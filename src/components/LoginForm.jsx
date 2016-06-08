@@ -15,7 +15,7 @@ const LoginForm = ({ authStatus, onLoginBtnClick }) => {
     content = (
       <div className="demo-card-wide mdl-card mdl-shadow--2dp" style={ style }>
         <div className="mdl-card__title">
-          <h2 className="mdl-card__title-text">Welcome to Bobon Roast Profiles Beta</h2>
+          <h2 className="mdl-card__title-text">Bobon Roast Profiles Beta</h2>
         </div>
         <div className="mdl-card__supporting-text">
           To continue, please login as a user

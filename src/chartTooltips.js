@@ -18,7 +18,7 @@ const chartTooltips = options => {
       labelClass: 'ct-label',
       labelOffset: {
         x: 0,
-        y: -10
+        y: -5
       },
       textAnchor: 'middle'
     };
@@ -27,12 +27,13 @@ const chartTooltips = options => {
 
     if(chart instanceof Chartist.Line) {
       chart.on('draw', function(data) {
+        console.log(data);
         if(data.type === 'point') {
           data.group.elem('text', {
             x: data.x + options.labelOffset.x,
             y: data.y + options.labelOffset.y,
-            style: 'text-anchor: ' + options.textAnchor
-          }, options.labelClass).text(formatTime(data.value.x) + ', ' + data.value.y);
+            style: `text-anchor: ${options.textAnchor}; display: block; width: 10px; overflow:hidden`
+          }, options.labelClass, false).text(formatTime(data.value.x) + ', ' + data.value.y);
         }
       });
     }

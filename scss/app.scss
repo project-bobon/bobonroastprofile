@@ -37,3 +37,37 @@ body {
     left: 0px;
   }
 }
+
+.bobon-roast-temp-form {
+  width: 100%;
+  position: relative;
+  box-sizing: content-box;
+  padding-right: 120px;
+
+  input[type="submit"] {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 50px;
+    line-height: 50px;
+    width: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+  }
+}
+
+.bobon-roast-temp-input {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid #e3e3e3;
+  font-size: 3em;
+  padding: 0;
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  &:focus {
+    outline-width: 0;
+  }
+}

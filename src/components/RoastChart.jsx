@@ -21,8 +21,6 @@ class RoastChart extends React.Component {
       let type = 'Line';
       let ticks = [];
 
-      console.log(this.props.roastPoints[lastPointId].elapsed);
-
       if (this.props.roastPoints[lastPointId].elapsed > maxX) {
         maxX = Math.floor(this.props.roastPoints[lastPointId].elapsed / 1000) + 30;
       }
@@ -56,13 +54,7 @@ class RoastChart extends React.Component {
           labelInterpolationFnc: value => {
             return this.beautifyTime(value);
           }
-        },
-
-        plugins: [
-          chartTooltips({
-            textAnchor: 'middle'
-          })
-        ]
+        }
       };
 
       return <ChartistGraph

@@ -20,9 +20,10 @@ class RoastChart extends React.Component {
       let chartData = {};
       let type = 'Line';
       let ticks = [];
+      let lastSec = this.props.roastPoints[lastPointId].elapsed / 1000 << 0;
 
-      if (this.props.roastPoints[lastPointId].elapsed > maxX) {
-        maxX = Math.floor(this.props.roastPoints[lastPointId].elapsed / 1000) + 30;
+      if (lastSec > maxX) {
+        maxX = lastSec + 30;
       }
 
       for (var i = 1; i * 30 <= maxX; i++) {

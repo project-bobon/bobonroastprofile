@@ -1,6 +1,7 @@
 import React from 'react';
-import Chartist from 'chartist';
 import ChartistGraph from 'react-chartist';
+import Chartist from 'chartist';
+import chartTooltips from '../chartTooltips';
 
 class RoastChart extends React.Component {
   beautifyTime(value) {
@@ -55,10 +56,21 @@ class RoastChart extends React.Component {
           labelInterpolationFnc: value => {
             return this.beautifyTime(value);
           }
-        }
+        },
+
+        plugins: [
+          chartTooltips({
+            textAnchor: 'middle'
+          })
+        ]
       };
 
-      return <ChartistGraph data={ chartData } options={options} type={type} style={ {height: '800px'}} className='bobon-roast-chart'/>;
+      return <ChartistGraph
+               data={ chartData }
+               options={options}
+               type={type}
+               className="ct-major-eleventh"
+             />;
     } else {
       return null;
     }

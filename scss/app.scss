@@ -22,27 +22,18 @@ body {
   margin: 0 auto;
 }
 
-.bobon-roast-chart {
-  & :fullscreen {
-    position:fixed;
-    top:0; 
-    right:0; 
-    bottom:0; 
-    left:0;
-    margin:0;
-    box-sizing:border-box;
-    width:100%;
-    height:100%;
-    object-fit:contain;
+.bobon-card {
+  min-height: 100px;
+}
+
+.bobon-text-with-icon {
+  position: relative;
+  padding-left: 30px;
+
+  .material-icons {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    left: 0px;
   }
-}
-
-.bobon-start-stop-button {
-  width: 100px;
-  height: 100px;
-}
-
-.bobon-stopwatch-time {
-  font-size: 5em;
-  text-align: center;
 }

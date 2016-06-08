@@ -2,37 +2,51 @@ import React from 'react';
 import moment from 'moment';
 import C from '../constants';
 
+require('../../scss/stopwatch.scss');
+
 class StopWatch extends React.Component {
- 
+
   startButton() {
-    return(
-      <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-        onClick={ () => {
-            let roastStart = Date.now();
-            this.props.startStopWatch(
-              this.props.roastId,
-              roastStart,
-              setInterval(() => {
-                this.props.tickStopWatch(roastStart);
-              }, 100)
-            );
-          } }
-      >
-        START
-      </button>
-    );
+    let content = null;
+
+    if (this.props.status === C.ROAST_PENDING) {
+      content = (
+        <button className="bobon-stopwatch-button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--red-600 mdl-color-text--white"
+          onClick={ () => {
+              let roastStart = Date.now();
+              this.props.startStopWatch(
+                this.props.roastId,
+                roastStart,
+                setInterval(() => {
+                  this.props.tickStopWatch(roastStart);
+                }, 100)
+              );
+            } }
+        >
+          START
+        </button>
+      );
+    }
+
+    return content;
   }
 
   stopButton() {
-    return(
-      <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-        onClick={ () => {
-            this.props.stopStopWatch(this.props.roastId);
-          } }
-      >
-        STOP
-      </button>
-    );
+    let content = null;
+
+    if (this.props.status === C.ROAST_IN_PROGRESS) {
+      content = (
+        <button className="bobon-stopwatch-button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--red-600 mdl-color-text--white"
+          onClick={ () => {
+              this.props.stopStopWatch(this.props.roastId);
+            } }
+        >
+          STOP
+        </button>
+      );
+    }
+
+    return content;
   }
 
   render() {
@@ -53,15 +67,13 @@ class StopWatch extends React.Component {
       }
 
       content = (
-        <div className="mdl-card mdl-cell mdl-cell--12-col">
-            <div className="mdl-card__title bobon-stopwatch-time">
-              { `${min} : ${sec} : ${fsec}0` }
-            </div>
+        <div className="mdl-cell mdl-cell--12-col bobon-stopwatch">
+          <div className="bobon-stopwatch-time">
+            { `${min} : ${sec} : ${fsec}0` }
+          </div>
 
-            <div className="mdl-card__actions mdl-card--border">
-              { this.startButton() }
-              { this.stopButton() }
-            </div>
+          { this.startButton() }
+          { this.stopButton() }
         </div>
       );
     }

@@ -19,6 +19,7 @@
     "tests"
   ],
   "devDependencies": {
-    "chartist": "^0.9.7"
+    "chartist": "^0.9.7",
+    "chartist-plugin-tooltip": "^0.0.12"
   }
 }

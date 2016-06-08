@@ -28,6 +28,9 @@ class RoastList extends React.Component {
         <NavigationLink path={ `roasts/${key}` }>
           View Roast
         </NavigationLink>
+        <div onClick={ () => { this.props.removeRoast(key); } }>
+          Remove Roast
+        </div>
       </div>
     );
   }

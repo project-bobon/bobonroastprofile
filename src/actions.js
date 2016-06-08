@@ -81,6 +81,13 @@ export const createNewRoast = (roastDetails) => {
   };
 };
 
+export const removeRoast = roastId => {
+  return {
+    type: C.REMOVE_ROAST,
+    roastId
+  };
+};
+
 export const createNewRoastSuccess = (roastData) => {
   return {
     type: C.CREATE_NEW_ROAST_SUCCESS,

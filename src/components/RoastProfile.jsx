@@ -29,12 +29,15 @@ class RoastProfile extends React.Component {
         </div>
 
 
-        <div className="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white mdl-grid">
+        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
           <StopWatchContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }
             status={ this.props.status }
           />
+        </div>
+
+        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
           <RoastPointInputContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }

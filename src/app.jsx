@@ -17,6 +17,7 @@ import MainContainer from './containers/MainContainer';
 import NewRoastFormContainer from './containers/NewRoastFormContainer';
 import RoastProfileContainer from './containers/RoastProfileContainer';
 
+
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
 //,window.devToolsExtension && window.devToolsExtension()
 );

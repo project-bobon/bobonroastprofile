@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
-
+import { RouteTransition } from 'react-router-transition';
 import HeaderContainer from '../containers/HeaderContainer';
 import DrawerContainer from '../containers/DrawerContainer';
 import C from '../constants';
+
 
 require('../../scss/app.scss');
 require('../../scss/utils.scss');
@@ -32,6 +33,8 @@ class App extends React.Component {
   }
 
   render() {
+    var path = this.props.location.pathname;
+    var segment = path.split('/')[1] || 'root';
     return (
       <div className={ this._containerClass() }>
         <HeaderContainer/>

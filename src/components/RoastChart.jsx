@@ -1,7 +1,6 @@
 import React from 'react';
 import ChartistGraph from 'react-chartist';
-import Chartist from 'chartist';
-import chartTooltips from '../chartTooltips';
+import { FixedScaleAxis } from 'chartist';
 
 class RoastChart extends React.Component {
   beautifyTime(value) {
@@ -50,7 +49,7 @@ class RoastChart extends React.Component {
         axisX: {
           high: maxX,
           ticks,
-          type: Chartist.FixedScaleAxis,
+          type: FixedScaleAxis,
           onlyInteger: true,
           labelInterpolationFnc: value => {
             return this.beautifyTime(value);
@@ -58,12 +57,14 @@ class RoastChart extends React.Component {
         }
       };
 
-      return <ChartistGraph
-               data={ chartData }
-               options={options}
-               type={type}
-               className="ct-major-eleventh"
-             />;
+      return (
+        <ChartistGraph
+          data={ chartData }
+          options={ options }
+          type={ type }
+          className="ct-major-eleventh"
+        />
+      );
     } else {
       return null;
     }

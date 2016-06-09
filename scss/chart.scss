@@ -1,0 +1,13 @@
+ .ct-series-a .ct-point {
+  -webkit-animation: exploding-stroke 1s ease-out infinite;
+  -moz-animation: exploding-stroke 1s ease-out infinite;
+  -o-animation: exploding-stroke 1s ease-out infinite;
+  animation: exploding-stroke 1s ease-out infinite !important;
+  stroke-width: 8px;
+  stroke-linecap: round;
+  stroke-color: #000;
+}
+
+.ct-line {
+  stroke-width: 2px;
+}

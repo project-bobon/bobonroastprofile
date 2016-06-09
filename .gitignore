@@ -2,5 +2,4 @@ npm_debug.log
 bower_components
 node_modules
 
-public
-public/*
+public/bundle.js

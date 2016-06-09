@@ -2,6 +2,8 @@ import React from 'react';
 import ChartistGraph from 'react-chartist';
 import { FixedScaleAxis } from 'chartist';
 
+require('../../scss/chart.scss');
+
 class RoastChart extends React.Component {
   beautifyTime(value) {
     let m = Math.floor(value / 60);

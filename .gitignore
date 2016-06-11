@@ -1,5 +1,9 @@
 npm_debug.log
+firebase-debug.log
+
 bower_components
 node_modules
 
 public/bundle.js
+public/commons.js
+public/nm_debug.log

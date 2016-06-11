@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --https --hot --inline --progress --colors --content-base public/",
-    "build": "./node_modules/webpack/bin/webpack.js -c webpack.config.production.js --progress --colors -p",
-    "deploy": "./node_modules/webpack/bin/webpack.js -c webpack.config.production.js --progress --colors -p && firebase deploy"
+    "build": "./node_modules/webpack/bin/webpack.js --progress --colors -p",
+    "deploy": "./node_modules/webpack/bin/webpack.js --progress --colors -p && firebase deploy"
 
   },
   "repository": {

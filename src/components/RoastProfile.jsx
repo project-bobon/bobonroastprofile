@@ -146,7 +146,11 @@ class RoastProfile extends React.Component {
             </div>
           </div>
           <div class="mdl-card__supporting-text mdl-color--grey-900">
-            <RoastChart roastPoints={ this.props.roastPoints }/>
+            <RoastChart
+              roastPoints={ this.props.roastPoints }
+              beansName={ this.props.beansName }
+              roastStart={ this.props.roastStart }
+            />
           </div>
         </div>
 

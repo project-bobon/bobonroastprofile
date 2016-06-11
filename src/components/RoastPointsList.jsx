@@ -5,7 +5,6 @@ class RoastPointsList extends React.Component {
   roastPoints() {
     return Object.keys(this.props.roastPoints).map(
       key => {
-        console.log(key);
         return (
           <tr key={ key }>
             <td className="mdl-data-table__cell--non-numeric">

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Spinner from './Spinner';
-import moment from 'moment';
 import history from '../history';
 
 require('../../scss/roast_form.scss');

@@ -102,6 +102,15 @@ export const createNewRoastFailed = (error) => {
   };
 };
 
+export const updateRoastValue = (roastId, field, value) => {
+  return {
+    type: C.UPDATE_ROAST_VALUE,
+    roastId,
+    field,
+    value
+  };
+};
+
 export const updateCurrentRoastValue = (field, value) => {
   return {
     type: C.UPDATE_CURRENT_ROAST_VALUE,
@@ -110,6 +119,16 @@ export const updateCurrentRoastValue = (field, value) => {
   };
 };
 
+// Field actions.
+export const toggleEditing = (roastId, field) => {
+  return {
+    type: C.TOGGLE_EDITING_FIELD,
+    roastId,
+    field
+  };
+};
+
+// Stopwatch actions.
 export const startStopWatch = (roastId, roastStart, tick) => {
   let uid = C.FIREBASE.auth().currentUser.uid;
   let roastRef = C.FIREBASE.app().database().ref(`roasts/${uid}/${roastId}`);
@@ -160,5 +179,5 @@ export const checkRoastInProgress = roasts => {
   return {
     type: C.CHECK_ROAST_IN_PROGRESS,
     roasts
-  }
+  };
 };

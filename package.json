@@ -4,7 +4,10 @@
   "description": "A place to record and keep track of your coffee roast profiles",
   "main": "index.js",
   "scripts": {
-    "watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --progress --colors --content-base public/"
+    "watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --https --hot --inline --progress --colors --content-base public/",
+    "build": "./node_modules/webpack/bin/webpack.js -c webpack.config.production.js --progress --colors -p",
+    "deploy": "./node_modules/webpack/bin/webpack.js -c webpack.config.production.js --progress --colors -p && firebase deploy"
+
   },
   "repository": {
     "type": "git",

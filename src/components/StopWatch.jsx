@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import C from '../constants';
 
 require('../../scss/stopwatch.scss');

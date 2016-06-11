@@ -3,7 +3,9 @@ var path = require('path');
 var srcPath = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: path.join(srcPath, 'app.jsx'),
+  entry: {
+    bundle: path.join(srcPath, 'app.jsx')
+  },
 
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -12,17 +14,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.jsx', '.js'],
+    extensions: ['', '.jsx', '.js', 'scss'],
     modulesDirectories: ['node_modules', 'bower_components']
   },
 
   module: {
-    preLoaders: [
-      {
-        test: /\.js?$/,
-        loader: 'source-map'
-      }
-    ],
     loaders: [
       {
         loader: 'babel',
@@ -41,14 +37,15 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin('commons', 'commons.js'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new webpack.ResolverPlugin(
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
-    )
-  ],
-
-  devSever: {
-    contentBase: path.resolve(__dirname, './public'),
-    historyApiFallback: true,
-    port: 80
-  }
+    ),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };

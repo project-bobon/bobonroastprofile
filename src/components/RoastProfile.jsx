@@ -1,8 +1,8 @@
 import React from 'react';
 import StopWatchContainer from '../containers/StopWatchContainer';
 import RoastPointInputContainer from '../containers/RoastPointInputContainer';
+import PostRoastNoteFormContainer from '../containers/PostRoastNoteFormContainer';
 import RoastChart from './RoastChart';
-import moment from 'moment';
 import C from '../constants';
 
 class RoastProfile extends React.Component {
@@ -46,11 +46,12 @@ class RoastProfile extends React.Component {
     return (
       <div className="mdl-grid">
         <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+
           <div className="mdl-grid mdl-card__title mdl-color--red-900 mdl-color-text--grey-100 bobon-util__full-width">
             <div className="mdl-cell mdl-cell--3-col mdl-color-text--grey-100">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">event</i>
-                { moment(this.props.roastStart).format('MM-DD-YYYY, hh:mm') }
+                { this.props.roastStart }
               </div>
             </div>
             <div className="mdl-cell mdl-cell--3-col mdl-color-text--grey-100">
@@ -73,6 +74,10 @@ class RoastProfile extends React.Component {
 
         { this.stopWatch() }
         { this.tempInput() }
+
+        <div className="mdl-card mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+          <PostRoastNoteFormContainer roastId={ this.props.roastId }/>
+        </div>
 
       </div>
     );

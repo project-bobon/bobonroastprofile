@@ -1,6 +1,5 @@
 import React from 'react';
 import NavigationLink from '../components/NavigationLink';
-import moment from 'moment';
 
 class RoastList extends React.Component {
 
@@ -13,7 +12,7 @@ class RoastList extends React.Component {
         <div class="mdl-card__supporting-text">
           <div className="mdl-grid">
             <div className="mdl-cell mdl-cell--12-col">
-              { moment(roast.created).format('LLL') }
+              { roast.created }
             </div>
             <div className="mdl-cell mdl-cell--6-col">
               <i className="material-icons">shopping_basket</i>

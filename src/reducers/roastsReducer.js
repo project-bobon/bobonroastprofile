@@ -1,7 +1,7 @@
 import C from '../constants';
 import history from '../history';
 
-const initialState = []
+const initialState = {};
 
 const roastsReducer = (currentState = initialState, action) => {
   switch(action.type) {

@@ -18,7 +18,11 @@ const auth = {
         break;
     }
 
-    return C.FIREBASE.auth().signInWithPopup(authProvider);
+    if (window.location.protocol === 'http') {
+      return C.FIREBASE.auth().signInWithPopup(authProvider);
+    } else {
+      return C.FIREBASE.auth().signInWithRedirect(authProvider);
+    }
   },
 
   isLoggedIn: () => {

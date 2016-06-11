@@ -1,7 +1,9 @@
 import React from 'react';
-import ChartistGraph from 'react-chartist';
-import { FixedScaleAxis } from 'chartist';
 import { Line } from 'react-chartjs';
+import Chart from 'chart.js';
+
+console.log(Chart.prototype);
+console.log(Object.keys(Chart));
 
 require('../../scss/chart.scss');
 
@@ -33,6 +35,20 @@ class RoastChart extends React.Component {
         return a.x - b.x;
       });
 
+      // Initial rate of roast.
+      let ror = [
+        { x: 0, y: 0 }
+      ];
+
+      for (var i = 1; i < data.length; i++) {
+        let tangent = (data[i].y - data[i - 1].y) / (data[i].x - data[i - 1].x);
+        ror.push({
+          x: data[i].x,
+          y: tangent
+        });
+      }
+
+      // Set max x scale.
       if (data.length > 0) {
         let lastMin = data[data.length - 1].x;
         if (lastMin + 1 > maxX) {
@@ -50,6 +66,15 @@ class RoastChart extends React.Component {
             borderColor: 'green',
             borderWidth: 1,
             backgroundColor: 'green'
+          },
+          {
+            label: 'rate',
+            data: ror,
+            fill: false,
+            borderColor: 'red',
+            borderWidth: 1,
+            backgroundColor: 'red',
+            yAxisID: 'rate'
           }
         ]
       };
@@ -64,7 +89,28 @@ class RoastChart extends React.Component {
               min: 0,
               stepSize: 1
             }
-          }]
+          }],
+          yAxes: [
+            {
+              type: 'linear',
+              position: 'left',
+              ticks: {
+                max: 270,
+                min: 50,
+                stepSize: 10
+              }
+            },
+            {
+              id: 'rate',
+              position: 'right',
+              type: 'linear',
+              ticks: {
+                max: 45,
+                min: -10,
+                stepSize: 5
+              }
+            },
+          ]
         },
         maintainAspectRatio: true,
         responsive: true,

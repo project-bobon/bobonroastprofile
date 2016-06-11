@@ -1,9 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs';
-import Chart from 'chart.js';
-
-console.log(Chart.prototype);
-console.log(Object.keys(Chart));
+import Bezier from 'bezier-js';
 
 require('../../scss/chart.scss');
 
@@ -63,17 +60,17 @@ class RoastChart extends React.Component {
             label: 'temp',
             data,
             fill: false,
-            borderColor: 'green',
+            borderColor: 'red',
             borderWidth: 1,
-            backgroundColor: 'green'
+            backgroundColor: 'red'
           },
           {
             label: 'rate',
             data: ror,
             fill: false,
-            borderColor: 'red',
+            borderColor: 'green',
             borderWidth: 1,
-            backgroundColor: 'red',
+            backgroundColor: 'green',
             yAxisID: 'rate'
           }
         ]
@@ -105,8 +102,8 @@ class RoastChart extends React.Component {
               position: 'right',
               type: 'linear',
               ticks: {
-                max: 45,
-                min: -10,
+                max: 110,
+                min: 0,
                 stepSize: 5
               }
             },

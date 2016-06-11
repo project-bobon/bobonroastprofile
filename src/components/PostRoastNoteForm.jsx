@@ -15,18 +15,24 @@ class PostRoastNoteForm extends React.Component {
       autoFocus = true;
     }
     content = (
-      <textarea
-        className="mdl-textfield__input"
-        type="text"
-        id="postRoastNote"
-        name="postRoastNote"
-        rows="5"
-        defaultValue={ this.props.postRoastNote }
-        autoFocus={ autoFocus }
-      >
-      </textarea>
+      <div className="mdl-textfield mdl-js-textfield bobon-util__full-width">
+        <textarea
+          className="mdl-textfield__input"
+          type="text"
+          id="postRoastNote"
+          name="postRoastNote"
+          rows="5"
+          defaultValue={ this.props.postRoastNote }
+          autoFocus={ autoFocus }
+        >
+        </textarea>
+        <label className="mdl-textfield__label"
+          htmlFor="postRoastNote"
+        >
+          Post-roasting notes
+        </label>
+      </div>
     );
-    
 
     return content;
   }
@@ -37,7 +43,7 @@ class PostRoastNoteForm extends React.Component {
     if (this.props.editing === C.FIELD_STATUS_NOT_EDITING) {
       let btnText = 'Edit';
 
-      if (this.props.postRoastNote === '') {
+      if (this.props.postRoastNote === '' || !this.props.postRoastNote) {
         btnText = 'Add Comment';
       }
 
@@ -63,8 +69,11 @@ class PostRoastNoteForm extends React.Component {
   }
 
   noteForm() {
-    let content = this.props.postRoastNote;
-
+    let content = (
+      <plaintext>
+        { this.props.postRoastNote }
+      </plaintext>
+    );
 
     if (this.props.editing === C.FIELD_STATUS_EDITING) {
       content = (
@@ -118,14 +127,12 @@ class PostRoastNoteForm extends React.Component {
         >
           <div className="mdl-card__title">
             <h2 className="mdl-card__title-text">
-              Post Roast Notes
+              Post-roasting notes
             </h2>
           </div>
 
           <div className="mdl-card__supporting-text">
-            <plaintext>
-              { this.noteForm() }
-            </plaintext>
+            { this.noteForm() }
           </div>
 
           { this.actionButton() }

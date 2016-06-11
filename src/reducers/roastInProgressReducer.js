@@ -20,7 +20,11 @@ const roastInProgressReducer = (currentState = initialState, action) => {
       } else {
         return currentState;
       }
-      break;
+    break;
+
+  case C.CLEAR_ROAST_IN_PROGRESS:
+    return initialState;
+    break;
 
     default:
       return currentState;

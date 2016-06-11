@@ -82,5 +82,47 @@ body {
   margin-right: 10px;
 }
 
-.mdl-button--colored {
+@keyframes hot {
+  0%   {
+    color: #B71C1C;
+  }
+  25%  {
+    color: #E64A19;
+  }
+  50%  {
+    color: #FFEE58;
+  }
+  100% {
+    color: #E64A19;
+  }
+}
+
+.bobon-roast-status--roast_pending {
+  color: #FF6F00;
+}
+
+
+.bobon-roast-status--roast_in_progress {
+  color: #B71C1C;
+  .material-icons {
+    animation: hot 1s ease-out infinite;
+  }
+}
+
+.bobon-roast-status--roast_completed {
+  color: #43A047;
+}
+
+header {
+  .mdl-button {
+    &.mdl-button--colored  {
+      &.bobon-roast-status--roast_in_progress {
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        border-radius: 18px;
+        color: #fff;
+        margin-right: 15px;
+      }
+    }
+  }
 }

@@ -181,3 +181,9 @@ export const checkRoastInProgress = roasts => {
     roasts
   };
 };
+
+export const clearRoastInProgress  = () => {
+  return {
+    type: C.CLEAR_ROAST_IN_PROGRESS
+  };
+};

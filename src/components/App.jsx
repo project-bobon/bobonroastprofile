@@ -5,7 +5,6 @@ import HeaderContainer from '../containers/HeaderContainer';
 import DrawerContainer from '../containers/DrawerContainer';
 import C from '../constants';
 
-require('../../scss/libs.scss');
 require('../../scss/app.scss');
 require('../../scss/utils.scss');
 

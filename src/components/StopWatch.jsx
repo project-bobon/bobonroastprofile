@@ -52,7 +52,10 @@ class StopWatch extends React.Component {
       content = (
         <button className="bobon-stopwatch-button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect "
           onClick={ () => {
-              this.props.stopStopWatch(this.props.roastId, this.props.tick);
+              this.props.stopStopWatch(
+                this.props.roastId,
+                this.props.tick
+              );
             } }
         >
           STOP

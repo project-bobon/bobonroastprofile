@@ -20,7 +20,8 @@ const mapStateToProps = state => {
     initialTemp: roast.initialTemp || '',
     uid: state.auth.uid,
     disabled,
-    processing: roast.status === C.ROAST_PENDING
+    processing: roast.status === C.ROAST_PENDING,
+    roastInProgress: state.roastInProgress
   };
 };
 

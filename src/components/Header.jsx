@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import C from '../constants';
 import history from '../history';
 
+import Button from './utils/Button';
+
 class Header extends React.Component {
 
   static propTypes() {
@@ -79,6 +81,26 @@ class Header extends React.Component {
     return actionButton;
   }
 
+  roastInProgress() {
+    let content = null;
+
+    if (this.props.roastInProgress) {
+      content = (
+        <Button customClass="bobon-roast-status--roast_in_progress"
+          onClick={ e => {
+              e.preventDefault();
+              history.push(`/roasts/${this.props.roastInProgress}`);
+            } }
+        >
+          <i className="material-icons">fiber_manual_record</i>
+          Roast in-progress!
+        </Button>
+      );
+    }
+
+    return content;
+  }
+
   render() {
     return (
       <header className="mdl-layout__header">
@@ -87,6 +109,7 @@ class Header extends React.Component {
           </span>
           <div className="mdl-layout-spacer"></div>
           <nav className="mdl-navigation">
+            { this.roastInProgress() }
             { this._actionButton() }
             { this._profilePhoto() }
           </nav>

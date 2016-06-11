@@ -41,7 +41,7 @@ class RoastChart extends React.Component {
         let tangent = (data[i].y - data[i - 1].y) / (data[i].x - data[i - 1].x);
         ror.push({
           x: data[i].x,
-          y: tangent
+          y: tangent.toFixed(2)
         });
       }
 
@@ -102,7 +102,7 @@ class RoastChart extends React.Component {
               position: 'right',
               type: 'linear',
               ticks: {
-                max: 110,
+                max: 55,
                 min: 0,
                 stepSize: 5
               }

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import C from '../constants';
 import Card from './utils/Card';
@@ -15,9 +16,17 @@ class RoastProfile extends React.Component {
   stopWatch() {
     let content = null;
 
-    if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
+    if (this.props.roastInProgress &&
+        this.props.roastInProgress !== this.props.roastId
+    ) {
+      content = null;
+    } else if (this.props.status === C.ROAST_PENDING ||
+               this.props.status === C.ROAST_IN_PROGRESS
+    ) {
       content = (
-        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
+        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp
+                        mdl-color--white mdl-grid"
+        >
           <StopWatchContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }
@@ -32,10 +41,17 @@ class RoastProfile extends React.Component {
 
   tempInput() {
     let content = null;
-
-    if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
+    if (this.props.roastInProgress &&
+        this.props.roastInProgress !== this.props.roastId
+    ) {
+      content = null;
+    } else if (this.props.status === C.ROAST_PENDING ||
+               this.props.status === C.ROAST_IN_PROGRESS
+    ) {
       content = (
-        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp mdl-color--white mdl-grid">
+        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp
+                        mdl-color--white mdl-grid"
+        >
           <RoastPointInputContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }
@@ -53,7 +69,7 @@ class RoastProfile extends React.Component {
 
     if (this.props.status === C.ROAST_COMPLETED) {
       content = (
-        <div className="mdl-card mdl-grid mdl-cell mdl-cell--6-col">
+        <div className="mdl-card mdl-grid mdl-cell mdl-cell--12-col">
           <PostRoastNoteFormContainer
             roastId={ this.props.roastId }
             status={ this.props.status }
@@ -67,7 +83,7 @@ class RoastProfile extends React.Component {
 
   roastDetails() {
     return(
-      <Card customClass="mdl-cell mdl-cell--6-col">
+      <Card customClass="mdl-cell mdl-cell--12-col">
         <CardTitle>
           <h2 className="mdl-card__title-text">Roast details</h2>
         </CardTitle>
@@ -96,7 +112,7 @@ class RoastProfile extends React.Component {
 
   roastPointsList() {
     return (
-      <Card customClass="mdl-cell mdl-cell--12-col">
+      <Card customClass="mdl-cell mdl-cell--6-col">
         <CardTitle>
           <h2 className="mdl-card__title-text">Temperature points</h2>
         </CardTitle>
@@ -121,29 +137,78 @@ class RoastProfile extends React.Component {
     );
   }
 
+  roastTime() {
+    if (this.props.status === C.ROAST_PENDING) {
+      return null;
+    } else {
+      return (
+        <div className="mdl-cell mdl-cell--3-col">
+          <div className="bobon-text-with-icon">
+            <i className="material-icons">event</i>
+            { moment(this.props.roastStart).format('DD/MM/YYYY - HH:MM') }
+          </div>
+        </div>
+      );
+    }
+  }
+
+  status() {
+    let content = null;
+    let statusText = '';
+
+    if (this.props.status) {
+
+      switch (this.props.status) {
+        case C.ROAST_PENDING:
+          statusText = 'Pending';
+          break;
+
+        case C.ROAST_IN_PROGRESS:
+          statusText = 'In progress';
+          break;
+
+        default:
+          statusText = 'Completed';
+          break;
+      }
+
+      content = (
+        <div className="mdl-cell mdl-cell--3-col">
+          <div className={ `bobon-text-with-icon bobon-roast-status--${ this.props.status.toLowerCase() }` }>
+            <i className="material-icons">fiber_manual_record</i>
+            { statusText }
+          </div>
+        </div>
+      );
+    }
+
+    return content;
+  }
+
   render() {
     return (
       <div className="mdl-grid">
         <div className="mdl-cell mdl-cell--12-col mdl-card">
           <div className="mdl-grid mdl-card__title bobon-util__full-width">
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">event</i>
-                { this.props.roastStart }
-              </div>
-            </div>
+
+            { this.status() }
+
+            { this.roastTime() }
+
             <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">shopping_basket</i>
                 { this.props.batchSize } kg
               </div>
             </div>
+
             <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">opacity</i>
                 { this.props.beansMoisture } %
               </div>
             </div>
+
           </div>
           <div class="mdl-card__supporting-text mdl-color--grey-900">
             <RoastChart

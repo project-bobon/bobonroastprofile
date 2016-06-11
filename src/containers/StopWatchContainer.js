@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { startStopWatch, resumeStopWatch, tickStopWatch, stopStopWatch } from '../actions';
+import { startStopWatch, resumeStopWatch, tickStopWatch, stopStopWatch, clearRoastInProgress } from '../actions';
 import StopWatch from '../components/StopWatch';
 
 const mapStateToProps = (state, ownProps) => {
@@ -29,6 +29,7 @@ const mapDispatchToProps = dispatch => {
     stopStopWatch: (roastId, tick) => {
       clearInterval(tick);
       dispatch(stopStopWatch(roastId));
+      dispatch(clearRoastInProgress());
     }
   };
 };

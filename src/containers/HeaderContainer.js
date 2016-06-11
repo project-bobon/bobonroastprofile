@@ -5,7 +5,8 @@ const mapStateToProps = state => {
   return {
     authStatus: state.auth.authStatus,
     userName: state.auth.userName,
-    photoURL: state.auth.photoURL
+    photoURL: state.auth.photoURL,
+    roastInProgress: state.roastInProgress
   };
 };
 

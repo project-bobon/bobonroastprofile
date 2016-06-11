@@ -5,7 +5,8 @@ const mapStateToProps = (state, ownProps) => {
   if (typeof state.roasts[ownProps.params.roastId] !== 'undefined') {
     return {
       ...state.roasts[ownProps.params.roastId],
-      roastId: ownProps.params.roastId
+      roastId: ownProps.params.roastId,
+      roastInProgress: state.roastInProgress
     };
   } else {
     return {};

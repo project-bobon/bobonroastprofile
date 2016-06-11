@@ -22,8 +22,12 @@ body {
   margin: 0 auto;
 }
 
-.bobon-card {
+.mdl-card {
   min-height: 100px;
+}
+
+.mdl-cell {
+  min-height: 0;
 }
 
 .bobon-text-with-icon {

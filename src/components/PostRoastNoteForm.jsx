@@ -69,49 +69,57 @@ class PostRoastNoteForm extends React.Component {
   }
 
   noteForm() {
-    let content = (
-      <plaintext>
-        { this.props.postRoastNote }
-      </plaintext>
-    );
+    let content = null;
 
-    if (this.props.editing === C.FIELD_STATUS_EDITING) {
-      content = (
-        <form onSubmit={ this.props.onSubmit }>
-
-          <input
-            type="hidden"
-            defaultValue={ this.props.roastId }
-            name="roastId"
-            id="roastId"
-          />
-
-          <div className="bobon-textfield-wrapper bobon-util__full-width">
-            <div className="mdl-textfield mdl-js-textfield">
-              { this.noteInput() }
-            </div>
-          </div>
-
-          <input
-            className="mdl-button mdl-js-button mdl-js-ripple-effect"
-            type="submit"
-            value="Save Comment"
-          />
-
-          <button className="mdl-button mdl-js-button mdl-js-ripple-effect"
-            onClick={ (e) => {
-                e.preventDefault();
-                this.props.toggleEditing(
-                  this.props.roastId,
-                  C.FIELD_POST_ROAST_NOTE
-                );
-              } }
-          >
-            Cancel
-          </button>
-
-        </form>
+    if (this.props.postRoastNote !== '' && this.props.postRoastNote !== null) {
+      let content = (
+        <div className="mdl-card__supporting-text">
+          <plaintext>
+            { this.props.postRoastNote }
+          </plaintext>
+        </div>
       );
+
+      if (this.props.editing === C.FIELD_STATUS_EDITING) {
+        content = (
+          <div className="mdl-card__supporting-text">
+            <form onSubmit={ this.props.onSubmit }>
+
+              <input
+                type="hidden"
+                defaultValue={ this.props.roastId }
+                name="roastId"
+                id="roastId"
+              />
+
+              <div className="bobon-textfield-wrapper bobon-util__full-width">
+                <div className="mdl-textfield mdl-js-textfield">
+                  { this.noteInput() }
+                </div>
+              </div>
+
+              <input
+                className="mdl-button mdl-js-button mdl-js-ripple-effect"
+                type="submit"
+                value="Save Comment"
+              />
+
+              <button className="mdl-button mdl-js-button mdl-js-ripple-effect"
+                onClick={ (e) => {
+                    e.preventDefault();
+                    this.props.toggleEditing(
+                      this.props.roastId,
+                      C.FIELD_POST_ROAST_NOTE
+                    );
+                  } }
+              >
+                Cancel
+              </button>
+
+            </form>
+          </div>
+        );
+      }
     }
 
     return content;
@@ -131,9 +139,7 @@ class PostRoastNoteForm extends React.Component {
             </h2>
           </div>
 
-          <div className="mdl-card__supporting-text">
-            { this.noteForm() }
-          </div>
+          { this.noteForm() }
 
           { this.actionButton() }
         </div>

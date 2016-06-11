@@ -24,9 +24,9 @@ class App extends React.Component {
 
   containerClass() {
     let className = "mdl-layout mdl-js-layout mdl-layout--fixed-header";
-    if (this.props.authStatus === C.LOGGED_IN) {
-      className = className + " mdl-layout--fixed-drawer";
-    }
+    /* if (this.props.authStatus === C.LOGGED_IN) {
+     *   className = className + " mdl-layout--fixed-drawer";
+     * }*/
     return className;
   }
 

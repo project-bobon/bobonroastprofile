@@ -29,7 +29,6 @@ const mapDispatchToProps = dispatch => {
     stopStopWatch: (roastId, tick) => {
       clearInterval(tick);
       dispatch(stopStopWatch(roastId));
-      dispatch(clearRoastInProgress());
     }
   };
 };

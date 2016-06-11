@@ -69,7 +69,7 @@ class RoastProfile extends React.Component {
 
     if (this.props.status === C.ROAST_COMPLETED) {
       content = (
-        <div className="mdl-card mdl-grid mdl-cell mdl-cell--12-col">
+        <div className="mdl-card mdl-cell mdl-cell--6-col">
           <PostRoastNoteFormContainer
             roastId={ this.props.roastId }
             status={ this.props.status }
@@ -83,7 +83,7 @@ class RoastProfile extends React.Component {
 
   roastDetails() {
     return(
-      <Card customClass="mdl-cell mdl-cell--12-col">
+      <Card customClass="mdl-cell mdl-cell--6-col">
         <CardTitle>
           <h2 className="mdl-card__title-text">Roast details</h2>
         </CardTitle>

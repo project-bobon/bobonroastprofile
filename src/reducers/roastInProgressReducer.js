@@ -18,7 +18,7 @@ const roastInProgressReducer = (currentState = initialState, action) => {
 
         return roastId;
       } else {
-        return currentState;
+        return null;
       }
     break;
 

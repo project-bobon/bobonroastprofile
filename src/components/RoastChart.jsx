@@ -132,7 +132,7 @@ class RoastChart extends React.Component {
       };
 
       return (
-        <Line data={ chartData } options={ chartOptions } width="400" height="200"/>
+        <Line data={ chartData } options={ chartOptions } width="400" height="180"/>
       );
     } else {
       return null;

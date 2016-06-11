@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import C from '../constants';
-import NavigationLink from './NavigationLink';
+import NavigationLink from './utils/NavigationLink';
 
 class Drawer extends React.Component {
   static propTypes() {

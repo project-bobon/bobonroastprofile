@@ -2,6 +2,12 @@ import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
 import C from '../constants';
 
+import Button from './utils/Button';
+import Card from './utils/Card';
+import CardTitle from './utils/CardTitle';
+import CardContent from './utils/CardContent';
+import CardAction from './utils/CardAction';
+
 const style = {
   margin: '0 auto',
   marginTop: '80px',
@@ -13,26 +19,22 @@ const LoginForm = ({ authStatus, onLoginBtnClick }) => {
 
   if (authStatus !== C.LOGGED_IN) {
     content = (
-      <div className="demo-card-wide mdl-card mdl-shadow--2dp" style={ style }>
-        <div className="mdl-card__title">
+      <Card style={ style }>
+        <CardTitle>
           <h2 className="mdl-card__title-text">Bobon Roast Profiles Beta</h2>
-        </div>
-        <div className="mdl-card__supporting-text">
+        </CardTitle>
+        <CardContent>
           To continue, please login as a user
-        </div>
-        <div className="mdl-card__actions mdl-card--border">
-          <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-            onClick={ (e) => onLoginBtnClick(e, 'google') }
-          >
+        </CardContent>
+        <CardAction>
+          <Button onClick={ (e) => onLoginBtnClick(e, 'google') }>
             Login with Google
-          </a>
-          <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-            onClick={ (e) => onLoginBtnClick(e, 'facebook') }
-          >
+          </Button>
+          <Button onClick={ (e) => onLoginBtnClick(e, 'facebook') }>
             Or Facebook
-          </a>
-        </div>
-      </div>
+          </Button>
+        </CardAction>
+      </Card>
     );
   }
 

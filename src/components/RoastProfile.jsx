@@ -1,9 +1,15 @@
 import React from 'react';
-import StopWatchContainer from '../containers/StopWatchContainer';
-import RoastPointInputContainer from '../containers/RoastPointInputContainer';
+
+import C from '../constants';
+import Card from './utils/Card';
+import CardAction from './utils/CardAction';
+import CardContent from './utils/CardContent';
+import CardTitle from './utils/CardTitle';
 import PostRoastNoteFormContainer from '../containers/PostRoastNoteFormContainer';
 import RoastChart from './RoastChart';
-import C from '../constants';
+import RoastPointInputContainer from '../containers/RoastPointInputContainer';
+import StopWatchContainer from '../containers/StopWatchContainer';
+import RoastPointsListContainer from '../containers/RoastPointsListContainer';
 
 class RoastProfile extends React.Component {
   stopWatch() {
@@ -42,25 +48,97 @@ class RoastProfile extends React.Component {
     return content;
   }
 
+  postRoastNote() {
+    let content = null;
+
+    if (this.props.status === C.ROAST_COMPLETED) {
+      content = (
+        <div className="mdl-card mdl-grid mdl-cell mdl-cell--6-col">
+          <PostRoastNoteFormContainer
+            roastId={ this.props.roastId }
+            status={ this.props.status }
+          />
+        </div>
+      );
+    }
+
+    return content;
+  }
+
+  roastDetails() {
+    return(
+      <Card customClass="mdl-cell mdl-cell--6-col">
+        <CardTitle>
+          <h2 className="mdl-card__title-text">Roast details</h2>
+        </CardTitle>
+        <CardContent>
+          <ul>
+            <li>
+              <strong>Bean's name:</strong> { this.props.beansName }
+            </li>
+            <li>
+              <strong>Batch size:</strong> { this.props.batchSize } kg
+            </li>
+            <li>
+              <strong>Bean's moisture:</strong> { this.props.beansMoisture } %
+            </li>
+            <li>
+              <strong>Roasting Notes: </strong> <br/>
+              <plaintext>
+                { this.props.roastNote }
+              </plaintext>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  roastPointsList() {
+    return (
+      <Card customClass="mdl-cell mdl-cell--12-col">
+        <CardTitle>
+          <h2 className="mdl-card__title-text">Temperature points</h2>
+        </CardTitle>
+        <CardContent>
+          <RoastPointsListContainer roastId={ this.props.roastId }/>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  magicButton() {
+    return (
+      <button onClick={ () => {
+          let uid = C.FIREBASE.auth().currentUser.uid;
+          let ref = C.FIREBASE.database().ref(`roasts/${uid}/${this.props.roastId}/status`);
+
+          ref.set(C.ROAST_PENDING);
+        } }
+      >
+        Magic button (PENDING)
+      </button>
+    );
+  }
+
   render() {
     return (
       <div className="mdl-grid">
-        <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-
-          <div className="mdl-grid mdl-card__title mdl-color--red-900 mdl-color-text--grey-100 bobon-util__full-width">
-            <div className="mdl-cell mdl-cell--3-col mdl-color-text--grey-100">
+        <div className="mdl-cell mdl-cell--12-col mdl-card">
+          <div className="mdl-grid mdl-card__title bobon-util__full-width">
+            <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">event</i>
                 { this.props.roastStart }
               </div>
             </div>
-            <div className="mdl-cell mdl-cell--3-col mdl-color-text--grey-100">
+            <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">shopping_basket</i>
                 { this.props.batchSize } kg
               </div>
             </div>
-            <div className="mdl-cell mdl-cell--3-col mdl-color-text--grey-100">
+            <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">opacity</i>
                 { this.props.beansMoisture } %
@@ -74,10 +152,9 @@ class RoastProfile extends React.Component {
 
         { this.stopWatch() }
         { this.tempInput() }
-
-        <div className="mdl-card mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--2dp">
-          <PostRoastNoteFormContainer roastId={ this.props.roastId }/>
-        </div>
+        { this.roastDetails() }
+        { this.postRoastNote() }
+        { this.roastPointsList() }
 
       </div>
     );

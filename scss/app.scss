@@ -1,9 +1,9 @@
 body {
-  background: #263238;
+  background: #eee;
 }
 
 .bobon-page-content {
-  padding: 20px;
+  padding: 0px;
   box-sizing: border-box;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 .bobon-main-content {
-  width: 96%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -42,7 +42,7 @@ body {
   width: 100%;
   position: relative;
   box-sizing: content-box;
-  padding-right: 120px;
+  padding-right: 220px;
 
   input[type="submit"] {
     position: absolute;
@@ -50,7 +50,7 @@ body {
     right: 0px;
     height: 50px;
     line-height: 50px;
-    width: 100px;
+    width: 200px;
     text-align: center;
     box-sizing: border-box;
     margin: 0;
@@ -80,4 +80,7 @@ body {
 
 .material-icons {
   margin-right: 10px;
+}
+
+.mdl-button--colored {
 }

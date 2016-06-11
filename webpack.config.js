@@ -14,7 +14,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.jsx', '.js', 'scss'],
+    extensions: ['', '.jsx', '.js'],
     modulesDirectories: ['node_modules', 'bower_components']
   },
 

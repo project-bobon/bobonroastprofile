@@ -20,11 +20,10 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    // Upgrades all upgradable components (i.e. with 'mdl-js-*' class).
     componentHandler.upgradeDom();
   }
 
-  _containerClass() {
+  containerClass() {
     let className = "mdl-layout mdl-js-layout mdl-layout--fixed-header";
     if (this.props.authStatus === C.LOGGED_IN) {
       className = className + " mdl-layout--fixed-drawer";
@@ -36,7 +35,7 @@ class App extends React.Component {
     var path = this.props.location.pathname;
     var segment = path.split('/')[1] || 'root';
     return (
-      <div className={ this._containerClass() }>
+      <div className={ this.containerClass() }>
         <HeaderContainer/>
         <DrawerContainer/>
         <main className="mdl-layout__content">

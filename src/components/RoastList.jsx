@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationLink from '../components/NavigationLink';
+import NavigationLink from '../components/utils/NavigationLink';
 
 class RoastList extends React.Component {
 

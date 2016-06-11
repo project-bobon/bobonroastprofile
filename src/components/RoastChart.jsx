@@ -8,10 +8,13 @@ class RoastChart extends React.Component {
   beautifyTime(value) {
     let m = Math.floor(value / 60);
     let s = value % 60;
-    if (s < 10) {
-      s = '0' + s;
+
+    if (s === 0) {
+      return m;
+    } else {
+      // Add empty label, but show line on 30 sec intervals.
+      return '';
     }
-    return m + ':' + s;
   }
 
   render() {

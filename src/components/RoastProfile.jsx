@@ -69,12 +69,10 @@ class RoastProfile extends React.Component {
 
     if (this.props.status === C.ROAST_COMPLETED) {
       content = (
-        <div className="mdl-card mdl-cell mdl-cell--6-col">
-          <PostRoastNoteFormContainer
-            roastId={ this.props.roastId }
-            status={ this.props.status }
-          />
-        </div>
+        <PostRoastNoteFormContainer
+          roastId={ this.props.roastId }
+          status={ this.props.status }
+        />
       );
     }
 
@@ -112,7 +110,7 @@ class RoastProfile extends React.Component {
 
   roastPointsList() {
     return (
-      <Card customClass="mdl-cell mdl-cell--6-col">
+      <Card customClassName="mdl-cell mdl-cell--6-col">
         <CardTitle>
           <h2 className="mdl-card__title-text">Temperature points</h2>
         </CardTitle>
@@ -185,16 +183,32 @@ class RoastProfile extends React.Component {
     return content;
   }
 
+  selectCompare() {
+    if (!this.props.roastIds) {
+      return null;
+    }
+    return (
+      <select id="compare"
+        name="compare"
+        onChange={ e => {
+            this.props.onChangeCompare(e, this.props.roastId);
+          } }
+      >
+        <option value="" selected>Choose compare roastId</option>
+        { this.props.roastIds.map(roast => {
+            return <option key={ `option-${roast.id}` } value={ roast.id }>{ roast.value }</option>;
+          }) }
+      </select>
+    );
+  }
+
   render() {
     return (
       <div className="mdl-grid">
         <div className="mdl-cell mdl-cell--12-col mdl-card">
           <div className="mdl-grid mdl-card__title bobon-util__full-width">
-
             { this.status() }
-
             { this.roastTime() }
-
             <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">shopping_basket</i>
@@ -210,20 +224,22 @@ class RoastProfile extends React.Component {
             </div>
 
           </div>
-          <div class="mdl-card__supporting-text mdl-color--grey-900">
-            <RoastChart
-              roastPoints={ this.props.roastPoints }
-              beansName={ this.props.beansName }
-              roastStart={ this.props.roastStart }
-            />
-          </div>
+
+          <RoastChart
+            roastPoints={ this.props.roastPoints }
+            beansName={ this.props.beansName }
+            roastStart={ this.props.roastStart }
+            compare={ this.props.compare }
+          />
+
+          { this.selectCompare() }
+
         </div>
 
         { this.stopWatch() }
         { this.tempInput() }
         { this.roastDetails() }
         { this.postRoastNote() }
-        { this.roastPointsList() }
 
       </div>
     );

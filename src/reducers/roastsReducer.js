@@ -10,6 +10,16 @@ const roastsReducer = (currentState = initialState, action) => {
       return action.roasts;
       break;
 
+    case C.COMPARE_ROASTS:
+      return {
+        ...currentState,
+        [action.roastId]: {
+          ...currentState[action.roastId],
+          compare: action.compareId
+        }
+      }
+      break;
+
     default:
       return currentState;
   }

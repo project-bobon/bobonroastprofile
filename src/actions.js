@@ -73,6 +73,14 @@ export const fetchedRoasts = (roasts) => {
   };
 };
 
+export const compareRoasts = (roastId, compareId) => {
+  return {
+    type: C.COMPARE_ROASTS,
+    roastId,
+    compareId
+  };
+};
+
 // New roast actions.
 export const createNewRoast = (roastDetails) => {
   return {
@@ -164,13 +172,14 @@ export const stopStopWatch = (roastId) => {
   let uid = C.FIREBASE.auth().currentUser.uid;
   let roastRef = C.FIREBASE.app().database().ref(`roasts/${uid}/${roastId}`);
 
-  roastRef.update({
+  let promise = roastRef.update({
     status: C.ROAST_COMPLETED
   });
 
   return {
     type: C.STOPWATCH_STOP,
-    roastId
+    roastId,
+    promise
   };
 };
 

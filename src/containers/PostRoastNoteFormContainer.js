@@ -6,6 +6,7 @@ import PostRoastNoteForm from '../components/PostRoastNoteForm';
 const mapStateToProps = (state, ownProps) => {
   let postRoastNote = '';
   let editings = state.editingFields[ownProps.roastId] || {};
+  let editing = C.FIELD_STATUS_LOADING;
 
   if (state.roasts[ownProps.roastId]) {
     postRoastNote = state.roasts[ownProps.roastId].postRoastNote;

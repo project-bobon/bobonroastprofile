@@ -62,7 +62,8 @@ class RoastChart extends React.Component {
             fill: false,
             borderColor: 'red',
             borderWidth: 1,
-            backgroundColor: 'red'
+            backgroundColor: 'red',
+            yAxisID: 'temp'
           },
           {
             label: 'rate',
@@ -72,9 +73,46 @@ class RoastChart extends React.Component {
             borderWidth: 1,
             backgroundColor: 'green',
             yAxisID: 'rate'
+          },
+          {
+            label: 'temp2',
+            data: [],
+            fill: false,
+            borderColor: 'blue',
+            borderWidth: 1,
+            backgroundColor: 'blue',
+            yAxisID: 'temp'
           }
         ]
       };
+
+      if (this.props.compare) {
+        let comparePoints = this.props.compare.roastPoints;
+
+        let compareData = Object.keys(comparePoints).map(
+          key => {
+            return {
+              x: comparePoints[key].elapsed / 60000,
+              y: comparePoints[key].temperature
+            };
+          }
+        ).sort((a,b) => {
+          return a.x - b.x;
+        });
+
+        chartData.datasets.pop();
+        chartData.datasets.push(
+          {
+            label: 'temp2',
+            data: compareData,
+            fill: false,
+            borderColor: 'blue',
+            borderWidth: 1,
+            backgroundColor: 'blue',
+            yAxisID: 'temp'
+          }
+        );
+      }
 
       let chartOptions = {
         scales: {
@@ -89,6 +127,7 @@ class RoastChart extends React.Component {
           }],
           yAxes: [
             {
+              id: 'temp',
               type: 'linear',
               position: 'left',
               ticks: {
@@ -131,8 +170,9 @@ class RoastChart extends React.Component {
         }
       };
 
+
       return (
-        <Line data={ chartData } options={ chartOptions } width="400" height="180"/>
+        <Line data={ chartData } options={ chartOptions } width="400" height="150" redraw/>
       );
     } else {
       return null;

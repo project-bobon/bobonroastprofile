@@ -14,6 +14,8 @@ const roastInProgressReducer = (currentState = initialState, action) => {
 
         if (roastInProgress) {
           roastId = roastInProgress;
+        } else {
+          roastId = initialState;
         }
 
         return roastId;

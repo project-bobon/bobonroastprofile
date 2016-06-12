@@ -40,7 +40,7 @@ const authReducer = (currentState = initialState, action) => {
       break;
 
     case C.LOGOUT:
-      history.push('/');
+      //history.push('/');
       return {
         ...currentState,
         authStatus: C.LOGGED_OUT,

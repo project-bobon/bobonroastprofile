@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import RoastProfile from '../components/RoastProfile';
-import { compareRoasts } from '../actions';
+import { compareRoasts, addFirstCrack } from '../actions';
+import C from '../constants';
 
 const mapStateToProps = (state, ownProps) => {
   if (typeof state.roasts[ownProps.params.roastId] !== 'undefined') {
@@ -30,9 +31,16 @@ const mapDispatchToProps = dispatch => {
   return {
     onChangeCompare: (e, roastId) => {
       dispatch(compareRoasts(roastId, e.target.value));
+    },
+    addFirstCrack: (roastId, roastStart) => {
+      let uid = C.FIREBASE.auth().currentUser.uid;
+      let ref = C.FIREBASE.app().database().ref(`/roasts/${uid}/${roastId}/firstCrack`);
+      let firstCrackTime = Date.now() - roastStart;
+      dispatch(addFirstCrack(roastId, firstCrackTime));
+      ref.set(firstCrackTime);
     }
-  }
-}
+  };
+};
 
 const RoastProfileContainer = connect(
   mapStateToProps,

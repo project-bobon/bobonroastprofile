@@ -17,6 +17,16 @@ const roastsReducer = (currentState = initialState, action) => {
           ...currentState[action.roastId],
           compare: action.compareId
         }
+      };
+    break;
+
+    case C.ADD_FIRST_CRACK:
+      return {
+        ...currentState,
+        [action.roastId]: {
+          ...currentState[action.roastId],
+          firstCrack: action.firstCrackTime
+        }
       }
       break;
 

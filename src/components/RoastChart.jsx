@@ -1,6 +1,5 @@
 import React from 'react';
 import { Line } from 'react-chartjs';
-import Bezier from 'bezier-js';
 
 require('../../scss/chart.scss');
 
@@ -82,9 +81,28 @@ class RoastChart extends React.Component {
             borderWidth: 1,
             backgroundColor: 'blue',
             yAxisID: 'temp'
+          },
+          {
+            label: 'firstCrack',
+            data: [
+              { x: 0, y: 0 },
+              { x: 0, y: 1000 }
+            ],
+            fill: false,
+            borderColor: 'red',
+            borderWidth: 1,
+            backgroundColor: 'red',
+            yAxisID: 'temp'
           }
         ]
       };
+
+      if (this.props.firstCrack) {
+        chartData.datasets[3].data = [
+          { x: this.props.firstCrack / 60000, y: 0 },
+          { x: this.props.firstCrack / 60000, y: 1000 }
+        ];
+      }
 
       if (this.props.compare) {
         let comparePoints = this.props.compare.roastPoints;
@@ -100,18 +118,15 @@ class RoastChart extends React.Component {
           return a.x - b.x;
         });
 
-        chartData.datasets.pop();
-        chartData.datasets.push(
-          {
-            label: 'temp2',
-            data: compareData,
-            fill: false,
-            borderColor: 'blue',
-            borderWidth: 1,
-            backgroundColor: 'blue',
-            yAxisID: 'temp'
-          }
-        );
+        chartData.datasets[2] = {
+          label: 'temp2',
+          data: compareData,
+          fill: false,
+          borderColor: 'blue',
+          borderWidth: 1,
+          backgroundColor: 'blue',
+          yAxisID: 'temp'
+        };
       }
 
       let chartOptions = {
@@ -119,6 +134,7 @@ class RoastChart extends React.Component {
           xAxes: [{
             type: 'linear',
             position: 'bottom',
+            id: 'time',
             ticks: {
               max: maxX,
               min: 0,
@@ -172,7 +188,7 @@ class RoastChart extends React.Component {
 
 
       return (
-        <Line data={ chartData } options={ chartOptions } width="400" height="150" redraw/>
+        <Line data={ chartData } options={ chartOptions } width="400" height="150" redraw={true} />
       );
     } else {
       return null;

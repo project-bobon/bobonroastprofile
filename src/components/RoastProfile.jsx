@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
+import Button from './utils/Button';
 import C from '../constants';
 import Card from './utils/Card';
 import CardAction from './utils/CardAction';
@@ -143,7 +144,7 @@ class RoastProfile extends React.Component {
         <div className="mdl-cell mdl-cell--3-col">
           <div className="bobon-text-with-icon">
             <i className="material-icons">event</i>
-            { moment(this.props.roastStart).format('DD/MM/YYYY - HH:MM') }
+            { moment(this.props.roastStart).format('DD/MM/YYYY - h:mm') }
           </div>
         </div>
       );
@@ -230,9 +231,17 @@ class RoastProfile extends React.Component {
             beansName={ this.props.beansName }
             roastStart={ this.props.roastStart }
             compare={ this.props.compare }
+            firstCrack={ this.props.firstCrack }
           />
 
+
           { this.selectCompare() }
+
+          <Button onClick={() => {
+              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
+            } }>
+            FIRST CRACK!!!!
+          </Button>
 
         </div>
 

@@ -81,6 +81,14 @@ export const compareRoasts = (roastId, compareId) => {
   };
 };
 
+export const addFirstCrack = (roastId, firstCrackTime) => {
+  return {
+    type: C.ADD_FIRST_CRACK,
+    roastId,
+    firstCrackTime
+  };
+};
+
 // New roast actions.
 export const createNewRoast = (roastDetails) => {
   return {

@@ -14,6 +14,11 @@ import StopWatchContainer from '../containers/StopWatchContainer';
 import RoastPointsListContainer from '../containers/RoastPointsListContainer';
 
 class RoastProfile extends React.Component {
+
+  componentDidUpdate() {
+    componentHandler.upgradeDom();
+  }
+
   stopWatch() {
     let content = null;
 
@@ -33,6 +38,11 @@ class RoastProfile extends React.Component {
             roastStart={ this.props.roastStart }
             status={ this.props.status }
           />
+          <Button onClick={() => {
+              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
+            } }>
+            FIRST CRACK!!!!
+          </Button>
         </div>
       );
     }
@@ -82,7 +92,7 @@ class RoastProfile extends React.Component {
 
   roastDetails() {
     return(
-      <Card customClass="mdl-cell mdl-cell--6-col">
+      <Card customClassName="mdl-cell mdl-cell--6-col">
         <CardTitle>
           <h2 className="mdl-card__title-text">Roast details</h2>
         </CardTitle>
@@ -185,21 +195,42 @@ class RoastProfile extends React.Component {
   }
 
   selectCompare() {
-    if (!this.props.roastIds) {
+    if (typeof this.props.roastIds === 'undefined') {
       return null;
     }
+
+    let roastIdList = this.props.roastIds.map(roast => {
+      return (
+        <li className="mdl-menu__item"
+          onClick={ () => {
+              this.props.compareRoasts(this.props.roastId, roast.id);
+            } }
+        >
+          { roast.value + ' - ' + moment(roast.roastStart).format('DD/MM/YY hh:mm') }
+        </li>
+      );
+    });
+
+    let buttonText = "Select a roast";
+
+    if (this.props.compare) {
+      buttonText = this.props.compare.beansName + ' - ' + moment(this.props.compare.roastStart).format('DD/MM/YYYY hh:mm');
+    }
+
     return (
-      <select id="compare"
-        name="compare"
-        onChange={ e => {
-            this.props.onChangeCompare(e, this.props.roastId);
-          } }
-      >
-        <option value="" selected>Choose compare roastId</option>
-        { this.props.roastIds.map(roast => {
-            return <option key={ `option-${roast.id}` } value={ roast.id }>{ roast.value }</option>;
-          }) }
-      </select>
+      <div>
+        Compare:
+        <button id="select-compare"
+          className="mdl-button mdl-js-button"
+        >
+          { buttonText }
+        </button>
+        <ul className="mdl-menu mdl-js-menu mdl-js-ripple-effect"
+          htmlFor="select-compare"
+        >
+          { roastIdList }
+        </ul>
+      </div>
     );
   }
 
@@ -224,6 +255,10 @@ class RoastProfile extends React.Component {
               </div>
             </div>
 
+            <div className="mdl-cell mdl-cell--12-col">
+                { this.selectCompare() }
+            </div>
+
           </div>
 
           <RoastChart
@@ -233,15 +268,6 @@ class RoastProfile extends React.Component {
             compare={ this.props.compare }
             firstCrack={ this.props.firstCrack }
           />
-
-
-          { this.selectCompare() }
-
-          <Button onClick={() => {
-              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
-            } }>
-            FIRST CRACK!!!!
-          </Button>
 
         </div>
 

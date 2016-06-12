@@ -19,7 +19,13 @@ const mapStateToProps = (state, ownProps) => {
       roastInProgress: state.roastInProgress,
       compare,
       roastIds: Object.keys(state.roasts).map(roastId => {
-        return { id: roastId, value: state.roasts[roastId].beansName }
+        return {
+          id: roastId,
+          value: state.roasts[roastId].beansName,
+          roastStart: state.roasts[roastId].roastStart
+        };
+      }).filter(v => {
+        return v.id !== ownProps.params.roastId;
       })
     };
   } else {
@@ -31,6 +37,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onChangeCompare: (e, roastId) => {
       dispatch(compareRoasts(roastId, e.target.value));
+    },
+    compareRoasts: (roastId, compareId) => {
+      dispatch(compareRoasts(roastId, compareId));
     },
     addFirstCrack: (roastId, roastStart) => {
       let uid = C.FIREBASE.auth().currentUser.uid;

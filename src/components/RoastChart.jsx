@@ -74,15 +74,6 @@ class RoastChart extends React.Component {
             yAxisID: 'rate'
           },
           {
-            label: 'temp2',
-            data: [],
-            fill: false,
-            borderColor: 'blue',
-            borderWidth: 1,
-            backgroundColor: 'blue',
-            yAxisID: 'temp'
-          },
-          {
             label: 'firstCrack',
             data: [
               { x: 0, y: 0 },
@@ -114,11 +105,9 @@ class RoastChart extends React.Component {
               y: comparePoints[key].temperature
             };
           }
-        ).sort((a,b) => {
-          return a.x - b.x;
-        });
+        );
 
-        chartData.datasets[2] = {
+        chartData.datasets.push({
           label: 'temp2',
           data: compareData,
           fill: false,
@@ -126,7 +115,7 @@ class RoastChart extends React.Component {
           borderWidth: 1,
           backgroundColor: 'blue',
           yAxisID: 'temp'
-        };
+        });
       }
 
       let chartOptions = {
@@ -186,10 +175,13 @@ class RoastChart extends React.Component {
         }
       };
 
-
-      return (
-        <Line data={ chartData } options={ chartOptions } width="400" height="150" redraw={true} />
-      );
+      return <Line
+               data={ chartData }
+               options={ chartOptions }
+               width="400"
+               height="150"
+               redraw
+             />;
     } else {
       return null;
     }

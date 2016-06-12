@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Link, browserHistory } from 'react-router';
-import { RouteTransition } from 'react-router-transition';
 import HeaderContainer from '../containers/HeaderContainer';
 import DrawerContainer from '../containers/DrawerContainer';
 import C from '../constants';

@@ -268,7 +268,6 @@ class RoastProfile extends React.Component {
             compare={ this.props.compare }
             firstCrack={ this.props.firstCrack }
           />
-
         </div>
 
         { this.stopWatch() }

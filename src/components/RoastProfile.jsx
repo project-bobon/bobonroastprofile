@@ -33,6 +33,11 @@ class RoastProfile extends React.Component {
             roastStart={ this.props.roastStart }
             status={ this.props.status }
           />
+          <Button onClick={() => {
+              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
+            } }>
+            FIRST CRACK!!!!
+          </Button>
         </div>
       );
     }
@@ -236,12 +241,6 @@ class RoastProfile extends React.Component {
 
 
           { this.selectCompare() }
-
-          <Button onClick={() => {
-              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
-            } }>
-            FIRST CRACK!!!!
-          </Button>
 
         </div>
 

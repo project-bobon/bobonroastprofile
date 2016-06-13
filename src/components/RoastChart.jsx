@@ -146,7 +146,7 @@ class RoastChart extends React.Component {
         let color = C.CHART_COLORS[i % C.CHART_COLORS.length];
         chartData.datasets[i].borderColor = color;
         chartData.datasets[i].backgroundColor = color;
-        chartData.datasets[i].borderWidth = 2;
+        chartData.datasets[i].borderWidth = 1;
       });
 
       let chartOptions = {

@@ -92,28 +92,14 @@ class RoastProfile extends React.Component {
 
   roastDetails() {
     return(
-      <Card customClassName="mdl-cell mdl-cell--6-col">
+      <Card customClass="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet">
         <CardTitle>
-          <h2 className="mdl-card__title-text">Roast details</h2>
+          <h2 className="mdl-card__title-text">Roasting Notes</h2>
         </CardTitle>
         <CardContent>
-          <ul>
-            <li>
-              <strong>Bean's name:</strong> { this.props.beansName }
-            </li>
-            <li>
-              <strong>Batch size:</strong> { this.props.batchSize } kg
-            </li>
-            <li>
-              <strong>Bean's moisture:</strong> { this.props.beansMoisture } %
-            </li>
-            <li>
-              <strong>Roasting Notes: </strong> <br/>
-              <plaintext>
-                { this.props.roastNote }
-              </plaintext>
-            </li>
-          </ul>
+          <plaintext>
+            { this.props.roastNote }
+          </plaintext>
         </CardContent>
       </Card>
     );
@@ -234,40 +220,73 @@ class RoastProfile extends React.Component {
     );
   }
 
+  roastDuration() {
+    let min = '00';
+    let sec = '00';
+
+    if (
+      this.props.hasOwnProperty('roastPoints') &&
+      this.props.roastPoints.length > 0
+    ) {
+      duration = this.props.roastPoints[this.props.roastPoints.length - 1].elapsed;
+      min = duration / 60000 << 0;
+      sec = duration / 1000 % 60 << 0;
+
+      if (min < 10) {
+        min = '0' + min;
+      }
+
+      if (sec < 10) {
+        sec = '0' + sec;
+      }
+    }
+
+    return `${min}:${sec}`;
+  }
+
   render() {
     return (
       <div className="mdl-grid">
-        <div className="mdl-cell mdl-cell--12-col mdl-card">
+
+        <RoastChart
+          roastPoints={ this.props.roastPoints }
+          beansName={ this.props.beansName }
+          roastStart={ this.props.roastStart }
+          compare={ this.props.compare }
+          firstCrack={ this.props.firstCrack }
+        />
+
+        <div className="mdl-cell mdl-cell--12-col">
+          { this.selectCompare() }
+        </div>
+
+        <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
           <div className="mdl-grid mdl-card__title bobon-util__full-width">
+
+            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
+              <i className="material-icons">label</i>
+              { this.props.beansName }
+            </div>
+
             { this.status() }
             { this.roastTime() }
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">shopping_basket</i>
-                { this.props.batchSize } kg
-              </div>
+
+            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
+              <i className="material-icons">alarm</i>
+              { this.roastDuration() }
             </div>
 
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">opacity</i>
-                { this.props.beansMoisture } %
-              </div>
+            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
+              <i className="material-icons">shopping_basket</i>
+              { this.props.batchSize } kg
             </div>
 
-            <div className="mdl-cell mdl-cell--12-col">
-                { this.selectCompare() }
+            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
+              <i className="material-icons">opacity</i>
+              { this.props.beansMoisture } %
             </div>
 
           </div>
-
-          <RoastChart
-            roastPoints={ this.props.roastPoints }
-            beansName={ this.props.beansName }
-            roastStart={ this.props.roastStart }
-            compare={ this.props.compare }
-            firstCrack={ this.props.firstCrack }
-          />
         </div>
 
         { this.stopWatch() }

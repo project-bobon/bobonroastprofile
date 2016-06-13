@@ -1,5 +1,5 @@
 body {
-  background: #F5F5F5;
+  background: #fafafa;
 }
 
 .bobon-page-content {
@@ -129,4 +129,19 @@ header {
       }
     }
   }
+}
+
+.bobon-section {
+  width: 100%;
+  clear: both;
+
+  &.bobon-section-colored {
+    background: rgb(33, 150, 243);
+    color: #ebebeb;
+  }
+}
+
+.bobon-section-content {
+  width: 1000px;
+  margin: 0 auto;
 }

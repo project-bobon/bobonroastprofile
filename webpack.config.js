@@ -4,12 +4,13 @@ var srcPath = path.resolve(__dirname, 'src');
 
 module.exports = {
   entry: {
-    bundle: path.join(srcPath, 'app.jsx')
+    bundle: path.join(srcPath, 'app.jsx'),
+    common: ['react', 'react-router', 'redux', 'react-redux', 'moment']
   },
 
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/'
   },
 
@@ -37,15 +38,18 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('commons', 'commons.js'),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin(
+      {
+        name: "common",
+        minChunks: 2
+      }
+    ),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
-    }),
-    new webpack.ResolverPlugin(
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
-    ),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 };

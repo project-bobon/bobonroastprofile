@@ -62,7 +62,8 @@ const C = {
   LOGGED_OUT: 'LOGGED_OUT',
 
   // MISC.
-  FIREBASE: firebase
+  FIREBASE: firebase,
+  CHART_COLORS: ['#C62828', '#00695C', '#7B1FA2', '#E65100', '#1E88E5', '#FFAB00']
 };
 
 export default C;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Line } from 'react-chartjs';
+import C from '../constants';
 
 require('../../scss/chart.scss');
 
@@ -16,33 +17,46 @@ class RoastChart extends React.Component {
     }
   }
 
-  render() {
-    if (this.props.roastPoints) {
-      let chartData = {};
-      let maxX = 14;
-      let data = Object.keys(this.props.roastPoints).map(
-        key => {
-          return {
-            x: this.props.roastPoints[key].elapsed / 60000,
-            y: this.props.roastPoints[key].temperature
-          };
-        }
-      ).sort((a,b) => {
-        return a.x - b.x;
-      });
+  createRoastPointsDataset(roastPoints) {
+    return Object.keys(roastPoints).map(
+      key => {
+        return {
+          x: this.props.roastPoints[key].elapsed / 60000,
+          y: this.props.roastPoints[key].temperature
+        };
+      }
+    ).sort((a,b) => {
+      return a.x - b.x;
+    });
+  }
 
-      // Initial rate of roast.
-      let ror = [
-        { x: 0, y: 0 }
-      ];
-
-      for (var i = 1; i < data.length; i++) {
-        let tangent = (data[i].y - data[i - 1].y) / (data[i].x - data[i - 1].x);
+  createRateOfRoastDataset(roastPointsData) {
+    let ror = [];
+    for (var i = 0; i < roastPointsData.length; i++) {
+      if (i === 0) {
         ror.push({
-          x: data[i].x,
+          x: roastPointsData[0].x,
+          y: roastPointsData[0].y
+        });
+      } else {
+        let tangent = (roastPointsData[i].y - roastPointsData[i - 1].y) / (roastPointsData[i].x - roastPointsData[i - 1].x);
+        ror.push({
+          x: roastPointsData[i].x,
           y: tangent.toFixed(2)
         });
       }
+    }
+    return ror;
+  }
+
+  render() {
+    let redraw = false;
+
+    if (this.props.roastPoints) {
+      let chartData = {};
+      let maxX = 14;
+      let data = this.createRoastPointsDataset(this.props.roastPoints);
+      let ror = this.createRateOfRoastDataset(data);
 
       // Set max x scale.
       if (data.length > 0) {
@@ -55,41 +69,39 @@ class RoastChart extends React.Component {
       chartData = {
         labels: [],
         datasets: [
+          // Temperature points.
           {
-            label: 'temp',
+            label: 'temp 1',
             data,
             fill: false,
-            borderColor: 'red',
             borderWidth: 1,
-            backgroundColor: 'red',
             yAxisID: 'temp'
           },
+          // Rate of roast.
           {
-            label: 'rate',
+            label: 'rate 1',
             data: ror,
             fill: false,
-            borderColor: 'green',
             borderWidth: 1,
-            backgroundColor: 'green',
             yAxisID: 'rate'
           },
+          // First crack - basically adding 2 points vertically on
+          // top of each other.
           {
-            label: 'firstCrack',
+            label: 'first crack 1',
             data: [
               { x: 0, y: 0 },
               { x: 0, y: 1000 }
             ],
             fill: false,
-            borderColor: 'red',
             borderWidth: 1,
-            backgroundColor: 'red',
             yAxisID: 'temp'
           }
         ]
       };
 
       if (this.props.firstCrack) {
-        chartData.datasets[3].data = [
+        chartData.datasets[2].data = [
           { x: this.props.firstCrack / 60000, y: 0 },
           { x: this.props.firstCrack / 60000, y: 1000 }
         ];
@@ -97,26 +109,50 @@ class RoastChart extends React.Component {
 
       if (this.props.compare) {
         let comparePoints = this.props.compare.roastPoints;
-
-        let compareData = Object.keys(comparePoints).map(
-          key => {
-            return {
-              x: comparePoints[key].elapsed / 60000,
-              y: comparePoints[key].temperature
-            };
-          }
-        );
+        let compareData = this.createRateOfRoastDataset(comparePoints);
+        let compareRor = this.createRateOfRoastDataset(compareData);
 
         chartData.datasets.push({
-          label: 'temp2',
+          label: 'temp 2',
           data: compareData,
           fill: false,
-          borderColor: 'blue',
           borderWidth: 1,
-          backgroundColor: 'blue',
           yAxisID: 'temp'
         });
+
+        chartData.datasets.push({
+          label: 'rate 2',
+          data: compareRor,
+          fill: false,
+          borderWidth: 1,
+          yAxisID: 'rate'
+        });
+
+        if (this.props.compare.firstCrack) {
+          let compareFirstCrack = this.props.compare.firstCrack / 60000;
+          chartData.datasets.push(
+          {
+            label: 'first crack 2',
+            data: [
+              { x: compareFirstCrack, y: 0 },
+              { x: compareFirstCrack, y: 1000 }
+            ],
+            fill: false,
+            borderWidth: 1,
+            yAxisID: 'temp'
+          }
+          );
+        }
+
+        redraw = true;
       }
+
+      // Assign colors to each dataset.
+      chartData.datasets.forEach((v, i) => {
+        let color = C.CHART_COLORS[i % C.CHART_COLORS.length];
+        chartData.datasets[i].borderColor = color;
+        chartData.datasets[i].backgroundColor = color;
+      });
 
       let chartOptions = {
         scales: {
@@ -146,9 +182,9 @@ class RoastChart extends React.Component {
               position: 'right',
               type: 'linear',
               ticks: {
-                max: 55,
-                min: 0,
-                stepSize: 5
+                max: 170,
+                min: -50,
+                stepSize: 10
               }
             },
           ]
@@ -175,13 +211,23 @@ class RoastChart extends React.Component {
         }
       };
 
-      return <Line
-               data={ chartData }
-               options={ chartOptions }
-               width="400"
-               height="150"
-               redraw
-             />;
+      if (redraw) {
+        return <Line
+                 data={ chartData }
+                 options={ chartOptions }
+                 width="400"
+                 height="150"
+                 redraw
+               />;
+      } else {
+        return <Line
+                 data={ chartData }
+                 options={ chartOptions }
+                 width="400"
+                 height="150"
+               />;
+      }
+
     } else {
       return null;
     }

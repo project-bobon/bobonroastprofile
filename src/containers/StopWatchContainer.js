@@ -22,10 +22,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(resumeStopWatch(roastId, roastStart, tick));
     },
 
-    tickStopWatch: (roastStart) => {
-      dispatch(tickStopWatch(roastStart));
-    },
-
     stopStopWatch: (roastId, tick) => {
       clearInterval(tick);
       dispatch(stopStopWatch(roastId));

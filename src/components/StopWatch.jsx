@@ -7,6 +7,13 @@ require('../../scss/stopwatch.scss');
 
 class StopWatch extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      elapsed: 0
+    };
+  }
+
   componentWillMount() {
     // If already in progress, continue stopwatch.
     if (this.props.status === C.ROAST_IN_PROGRESS && !this.props.tick) {
@@ -14,8 +21,10 @@ class StopWatch extends React.Component {
         this.props.roastId,
         this.props.roastStart,
         setInterval(() => {
-          this.props.tickStopWatch(this.props.roastStart);
-        }, 1000)
+          this.setState({
+            elapsed: Date.now() - this.props.roastStart
+          });
+        }, 100)
       );
     }
   }
@@ -32,8 +41,10 @@ class StopWatch extends React.Component {
                 this.props.roastId,
                 roastStart,
                 setInterval(() => {
-                  this.props.tickStopWatch(roastStart);
-                }, 1000)
+                  this.setState({
+                    elapsed: Date.now() - this.props.roastStart
+                  });
+                }, 100)
               );
             } }
         >
@@ -67,9 +78,10 @@ class StopWatch extends React.Component {
   }
 
   currentElapsedTime() {
-    let t = this.props.elapsed;
+    let t = this.state.elapsed;
     let min = (t / 1000 / 60) << 0;
     let sec = (t / 1000) % 60 << 0;
+    let fsec = (t % 1000) / 100  << 0;
 
     if (min < 10) {
       min = '0' + min;
@@ -79,7 +91,7 @@ class StopWatch extends React.Component {
       sec = '0' + sec;
     }
 
-    return `${ min } : ${ sec }`;
+    return `${ min } : ${ sec } : ${ fsec }`;
   }
 
   render() {

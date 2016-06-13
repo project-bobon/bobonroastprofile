@@ -99,13 +99,15 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
       content = (
-        <div className="mdl-cell mdl-cell--12-col bobon-stopwatch">
-          <div className="bobon-stopwatch-time">
-            { this.currentElapsedTime() }
-          </div>
+        <div className="mdl-cell mdl-cell--12-col bobon-stopwatch-container">
+          <div className="bobon-stopwatch">
+            <div className="bobon-stopwatch-time">
+              { this.currentElapsedTime() }
+            </div>
 
-          { this.startButton() }
-          { this.stopButton() }
+            { this.startButton() }
+            { this.stopButton() }
+          </div>
         </div>
       );
     }

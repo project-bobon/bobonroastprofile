@@ -263,36 +263,47 @@ class RoastProfile extends React.Component {
         <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
           <div className="mdl-grid mdl-card__title bobon-util__full-width">
 
-            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
-              <i className="material-icons">label</i>
-              { this.props.beansName }
+            <div className="mdl-cell mdl-cell--3-col">
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">label</i>
+                { this.props.beansName }
+              </div>
             </div>
 
             { this.status() }
             { this.roastTime() }
 
-            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
-              <i className="material-icons">alarm</i>
-              { this.roastDuration() }
+            <div className="mdl-cell mdl-cell--3-col">
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">alarm</i>
+                { this.roastDuration() }
+              </div>
             </div>
 
-            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
-              <i className="material-icons">shopping_basket</i>
-              { this.props.batchSize } kg
+            <div className="mdl-cell mdl-cell--3-col">
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">shopping_basket</i>
+                { this.props.batchSize } kg
+              </div>
             </div>
 
-            <div className="mdl-cell mdl-cell--3-col bobon-text-with-icon">
-              <i className="material-icons">opacity</i>
-              { this.props.beansMoisture } %
+            <div className="mdl-cell mdl-cell--3-col">
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">opacity</i>
+                { this.props.beansMoisture } %
+              </div>
             </div>
 
           </div>
         </div>
 
-        { this.stopWatch() }
-        { this.tempInput() }
         { this.roastDetails() }
         { this.postRoastNote() }
+
+        <div className="mdl-grid bobon-roast-input-watch-container">
+        { this.stopWatch() }
+        { this.tempInput() }
+        </div>
 
       </div>
     );

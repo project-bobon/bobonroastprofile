@@ -21,8 +21,8 @@ class RoastChart extends React.Component {
     return Object.keys(roastPoints).map(
       key => {
         return {
-          x: this.props.roastPoints[key].elapsed / 60000,
-          y: this.props.roastPoints[key].temperature
+          x: roastPoints[key].elapsed / 60000,
+          y: roastPoints[key].temperature
         };
       }
     ).sort((a,b) => {
@@ -36,7 +36,7 @@ class RoastChart extends React.Component {
       if (i === 0) {
         ror.push({
           x: roastPointsData[0].x,
-          y: roastPointsData[0].y
+          y: 0
         });
       } else {
         let tangent = (roastPointsData[i].y - roastPointsData[i - 1].y) / (roastPointsData[i].x - roastPointsData[i - 1].x);
@@ -74,7 +74,6 @@ class RoastChart extends React.Component {
             label: 'temp 1',
             data,
             fill: false,
-            borderWidth: 1,
             yAxisID: 'temp'
           },
           // Rate of roast.
@@ -82,7 +81,6 @@ class RoastChart extends React.Component {
             label: 'rate 1',
             data: ror,
             fill: false,
-            borderWidth: 1,
             yAxisID: 'rate'
           },
           // First crack - basically adding 2 points vertically on
@@ -94,7 +92,6 @@ class RoastChart extends React.Component {
               { x: 0, y: 1000 }
             ],
             fill: false,
-            borderWidth: 1,
             yAxisID: 'temp'
           }
         ]
@@ -109,14 +106,13 @@ class RoastChart extends React.Component {
 
       if (this.props.compare) {
         let comparePoints = this.props.compare.roastPoints;
-        let compareData = this.createRateOfRoastDataset(comparePoints);
+        let compareData = this.createRoastPointsDataset(comparePoints);
         let compareRor = this.createRateOfRoastDataset(compareData);
 
         chartData.datasets.push({
           label: 'temp 2',
           data: compareData,
           fill: false,
-          borderWidth: 1,
           yAxisID: 'temp'
         });
 
@@ -124,7 +120,6 @@ class RoastChart extends React.Component {
           label: 'rate 2',
           data: compareRor,
           fill: false,
-          borderWidth: 1,
           yAxisID: 'rate'
         });
 
@@ -138,7 +133,6 @@ class RoastChart extends React.Component {
               { x: compareFirstCrack, y: 1000 }
             ],
             fill: false,
-            borderWidth: 1,
             yAxisID: 'temp'
           }
           );
@@ -152,6 +146,7 @@ class RoastChart extends React.Component {
         let color = C.CHART_COLORS[i % C.CHART_COLORS.length];
         chartData.datasets[i].borderColor = color;
         chartData.datasets[i].backgroundColor = color;
+        chartData.datasets[i].borderWidth = 2;
       });
 
       let chartOptions = {

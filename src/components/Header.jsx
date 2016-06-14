@@ -3,6 +3,7 @@ import C from '../constants';
 import history from '../history';
 
 import Button from './utils/Button';
+import DialogContainer from '../containers/DialogContainer';
 
 class Header extends React.Component {
 
@@ -186,6 +187,8 @@ class Header extends React.Component {
         </div>
 
         { this.newRoastBtn() }
+
+        <DialogContainer/>
 
       </header>
     );

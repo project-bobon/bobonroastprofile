@@ -198,3 +198,21 @@ export const checkRoastInProgress = roasts => {
     roasts
   };
 };
+
+// Dialog actions.
+export const showDialog = ({ text, yesAction, noAction = null, yesText = 'Yes', noText = 'No' }) => {
+  return {
+    type: C.SHOW_DIALOG,
+    text,
+    yesAction,
+    noAction,
+    yesText,
+    noText
+  };
+};
+
+export const clearDialog = () => {
+  return {
+    type: C.CLEAR_DIALOG
+  };
+};

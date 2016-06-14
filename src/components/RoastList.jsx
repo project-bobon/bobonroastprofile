@@ -7,6 +7,7 @@ import C from '../constants';
 import Card from './utils/Card';
 import CardTitle from './utils/CardTitle';
 import CardContent from './utils/CardContent';
+import Button from './utils/Button';
 
 class RoastList extends React.Component {
 
@@ -34,9 +35,6 @@ class RoastList extends React.Component {
         <NavigationLink path={ `roasts/${key}` }>
           View Roast
         </NavigationLink>
-        <div onClick={ () => { this.props.removeRoast(key); } }>
-          Remove Roast
-        </div>
       </div>
     );
   }
@@ -62,7 +60,7 @@ class RoastList extends React.Component {
   }
 
   lastRoastPointDuration(roastPoints) {
-    let duration = null
+    let duration = null;
     if (roastPoints) {
       let roastKey = Object.keys(roastPoints).pop();
       duration = moment(roastPoints[roastKey].elapsed).format('mm:ss');
@@ -106,7 +104,17 @@ class RoastList extends React.Component {
               { roast.firstCrack ? moment(roast.firstCrack).format('mm:ss') : '-' }
             </td>
             <td><i className="material-icons">favorite_border</i></td>
-            <td><i className="material-icons">delete</i></td>
+            <td>
+              <button className="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
+                onClick={ (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.props.removeRoast(key, roast.beansName, roast.roastStart);
+                  } }
+              >
+                <i className="material-icons">delete</i>
+              </button>
+            </td>
           </tr>
         );
       });
@@ -124,7 +132,7 @@ class RoastList extends React.Component {
             <CardTitle>
               <div className="bobon-text-with-icon">
                 <i className="material-icons">timeline</i>
-              My roasts
+                My roasts
               </div>
             </CardTitle>
 

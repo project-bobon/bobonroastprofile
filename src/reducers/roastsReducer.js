@@ -7,7 +7,15 @@ const roastsReducer = (currentState = initialState, action) => {
   switch(action.type) {
 
     case C.FETCHED_ROASTS:
-      return action.roasts;
+      let inversedRoasts = {};
+      if (action.roasts) {
+        Object.keys(action.roasts).sort((a, b)=> {
+          return action.roasts[b].created - action.roasts[a].created;
+        }).forEach(key => {
+          inversedRoasts[key] = action.roasts[key];
+        });
+      }
+      return inversedRoasts;
       break;
 
     case C.COMPARE_ROASTS:
@@ -18,7 +26,7 @@ const roastsReducer = (currentState = initialState, action) => {
           compare: action.compareId
         }
       };
-    break;
+      break;
 
     case C.ADD_FIRST_CRACK:
       return {
@@ -27,7 +35,7 @@ const roastsReducer = (currentState = initialState, action) => {
           ...currentState[action.roastId],
           firstCrack: action.firstCrackTime
         }
-      }
+      };
       break;
 
     default:

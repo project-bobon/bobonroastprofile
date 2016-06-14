@@ -2,6 +2,11 @@ import React from 'react';
 import NavigationLink from '../components/utils/NavigationLink';
 import moment from 'moment';
 
+import C from '../constants';
+import Card from './utils/Card';
+import CardTitle from './utils/CardTitle';
+import CardContent from './utils/CardContent';
+
 class RoastList extends React.Component {
 
   _roastCard(roast, key) {
@@ -10,7 +15,7 @@ class RoastList extends React.Component {
         <div className="mdl-card__title mdl-color--pink-500 mdl-color-text--grey-100">
           { roast.beansName }
         </div>
-        <div class="mdl-card__supporting-text">
+        <div className="mdl-card__supporting-text">
           <div className="mdl-grid">
             <div className="mdl-cell mdl-cell--12-col">
               { moment(roast.roastStart).format('DD/MM/YY HH:mm') }
@@ -35,15 +40,86 @@ class RoastList extends React.Component {
     );
   }
 
+  roastStatus(statusText) {
+    switch(statusText) {
+      case C.ROAST_PENDING:
+        return 'pending';
+        break;
+
+      case C.ROAST_COMPLETED:
+        return 'completed';
+        break;
+
+      case C.ROAST_IN_PROGRESS:
+        return 'in progress';
+        break;
+
+      default:
+        return statusText;
+        break;
+    }
+  }
+
+  roastRows() {
+    let content = null;
+
+    if (this.props.roasts) {
+      content = Object.keys(this.props.roasts).map(key => {
+        let roast = this.props.roasts[key];
+        let roastDate = '';
+
+        if (roast.roastStart) {
+          roastDate = moment(roast.roastStart).format('DD-MM-YY HH:mm');
+        }
+
+        return (
+          <tr key={ key }>
+            <td className="mdl-data-table__cell--non-numeric">{ roast.beansName }</td>
+            <td className="mdl-data-table__cell--non-numeric">{ roastDate } </td>
+            <td>{ roast.beansMoisture } % </td>
+            <td>{ roast.batchSize } kg</td>
+            <td>
+              <span className="bobon-roast-list-status bobon-roast-list-status-{ roast.status.toLowerCase() }">
+                { this.roastStatus(roast.status) }
+              </span>
+            </td>
+          </tr>
+        );
+      });
+    }
+
+    return content;
+  }
+
   render() {
     if (this.props.roasts) {
       return (
         <div className="mdl-grid">
-          { Object.keys(this.props.roasts).map(k => {
-              let roast = this.props.roasts[k];
-              return this._roastCard(this.props.roasts[k], k);
-            })
-          }
+          <Card customClass="mdl-cell mdl-cell--12-col">
+
+            <CardTitle>
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">timeline</i>
+              Your roasts
+              </div>
+            </CardTitle>
+
+            <table className="mdl-data-table mdl-js-data-table bobon-util__full-width">
+              <thead>
+                <tr>
+                  <th className="mdl-data-table__cell--non-numeric">Bean's name</th>
+                  <th className="mdl-data-table__cell--non-numeric">Roast date</th>
+                  <th>Moisture</th>
+                  <th>Batch Size</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                { this.roastRows() }
+              </tbody>
+            </table>
+          </Card>
         </div>
       );
     } else {

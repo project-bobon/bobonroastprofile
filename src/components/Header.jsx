@@ -67,15 +67,29 @@ class Header extends React.Component {
 
     if (this.props.authStatus === C.LOGGED_IN) {
       actionButton = (
-        <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
-          onClick={ (e) => {
-              e.preventDefault();
-              C.FIREBASE.auth().signOut();
-            } }
-        >
-          <i className="material-icons">exit_to_app</i>
-          Logout
-        </Button>
+        <div>
+
+          <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
+            onClick={ (e) => {
+                e.preventDefault();
+                history.push('/');
+              } }
+          >
+            <i className="material-icons">timeline</i>
+            My roasts
+          </Button>
+
+          <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
+            onClick={ (e) => {
+                e.preventDefault();
+                C.FIREBASE.auth().signOut();
+              } }
+          >
+            <i className="material-icons">exit_to_app</i>
+            Logout
+          </Button>
+
+        </div>
       );
     }
 

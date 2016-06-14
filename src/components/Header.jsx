@@ -103,7 +103,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="mdl-layout__header">
+      <header className="mdl-layout__header mdl-color--deep-orange-900">
         <div className="mdl-layout__header-row">
           <span className="mdl-layout-title">
           </span>

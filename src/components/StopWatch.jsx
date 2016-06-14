@@ -34,7 +34,7 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_PENDING) {
       content = (
-        <Button customClass="bobon-stopwatch-button"
+        <Button customClass="bobon-stopwatch-button mdl-button-with-icon"
           onClick={ () => {
               let roastStart = Date.now();
               this.props.startStopWatch(
@@ -48,6 +48,7 @@ class StopWatch extends React.Component {
               );
             } }
         >
+          <i className="material-icons">fiber_manual_record</i>
           START
         </Button>
       );
@@ -61,7 +62,7 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_IN_PROGRESS) {
       content = (
-        <button className="bobon-stopwatch-button mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect "
+        <Button customClass="bobon-stopwatch-button mdl-button-width-icon"
           onClick={ () => {
               this.props.stopStopWatch(
                 this.props.roastId,
@@ -69,8 +70,9 @@ class StopWatch extends React.Component {
               );
             } }
         >
+          <i className="material-icons">stop</i>
           STOP
-        </button>
+        </Button>
       );
     }
 

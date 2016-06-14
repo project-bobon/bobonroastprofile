@@ -30,7 +30,7 @@ class RoastProfile extends React.Component {
                this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
-        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp
+        <div className="mdl-cell mdl-cell--6-col
                         mdl-color--white mdl-grid mdl-cell--12-col-tablet"
         >
           <StopWatchContainer
@@ -56,7 +56,7 @@ class RoastProfile extends React.Component {
       this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
-        <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp
+        <div className="mdl-cell mdl-cell--6-col
                         mdl-color--white mdl-grid mdl-cell--12-col-tablet"
         >
           <RoastPointInputContainer
@@ -112,7 +112,7 @@ class RoastProfile extends React.Component {
     return(
       <Card customClass="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet">
         <CardTitle>
-          <h2 className="mdl-card__title-text">Roasting Notes</h2>
+          Roasting Notes
         </CardTitle>
         <CardContent>
           <plaintext>
@@ -136,20 +136,20 @@ class RoastProfile extends React.Component {
     );
   }
 
-  /* magicButton() {
-   *   return (
-   *     <button onClick={ () => {
-   *         let uid = C.FIREBASE.auth().currentUser.uid;
-   *         let ref = C.FIREBASE.database().ref(`roasts/${uid}/${this.props.roastId}/status`);
+  magicButton() {
+    return (
+      <button onClick={ () => {
+          let uid = C.FIREBASE.auth().currentUser.uid;
+          let ref = C.FIREBASE.database().ref(`roasts/${uid}/${this.props.roastId}/status`);
 
-   *         ref.set(C.ROAST_PENDING);
-   *       } }
-   *     >
-   *       Magic button (PENDING)
-   *     </button>
-   *   );
-   * }
-   */
+          ref.set(C.ROAST_PENDING);
+        } }
+      >
+        Magic button (PENDING)
+      </button>
+    );
+  }
+
   roastTime() {
     if (this.props.status === C.ROAST_PENDING) {
       return null;
@@ -222,11 +222,11 @@ class RoastProfile extends React.Component {
     }
 
     return (
-      <div className="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet bobon-text-with-icon">
-        <i className="material-icons">code</i>
+      <div className="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
         <button id="select-compare"
-          className="mdl-button mdl-js-button mdl-button-colored mdl-color--red mdl-color-text--white"
+          className="mdl-button mdl-js-button mdl-button-colored mdl-color--indigo-500 mdl-color-text--white mdl-button-with-icon"
         >
+          <i className="material-icons">code</i>
           { buttonText }
         </button>
         <ul className="mdl-menu mdl-js-menu mdl-js-ripple-effect"
@@ -272,10 +272,13 @@ class RoastProfile extends React.Component {
       <div className="mdl-grid">
 
         <div className="bobon-chart-title mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
-          { this.props.beansName }
+          <div className="bobon-text-with-icon">
+            <i className="material-icons">label</i>
+            { this.props.beansName }
+          </div>
         </div>
-        { this.selectCompare() }
 
+        { this.selectCompare() }
         { this.stopWatch() }
         { this.tempInput() }
 
@@ -287,9 +290,11 @@ class RoastProfile extends React.Component {
           firstCrack={ this.props.firstCrack }
         />
 
-        <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-          <div className="mdl-grid mdl-card__title bobon-util__full-width">
-
+        <Card customClass="mdl-cell mdl-cell--12-col">
+          <CardTitle>
+            Roast details
+          </CardTitle>
+          <CardContent customClass="mdl-grid bobon-util__full-width">
             <div className="mdl-cell mdl-cell--3-col">
               <div className="bobon-text-with-icon">
                 <i className="material-icons">label</i>
@@ -320,13 +325,12 @@ class RoastProfile extends React.Component {
                 { this.props.beansMoisture } %
               </div>
             </div>
-
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         { this.roastDetails() }
         { this.postRoastNote() }
-
+        { this.magicButton() }
       </div>
     );
   }

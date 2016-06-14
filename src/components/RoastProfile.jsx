@@ -210,22 +210,22 @@ class RoastProfile extends React.Component {
               this.props.compareRoasts(this.props.roastId, roast.id);
             } }
         >
-          { roast.value + ' - ' + moment(roast.roastStart).format('DD/MM/YY hh:mm') }
+          { '[' + moment(roast.roastStart).format('DD/MM/YYYY HH:mm') + '] ' + roast.value }
         </li>
       );
     });
 
-    let buttonText = "Select a roast";
+    let buttonText = "Compare with a previous roast profile";
 
     if (this.props.compare) {
-      buttonText = this.props.compare.beansName + ' - ' + moment(this.props.compare.roastStart).format('DD/MM/YYYY hh:mm');
+      buttonText = '[' + moment(this.props.compare.roastStart).format('DD/MM/YYYY HH:mm') + '] ' + this.props.compare.beansName;
     }
 
     return (
-      <div>
-        Compare:
+      <div className="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet bobon-text-with-icon">
+        <i className="material-icons">code</i>
         <button id="select-compare"
-          className="mdl-button mdl-js-button"
+          className="mdl-button mdl-js-button mdl-button-colored mdl-color--red mdl-color-text--white"
         >
           { buttonText }
         </button>
@@ -271,6 +271,11 @@ class RoastProfile extends React.Component {
     return (
       <div className="mdl-grid">
 
+        <div className="bobon-chart-title mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+          { this.props.beansName }
+        </div>
+        { this.selectCompare() }
+
         { this.stopWatch() }
         { this.tempInput() }
 
@@ -281,10 +286,6 @@ class RoastProfile extends React.Component {
           compare={ this.props.compare }
           firstCrack={ this.props.firstCrack }
         />
-
-        <div className="mdl-cell mdl-cell--12-col">
-          { this.selectCompare() }
-        </div>
 
         <div className="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
           <div className="mdl-grid mdl-card__title bobon-util__full-width">

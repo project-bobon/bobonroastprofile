@@ -2,27 +2,36 @@ import React, { PropTypes } from 'react';
 import Spinner from './Spinner';
 import history from '../history';
 
+import Card from './utils/Card';
+import CardTitle from './utils/CardTitle';
+import Button from './utils/Button';
+
 require('../../scss/roast_form.scss');
 
 class NewRoastForm extends React.Component {
   cancelButton() {
     return(
-      <button
-        className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--indigo-500 mdl-color-text--grey-100"
-        onClick={ () => { history.goBack(); } }
+      <Button
+        customClass="mdl-color--teal-500 mdl-color-text--grey-100"
+        onClick={ (e) => {
+            e.preventDefault();
+            history.goBack();
+          } }
         style={ {
             marginLeft: '20px'
           } }
       >
         Cancel
-      </button>
+      </Button>
     );
   }
 
   submitButton() {
     if (this.props.disabled === true) {
       return(
-        <input className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--grey-400 mdl-color-text--grey-100"
+        <input
+          className="mdl-button mdl-js-button mdl-js-ripple-effect
+                     mdl-color--grey-400 mdl-color-text--grey-100"
           type="submit"
           value="Create and start roasting"
           disabled
@@ -30,7 +39,9 @@ class NewRoastForm extends React.Component {
       );
     } else {
       return(
-        <input className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--pink-500 mdl-color-text--grey-100"
+        <input
+          className="mdl-button mdl-js-button mdl-js-ripple-effect
+                     mdl-color--red-500 mdl-color-text--grey-100"
           type="submit"
           value="Create and start roasting"
         />
@@ -44,13 +55,14 @@ class NewRoastForm extends React.Component {
     } else {
       return (
         <div className="mdl-grid">
-          <div className="mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-color--white">
-            <div className="mdl-card__title">
-              <i className="material-icons">timer</i>
-              <h2 className="mdl-card__title-text">
+          <Card customClass="mdl-cell mdl-cell--12-col">
+
+            <CardTitle>
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">timer</i>
                 Create new roast
-              </h2>
-            </div>
+              </div>
+            </CardTitle>
 
             <form className="bobon-form__new-roast" onSubmit={ this.props.onSubmit } onChange={ this.props.onChange } >
 
@@ -96,7 +108,7 @@ class NewRoastForm extends React.Component {
                 { this.cancelButton() }
               </div>
             </form>
-          </div>
+          </Card>
         </div>
       );
     }

@@ -33,6 +33,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
+const getLastRoastPointId = roastPoints => {
+  if (roastPoints) {
+    return Object.keys(roastPoints).pop();
+  } else {
+    return null;
+  }
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     onChangeCompare: (e, roastId) => {
@@ -41,10 +49,15 @@ const mapDispatchToProps = dispatch => {
     compareRoasts: (roastId, compareId) => {
       dispatch(compareRoasts(roastId, compareId));
     },
-    undoLastTemperature: (roastId, lastTemperatureId) => {
-      let uid = C.FIREBASE.auth().currentUser.uid;
-      let ref = C.FIREBASE.app().database().ref(`/roasts/${uid}/${roastId}/roastPoints/${lastTemperatureId}`);
-      ref.remove();
+    undoLastTemperature: (roastId, roastPoints) => {
+      // Only remove points if there are more than 1 roast points.
+      // The initial temperature point should never be removed.
+      if (roastPoints && Object.keys(roastPoints).length > 1) {
+        let lastRoastPointId = getLastRoastPointId(roastPoints);
+        let uid = C.FIREBASE.auth().currentUser.uid;
+        let ref = C.FIREBASE.app().database().ref(`/roasts/${uid}/${roastId}/roastPoints/${lastRoastPointId}`);
+        ref.remove();
+      }
     },
     addFirstCrack: (roastId, roastStart) => {
       let uid = C.FIREBASE.auth().currentUser.uid;

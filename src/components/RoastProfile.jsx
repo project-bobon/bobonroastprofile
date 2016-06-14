@@ -69,9 +69,9 @@ class RoastProfile extends React.Component {
 
           <Button customClass="mdl-button-with-icon"
             onClick={() => {
-                this.props.undoLastTemperature(this.props.roastId, this.lastRoastPointId());
+                this.props.undoLastTemperature(this.props.roastId, this.props.roastPoints);
               } }
-            disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
+            disabled={ this.props.status === C.ROAST_IN_PROGRESS && Object.keys(this.props.roastPoints).length > 1 ? false : true }
           >
             <i className="material-icons">replay</i>
             Undo

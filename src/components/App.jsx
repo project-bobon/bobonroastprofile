@@ -35,7 +35,6 @@ class App extends React.Component {
     return (
       <div className={ this.containerClass() }>
         <HeaderContainer/>
-        <DrawerContainer/>
         <main className="mdl-layout__content">
           <div className="bobon-page-content page-content">
             { this.props.children }

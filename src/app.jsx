@@ -9,7 +9,17 @@ import AppContainer from './containers/AppContainer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import rootReducer from './reducers/index';
-import { listeningToAuth, loginSuccess, logout, fetchedRoasts, checkRoastInProgress } from './actions';
+
+import {
+  listeningToAuth,
+  loginSuccess,
+  logout,
+  fetchedRoasts,
+  checkRoastInProgress,
+  loadingData,
+  loadedData
+} from './actions';
+
 import auth from './auth';
 import C from './constants';
 import history from './history';
@@ -42,6 +52,7 @@ render(
   document.getElementById('main')
 );
 
+
 store.dispatch(listeningToAuth());
 
 // Start listening to firebase auth changes.
@@ -52,15 +63,24 @@ C.FIREBASE.auth().onAuthStateChanged((user) => {
 
     // Listen to roast changes
     let roastsRef = C.FIREBASE.app().database().ref(`/roasts/${user.uid}`);
+
+    store.dispatch(loadingData());
     roastsRef.on('value', snapshot => {
       store.dispatch(fetchedRoasts(snapshot.val()));
+      store.dispatch(loadedData());
       store.dispatch(checkRoastInProgress(snapshot.val()));
     }, err => {
       console.log(err);
     });
 
   } else {
-    store.dispatch(logout());
+    C.FIREBASE.auth().getRedirectResult().then(function(result) {
+      if (!result.user) {
+        store.dispatch(logout());
+      } else {
+        store.dispatch(loginSuccess(result.user));
+      }
+    });
   }
 }, err => {
   console.log(err);

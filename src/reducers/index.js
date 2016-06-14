@@ -6,6 +6,7 @@ import stopWatchReducer from './stopWatchReducer';
 import roastInProgressReducer from './roastInProgressReducer';
 import editingFieldReducer from './editingFieldReducer';
 import dialogReducer from './dialogReducer';
+import dataLoadingReducer from './dataLoadingReducer';
 
 export default combineReducers({
   auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   stopWatch: stopWatchReducer,
   roastInProgress: roastInProgressReducer,
   editingFields: editingFieldReducer,
-  dialog: dialogReducer
+  dialog: dialogReducer,
+  dataLoading: dataLoadingReducer
 });

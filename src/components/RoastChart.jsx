@@ -141,7 +141,6 @@ class RoastChart extends React.Component {
       }
 
       let compare = this.props.compare;
-      console.log(compare);
       if (compare === null) {
         compare = this.state.compare;
       }

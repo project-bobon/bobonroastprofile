@@ -217,3 +217,16 @@ export const clearDialog = () => {
     type: C.CLEAR_DIALOG
   };
 };
+
+// Data loading.
+export const loadingData = () => {
+  return {
+    type: C.LOADING_DATA
+  };
+}
+
+export const loadedData = () => {
+  return {
+    type: C.LOADED_DATA
+  };
+}

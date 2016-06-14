@@ -34,6 +34,9 @@ class NewRoastForm extends React.Component {
                      mdl-color--grey-400 mdl-color-text--grey-100"
           type="submit"
           value="Create and start roasting"
+          style={ {
+              marginRight: '15px'
+            } }
           disabled
         />
       );
@@ -44,6 +47,9 @@ class NewRoastForm extends React.Component {
                      mdl-color--red-500 mdl-color-text--grey-100"
           type="submit"
           value="Create and start roasting"
+          style={ {
+              marginRight: '15px'
+            } }
         />
       );
     }

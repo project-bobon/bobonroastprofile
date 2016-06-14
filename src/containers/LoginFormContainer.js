@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import LoginForm from '../components/LoginForm';
 import { loginRequest, loginSuccess } from '../actions';
 import auth from '../auth';
+import firebase from 'firebase';
+import C from '../constants';
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +16,29 @@ const mapDispatchToProps = dispatch => {
     onLoginBtnClick: (e, method) => {
       e.preventDefault();
       dispatch(loginRequest());
-      auth.login(method);
+
+      let authProvider = null;
+
+      switch (method) {
+      case 'facebook':
+        authProvider = new firebase.auth.FacebookAuthProvider();
+        break;
+
+      case 'google':
+        authProvider = new firebase.auth.GoogleAuthProvider();
+        break;
+
+      default:
+        break;
+      }
+
+      if (window.location.protocol === 'http') {
+        C.FIREBASE.auth().signInWithPopup(authProvider);
+      } else {
+        C.FIREBASE.auth().signInWithRedirect(authProvider).then(v => {
+          console.log(v);
+        });
+      }
     }
   };
 };

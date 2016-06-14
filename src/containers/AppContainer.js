@@ -4,7 +4,8 @@ import App from '../components/App';
 const mapStateToProps = (state, ownProps) => {
   return {
     ...ownProps,
-    authStatus: state.auth.authStatus
+    authStatus: state.auth.authStatus,
+    dataLoading: state.dataLoading
   };
 };
 

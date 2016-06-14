@@ -67,7 +67,11 @@ const C = {
 
   // MISC.
   FIREBASE: firebase,
-  CHART_COLORS: ['#B71C1C', '#F9A825', '#AD1457', '#00796B', '#26C6DA', '#388E3C']
+  CHART_COLORS: ['#B71C1C', '#F9A825', '#AD1457', '#00796B', '#26C6DA', '#388E3C'],
+
+  // Data loading.
+  LOADING_DATA: 'LOADING_DATA',
+  LOADED_DATA: 'LOADED_DATA'
 };
 
 export default C;

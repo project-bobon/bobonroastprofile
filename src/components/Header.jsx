@@ -83,10 +83,7 @@ class Header extends React.Component {
           </Button>
 
           <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
-            onClick={ (e) => {
-                e.preventDefault();
-                C.FIREBASE.auth().signOut();
-              } }
+            onClick={ (e) => { this.props.logout(e); } }
           >
             <i className="material-icons">exit_to_app</i>
             Logout

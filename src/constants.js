@@ -67,7 +67,7 @@ const C = {
 
   // MISC.
   FIREBASE: firebase,
-  CHART_COLORS: ['#B71C1C', '#0D47A1', '#4A148C', '#1A237E', '#1B5E20', '#3E2723']
+  CHART_COLORS: ['#B71C1C', '#F9A825', '#AD1457', '#00796B', '#26C6DA', '#388E3C']
 };
 
 export default C;

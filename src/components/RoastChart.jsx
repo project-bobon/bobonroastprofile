@@ -9,11 +9,20 @@ class RoastChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redraw: false
+      redraw: false,
+      compare: null
     };
   }
 
   componentWillReceiveProps(nextProps) {
+    // Persistent comparing state.
+    if (this.props.compare && this.state.compare === null) {
+      this.setState({
+        compare: this.props.compare,
+        redraw: false
+      });
+    }
+
     if (this.props && this.props.roastPoints && nextProps.roastPoints) {
       if (Object.keys(nextProps.roastPoints).length < Object.keys(this.props.roastPoints).length) {
         this.setState({ redraw: true });
@@ -124,8 +133,14 @@ class RoastChart extends React.Component {
         ];
       }
 
-      if (this.props.compare) {
-        let comparePoints = this.props.compare.roastPoints;
+      let compare = this.props.compare;
+      console.log(compare);
+      if (compare === null) {
+        compare = this.state.compare;
+      }
+
+      if (compare !== null) {
+        let comparePoints = compare.roastPoints;
         let compareData = this.createRoastPointsDataset(comparePoints);
         let compareRor = this.createRateOfRoastDataset(compareData);
 
@@ -143,8 +158,8 @@ class RoastChart extends React.Component {
           yAxisID: 'rate'
         });
 
-        if (this.props.compare.firstCrack) {
-          let compareFirstCrack = this.props.compare.firstCrack / 60000;
+        if (compare.firstCrack) {
+          let compareFirstCrack = compare.firstCrack / 60000;
           chartData.datasets.push(
           {
             label: 'first crack 2',
@@ -158,7 +173,9 @@ class RoastChart extends React.Component {
           );
         }
 
-        redraw = true;
+        if (this.state.compare === null) {
+          redraw = true;
+        }
       }
 
       // Assign colors to each dataset.

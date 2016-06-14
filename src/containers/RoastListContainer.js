@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(removeRoast(roastId));
           });
         },
-        text: `Are you sure to delete "${ beansName }" ? This cannot be undone.`
+        text: `Are you sure to delete "${ beansName }"? This cannot be undone.`
       }));
     }
   };

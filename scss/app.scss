@@ -245,4 +245,15 @@ header {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+
+  .mdl-card {
+    text-align: left;
+  }
+
+  .mdl-card__title {
+    font-size: 1.5em;
+    font-weight: 200;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }

@@ -200,14 +200,15 @@ export const checkRoastInProgress = roasts => {
 };
 
 // Dialog actions.
-export const showDialog = ({ text, yesAction, noAction = null, yesText = 'Yes', noText = 'No' }) => {
+export const showDialog = ({ dialogType='info', text, yesAction, noAction = null, yesText = 'Yes', noText = 'No' }) => {
   return {
     type: C.SHOW_DIALOG,
     text,
     yesAction,
     noAction,
     yesText,
-    noText
+    noText,
+    dialogType
   };
 };
 

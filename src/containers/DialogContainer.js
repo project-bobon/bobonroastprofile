@@ -8,7 +8,8 @@ const mapStateToProps = state => {
     yesAction: state.dialog.yesAction,
     noAction: state.dialog.noAction,
     yesText: state.dialog.yesText,
-    noText: state.dialog.noText
+    noText: state.dialog.noText,
+    dialogType: state.dialog.dialogType
   };
 };
 

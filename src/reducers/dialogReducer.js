@@ -6,7 +6,8 @@ const initialState = {
   yesAction: null,
   noAction: null,
   yesText: null,
-  noText: null
+  noText: null,
+  dialogType: null
 };
 
 const dialogReducer = (currentState = initialState, action) => {
@@ -18,7 +19,8 @@ const dialogReducer = (currentState = initialState, action) => {
         yesAction: action.yesAction,
         noAction: action.noAction,
         yesText: action.yesText || 'Yes',
-        noText: action.noText || 'No'
+        noText: action.noText || 'No',
+        dialogType: action.dialogType
       };
       break;
 

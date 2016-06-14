@@ -11,7 +11,7 @@ class Dialog extends React.Component {
       return (
         <div className="bobon-dialog-container">
           <div className="bobon-dialog-cell">
-            <Card customClass="bobon-dialog">
+            <Card customClass="bobon-dialog bobon-dialog-{ this.props.dialogType }">
               <CardTitle>
                 { this.props.text }
               </CardTitle>

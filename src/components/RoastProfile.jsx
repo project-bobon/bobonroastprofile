@@ -31,18 +31,13 @@ class RoastProfile extends React.Component {
     ) {
       content = (
         <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp
-                        mdl-color--white mdl-grid"
+                        mdl-color--white mdl-grid mdl-cell--12-col-tablet"
         >
           <StopWatchContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }
             status={ this.props.status }
           />
-          <Button onClick={() => {
-              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
-            } }>
-            FIRST CRACK!!!!
-          </Button>
         </div>
       );
     }
@@ -56,18 +51,41 @@ class RoastProfile extends React.Component {
         this.props.roastInProgress !== this.props.roastId
     ) {
       content = null;
-    } else if (this.props.status === C.ROAST_PENDING ||
-               this.props.status === C.ROAST_IN_PROGRESS
+    } else if (
+      this.props.status === C.ROAST_PENDING ||
+      this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
         <div className="mdl-cell mdl-cell--6-col mdl-shadow--2dp
-                        mdl-color--white mdl-grid"
+                        mdl-color--white mdl-grid mdl-cell--12-col-tablet"
         >
           <RoastPointInputContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }
             status={ this.props.status }
+            addFirstCrack={ this.props.addFirstCrack }
+            undoTemperature={ this.props.undoTemperature }
           />
+
+          <Button customClass="mdl-button-with-icon"
+            onClick={() => {
+                this.props.undoLastTemperature(this.props.roastId, this.lastRoastPointId());
+              } }
+            disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
+          >
+            <i className="material-icons">replay</i>
+            Undo
+          </Button>
+
+          <Button customClass="mdl-button-with-icon"
+            onClick={() => {
+              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
+              } }
+            disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
+          >
+            <i className="material-icons">fiber_manual_record</i>
+            First Crack!
+          </Button>
         </div>
       );
     }
@@ -220,15 +238,20 @@ class RoastProfile extends React.Component {
     );
   }
 
+  lastRoastPointId() {
+    if (this.props.roastPoints) {
+      return Object.keys(this.props.roastPoints).pop();
+    } else {
+      return null;
+    }
+  }
+
   roastDuration() {
     let min = '00';
     let sec = '00';
 
-    if (
-      this.props.hasOwnProperty('roastPoints') &&
-      this.props.roastPoints.length > 0
-    ) {
-      duration = this.props.roastPoints[this.props.roastPoints.length - 1].elapsed;
+    if (this.props.hasOwnProperty('roastPoints')) {
+      let duration = this.props.roastPoints[this.lastRoastPointId()].elapsed;
       min = duration / 60000 << 0;
       sec = duration / 1000 % 60 << 0;
 
@@ -247,6 +270,9 @@ class RoastProfile extends React.Component {
   render() {
     return (
       <div className="mdl-grid">
+
+        { this.stopWatch() }
+        { this.tempInput() }
 
         <RoastChart
           roastPoints={ this.props.roastPoints }
@@ -300,10 +326,7 @@ class RoastProfile extends React.Component {
         { this.roastDetails() }
         { this.postRoastNote() }
 
-        <div className="mdl-grid bobon-roast-input-watch-container">
-        { this.stopWatch() }
-        { this.tempInput() }
-        </div>
+        { this.magicButton() }
 
       </div>
     );

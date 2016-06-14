@@ -1,6 +1,8 @@
 import React from 'react';
 import C from '../constants';
 
+import Button from './utils/Button';
+
 class RoastPointInput extends React.Component {
 
   componentDidUpdate() {
@@ -26,7 +28,6 @@ class RoastPointInput extends React.Component {
           className="bobon-roast-temp-form mdl-cell mdl-cel--12-col"
           disabled={ this.disabled() }
         >
-
           <input
             type="hidden"
             id="roastId"

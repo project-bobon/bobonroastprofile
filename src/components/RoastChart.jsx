@@ -5,6 +5,26 @@ import C from '../constants';
 require('../../scss/chart.scss');
 
 class RoastChart extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      redraw: false
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props && this.props.roastPoints && nextProps.roastPoints) {
+      if (Object.keys(nextProps.roastPoints).length < Object.keys(this.props.roastPoints).length) {
+        this.setState({ redraw: true });
+      } else {
+        this.setState({ redraw: false });
+      }
+    } else {
+      this.setState({ redraw: false });
+    }
+  }
+
   beautifyTime(value) {
     let m = Math.floor(value / 60);
     let s = value % 60;
@@ -99,7 +119,7 @@ class RoastChart extends React.Component {
 
       if (this.props.firstCrack) {
         chartData.datasets[2].data = [
-          { x: this.props.firstCrack / 60000, y: 0 },
+          { x: this.props.firstCrack / 60000, y: 50 },
           { x: this.props.firstCrack / 60000, y: 1000 }
         ];
       }
@@ -129,7 +149,7 @@ class RoastChart extends React.Component {
           {
             label: 'first crack 2',
             data: [
-              { x: compareFirstCrack, y: 0 },
+              { x: compareFirstCrack, y: 50 },
               { x: compareFirstCrack, y: 1000 }
             ],
             fill: false,
@@ -207,7 +227,7 @@ class RoastChart extends React.Component {
         }
       };
 
-      if (redraw) {
+      if (redraw || this.state.redraw) {
         return <Line
                  data={ chartData }
                  options={ chartOptions }

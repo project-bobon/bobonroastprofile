@@ -46,7 +46,7 @@ body {
   width: 100%;
   position: relative;
   box-sizing: content-box;
-  padding-right: 220px;
+  padding-right: 240px;
 
   input[type="submit"] {
     position: absolute;
@@ -144,10 +144,4 @@ header {
 .bobon-section-content {
   width: 1000px;
   margin: 0 auto;
-}
-
-.bobon-roast-input-watch-container {
-  position: fixed;
-  top: 50px;
-  left: 30px;
 }

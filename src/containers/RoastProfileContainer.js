@@ -41,6 +41,11 @@ const mapDispatchToProps = dispatch => {
     compareRoasts: (roastId, compareId) => {
       dispatch(compareRoasts(roastId, compareId));
     },
+    undoLastTemperature: (roastId, lastTemperatureId) => {
+      let uid = C.FIREBASE.auth().currentUser.uid;
+      let ref = C.FIREBASE.app().database().ref(`/roasts/${uid}/${roastId}/roastPoints/${lastTemperatureId}`);
+      ref.remove();
+    },
     addFirstCrack: (roastId, roastStart) => {
       let uid = C.FIREBASE.auth().currentUser.uid;
       let ref = C.FIREBASE.app().database().ref(`/roasts/${uid}/${roastId}/firstCrack`);

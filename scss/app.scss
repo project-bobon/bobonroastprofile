@@ -268,3 +268,34 @@ header {
   margin-top: -25px;
   margin-left: -25px;
 }
+
+.bobon-transition-enter {
+  transform: translateY(30px);
+  opacity: 0.01;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  &.bobon-transition-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.bobon-transition-leave {
+  display: none;
+
+  &.bobon-transition-leave-active {
+    opacity: 0;
+  }
+
+}
+
+.bobon-transition-appear {
+  transform: translateY(30px);
+  opacity: 0.01;
+
+  &.bobon-transition-appear-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+}

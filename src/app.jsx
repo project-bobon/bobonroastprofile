@@ -77,6 +77,7 @@ C.FIREBASE.auth().onAuthStateChanged((user) => {
     C.FIREBASE.auth().getRedirectResult().then(function(result) {
       if (!result.user) {
         store.dispatch(logout());
+        history.push('/');
       } else {
         store.dispatch(loginSuccess(result.user));
       }

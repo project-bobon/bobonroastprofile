@@ -256,7 +256,7 @@ class RoastChart extends React.Component {
                  data={ chartData }
                  options={ chartOptions }
                  width="400"
-                 height="150"
+                 height="170"
                  redraw
                />;
       } else {
@@ -264,7 +264,7 @@ class RoastChart extends React.Component {
                  data={ chartData }
                  options={ chartOptions }
                  width="400"
-                 height="150"
+                 height="170"
                />;
       }
 

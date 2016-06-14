@@ -14,7 +14,7 @@ class Header extends React.Component {
     };
   }
 
-  _profilePhoto() {
+  profilePhoto() {
     let profilePhoto = null;
 
     if (this.props.authStatus === C.LOGGED_IN) {
@@ -62,19 +62,20 @@ class Header extends React.Component {
     return profilePhoto;
   }
 
-  _actionButton() {
+  actionButton() {
     let actionButton = null;
 
     if (this.props.authStatus === C.LOGGED_IN) {
       actionButton = (
-        <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--grey-100"
+        <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
           onClick={ (e) => {
               e.preventDefault();
               C.FIREBASE.auth().signOut();
             } }
         >
+          <i className="material-icons">exit_to_app</i>
           Logout
-        </button>
+        </Button>
       );
     }
 
@@ -101,19 +102,52 @@ class Header extends React.Component {
     return content;
   }
 
+  newRoastBtn() {
+    let content = null;
+    let location = this.props.location;
+
+    if (
+      this.props.authStatus === C.LOGGED_IN &&
+      this.props.roastInProgress === null &&
+      location.pathname.indexOf('/new') !== 0
+    ) {
+      content = (
+        <div>
+          <Button customClass="mdl-button--fab mdl-button--colored
+                               bobon-header-button bobon-header-button-add-new"
+            id="add-new-button"
+            onClick={ () => {
+                history.push('/new');
+              } }
+          >
+            <i className="material-icons">add</i>
+          </Button>
+          <div className="mdl-tooltip" htmlFor="add-new-button">
+            Start a new roast!
+          </div>
+        </div>
+      );
+    }
+
+    return content;
+  }
+
   render() {
     return (
-      <header className="mdl-layout__header mdl-color--deep-orange-900">
+      <header className="mdl-layout__header">
         <div className="mdl-layout__header-row">
           <span className="mdl-layout-title">
           </span>
           <div className="mdl-layout-spacer"></div>
           <nav className="mdl-navigation">
             { this.roastInProgress() }
-            { this._actionButton() }
-            { this._profilePhoto() }
+            { this.actionButton() }
+            { this.profilePhoto() }
           </nav>
         </div>
+
+        { this.newRoastBtn() }
+
       </header>
     );
   }

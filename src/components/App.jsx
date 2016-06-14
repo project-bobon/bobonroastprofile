@@ -18,23 +18,17 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    componentHandler.upgradeDom();
-  }
-
-  containerClass() {
-    let className = "mdl-layout mdl-js-layout mdl-layout--fixed-header";
-    /* if (this.props.authStatus === C.LOGGED_IN) {
-     *   className = className + " mdl-layout--fixed-drawer";
-     * }*/
-    return className;
+    if (this.props.authStatus === C.LOGGED_IN) {
+      componentHandler.upgradeDom();
+    }
   }
 
   render() {
     var path = this.props.location.pathname;
     var segment = path.split('/')[1] || 'root';
     return (
-      <div className={ this.containerClass() }>
-        <HeaderContainer/>
+      <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <HeaderContainer location={ this.props.location }/>
         <main className="mdl-layout__content">
           <div className="bobon-page-content page-content">
             { this.props.children }

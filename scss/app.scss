@@ -1,4 +1,6 @@
 $indigo-500: #3F51B5;
+$indigo-400: #5C6BC0;
+$indigo-900: #1A237E;
 
 $grey-100: #f5f5f5;
 $grey-200: #eeeeee;
@@ -24,7 +26,7 @@ body {
 }
 
 .mdl-card__title {
-  background: $deep-orange-900;
+  background: #009688;
   color: $grey-100;
 }
 
@@ -170,6 +172,7 @@ header {
 .bobon-chart-title {
   font-size: 2em;
   padding: 7px 0;
+  color: $indigo-900;
   text-transform: uppercase;
 }
 
@@ -194,4 +197,17 @@ header {
   text-align: center;
   background: $deep-orange-900 !important;
   color: $grey-100 !important;
+}
+
+.bobon-header-button {
+  position: fixed;
+  top: 35px;
+}
+
+.bobon-header-button-add-new {
+  left: 16px;
+}
+
+.mdl-layout__content {
+  margin-top: 20px;
 }

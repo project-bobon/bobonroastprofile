@@ -72,6 +72,16 @@ class Header extends React.Component {
           <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
             onClick={ (e) => {
                 e.preventDefault();
+                history.push('/new');
+              } }
+          >
+            <i className="material-icons">add</i>
+            Start a roast
+          </Button>
+
+          <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
+            onClick={ (e) => {
+                e.preventDefault();
                 history.push('/');
               } }
           >

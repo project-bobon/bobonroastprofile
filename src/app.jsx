@@ -29,7 +29,7 @@ import RoastProfileContainer from './containers/RoastProfileContainer';
 
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
-,window.devToolsExtension && window.devToolsExtension()
+//,window.devToolsExtension && window.devToolsExtension()
 );
 
 const routes = (

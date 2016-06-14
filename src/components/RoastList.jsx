@@ -2,6 +2,7 @@ import React from 'react';
 import NavigationLink from '../components/utils/NavigationLink';
 import moment from 'moment';
 
+import history from '../history';
 import C from '../constants';
 import Card from './utils/Card';
 import CardTitle from './utils/CardTitle';
@@ -60,6 +61,16 @@ class RoastList extends React.Component {
     }
   }
 
+  lastRoastPointDuration(roastPoints) {
+    let duration = null
+    if (roastPoints) {
+      let roastKey = Object.keys(roastPoints).pop();
+      duration = moment(roastPoints[roastKey].elapsed).format('mm:ss');
+    }
+
+    return duration;
+  }
+
   roastRows() {
     let content = null;
 
@@ -73,7 +84,12 @@ class RoastList extends React.Component {
         }
 
         return (
-          <tr key={ key }>
+          <tr key={ key }
+            onClick={(e) => {
+                e.preventDefault();
+                history.push(`/roasts/${key}`);
+              }}
+          >
             <td className="mdl-data-table__cell--non-numeric">{ roast.beansName }</td>
             <td className="mdl-data-table__cell--non-numeric">{ roastDate } </td>
             <td>{ roast.beansMoisture } % </td>
@@ -83,6 +99,14 @@ class RoastList extends React.Component {
                 { this.roastStatus(roast.status) }
               </span>
             </td>
+            <td>
+              { this.lastRoastPointDuration(roast.roastPoints) }
+            </td>
+            <td>
+              { roast.firstCrack ? moment(roast.firstCrack).format('mm:ss') : '-' }
+            </td>
+            <td><i className="material-icons">favorite_border</i></td>
+            <td><i className="material-icons">delete</i></td>
           </tr>
         );
       });
@@ -100,7 +124,7 @@ class RoastList extends React.Component {
             <CardTitle>
               <div className="bobon-text-with-icon">
                 <i className="material-icons">timeline</i>
-              Your roasts
+              My roasts
               </div>
             </CardTitle>
 
@@ -112,6 +136,10 @@ class RoastList extends React.Component {
                   <th>Moisture</th>
                   <th>Batch Size</th>
                   <th>Status</th>
+                  <th>Roast duration</th>
+                  <th>First crack</th>
+                  <th><i className="material-icons">favorite</i></th>
+                  <th><i className="material-icons">delete</i></th>
                 </tr>
               </thead>
 

@@ -69,15 +69,7 @@ class Header extends React.Component {
       actionButton = (
         <div>
 
-          <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
-            onClick={ (e) => {
-                e.preventDefault();
-                history.push('/new');
-              } }
-          >
-            <i className="material-icons">add</i>
-            Start a roast
-          </Button>
+          { this.newRoastBtnNav() }
 
           <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
             onClick={ (e) => {
@@ -126,14 +118,37 @@ class Header extends React.Component {
     return content;
   }
 
+  newRoastBtnNav() {
+    let content = null;
+    let location = this.props.location;
+
+    if (
+      this.props.authStatus === C.LOGGED_IN &&
+      this.props.roastInProgress === null
+    ) {
+      content = (
+        <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
+          onClick={ (e) => {
+              e.preventDefault();
+              history.push('/new');
+            } }
+        >
+          <i className="material-icons">add</i>
+          Start a roast
+        </Button>
+      );
+    }
+
+    return content;
+  }
+
   newRoastBtn() {
     let content = null;
     let location = this.props.location;
 
     if (
       this.props.authStatus === C.LOGGED_IN &&
-      this.props.roastInProgress === null &&
-      location.pathname.indexOf('/new') !== 0
+      this.props.roastInProgress === null
     ) {
       content = (
         <div>

@@ -88,23 +88,37 @@ class RoastList extends React.Component {
                 history.push(`/roasts/${key}`);
               }}
           >
-            <td className="mdl-data-table__cell--non-numeric">{ roast.beansName }</td>
-            <td className="mdl-data-table__cell--non-numeric">{ roastDate } </td>
-            <td>{ roast.beansMoisture } % </td>
-            <td>{ roast.batchSize } kg</td>
-            <td>
-              <span className="bobon-roast-list-status bobon-roast-list-status-{ roast.status.toLowerCase() }">
-                { this.roastStatus(roast.status) }
-              </span>
+            <td className="mdl-data-table__cell--non-numeric">
+              <strong>{ roast.beansName }</strong>
             </td>
+
+            <td className="mdl-data-table__cell--non-numeric">
+              <div className={ `bobon-text-with-icon bobon-roast-status--${ roast.status.toLowerCase() }` }>
+                <i className="material-icons">fiber_manual_record</i>
+                { this.roastStatus(roast.status) }
+              </div>
+            </td>
+
+            <td className="mdl-data-table__cell--non-numeric">{ roastDate } </td>
+
+            <td>{ roast.beansMoisture } % </td>
+
+            <td>{ roast.batchSize } kg</td>
+
             <td>
               { this.lastRoastPointDuration(roast.roastPoints) }
             </td>
+
             <td>
               { roast.firstCrack ? moment(roast.firstCrack).format('mm:ss') : '-' }
             </td>
-            <td><i className="material-icons">favorite_border</i></td>
-            <td>
+
+
+            <td className="mdl-color-text--deep-orange-900 mdl-data-table__cell--non-numeric">
+              <i className="material-icons">favorite_border</i>
+            </td>
+
+            <td className="mdl-color-text--amber-500 mdl-data-table__cell--non-numeric">
               <button className="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
                 onClick={ (e) => {
                     e.preventDefault();
@@ -140,14 +154,14 @@ class RoastList extends React.Component {
               <thead>
                 <tr>
                   <th className="mdl-data-table__cell--non-numeric">Bean's name</th>
+                  <th className="mdl-data-table__cell--non-numeric">Status</th>
                   <th className="mdl-data-table__cell--non-numeric">Roast date</th>
                   <th>Moisture</th>
                   <th>Batch Size</th>
-                  <th>Status</th>
-                  <th>Roast duration</th>
-                  <th>First crack</th>
-                  <th><i className="material-icons">favorite</i></th>
-                  <th><i className="material-icons">delete</i></th>
+                  <th>Duration</th>
+                  <th>1st crack</th>
+                  <th className="mdl-data-table__cell--non-numeric">Fav</th>
+                  <th className="mdl-data-table__cell--non-numeric">Del</th>
                 </tr>
               </thead>
 

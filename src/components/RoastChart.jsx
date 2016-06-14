@@ -16,7 +16,7 @@ class RoastChart extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     // Persistent comparing state.
-    if (this.props.compare && this.state.compare === null) {
+    if (this.props.compare) {
       this.setState({
         compare: this.props.compare,
         redraw: false
@@ -31,6 +31,13 @@ class RoastChart extends React.Component {
       }
     } else {
       this.setState({ redraw: false });
+    }
+
+    if (
+      this.props.compare && nextProps.compare &&
+      this.props.compare.created !== nextProps.compare.created
+    ) {
+      this.setState({ redraw: true });
     }
   }
 
@@ -173,7 +180,7 @@ class RoastChart extends React.Component {
           );
         }
 
-        if (this.state.compare === null) {
+        if (this.state.compare === null && this.state.redraw === false) {
           redraw = true;
         }
       }

@@ -226,7 +226,7 @@ class RoastProfile extends React.Component {
         <button id="select-compare"
           className="mdl-button mdl-js-button mdl-button-colored mdl-color--indigo-500 mdl-color-text--white mdl-button-with-icon"
         >
-          <i className="material-icons">code</i>
+          <i className="material-icons">assessment</i>
           { buttonText }
         </button>
         <ul className="mdl-menu mdl-js-menu mdl-js-ripple-effect"
@@ -273,7 +273,7 @@ class RoastProfile extends React.Component {
 
         <div className="bobon-chart-title mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
           <div className="bobon-text-with-icon">
-            <i className="material-icons">label</i>
+            <i className="material-icons">assessment</i>
             { this.props.beansName }
           </div>
         </div>
@@ -330,7 +330,6 @@ class RoastProfile extends React.Component {
 
         { this.roastDetails() }
         { this.postRoastNote() }
-        { this.magicButton() }
       </div>
     );
   }

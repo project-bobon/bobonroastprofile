@@ -136,20 +136,20 @@ class RoastProfile extends React.Component {
     );
   }
 
-  magicButton() {
-    return (
-      <button onClick={ () => {
-          let uid = C.FIREBASE.auth().currentUser.uid;
-          let ref = C.FIREBASE.database().ref(`roasts/${uid}/${this.props.roastId}/status`);
+  /* magicButton() {
+   *   return (
+   *     <button onClick={ () => {
+   *         let uid = C.FIREBASE.auth().currentUser.uid;
+   *         let ref = C.FIREBASE.database().ref(`roasts/${uid}/${this.props.roastId}/status`);
 
-          ref.set(C.ROAST_PENDING);
-        } }
-      >
-        Magic button (PENDING)
-      </button>
-    );
-  }
-
+   *         ref.set(C.ROAST_PENDING);
+   *       } }
+   *     >
+   *       Magic button (PENDING)
+   *     </button>
+   *   );
+   * }
+   */
   roastTime() {
     if (this.props.status === C.ROAST_PENDING) {
       return null;
@@ -325,8 +325,6 @@ class RoastProfile extends React.Component {
 
         { this.roastDetails() }
         { this.postRoastNote() }
-
-        { this.magicButton() }
 
       </div>
     );

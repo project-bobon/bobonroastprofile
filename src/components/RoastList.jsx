@@ -9,6 +9,7 @@ import CardTitle from './utils/CardTitle';
 import CardContent from './utils/CardContent';
 import CardAction from './utils/CardAction';
 import Button from './utils/Button';
+import Instructions from './Instructions';
 
 class RoastList extends React.Component {
 
@@ -152,10 +153,7 @@ class RoastList extends React.Component {
               </div>
             </CardTitle>
 
-            <CardContent>
-              <p></p>
-              <p>Scale some green beans, start roasting and record your first profile!</p>
-            </CardContent>
+            <Instructions/>
 
             <CardAction>
               <Button customClass="mdl-button-with-icon mdl-color-text--red-500"

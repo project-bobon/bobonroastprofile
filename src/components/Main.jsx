@@ -4,7 +4,6 @@ import RoastListContainer from '../containers/RoastListContainer';
 import { Line } from 'react-chartjs';
 import Home from './Home';
 import { demoDataset, demoChartOptions } from '../demoData';
-import Instructions from './Instruction';
 
 
 class Main extends React.Component {

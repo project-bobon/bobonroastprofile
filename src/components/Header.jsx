@@ -38,23 +38,13 @@ class Header extends React.Component {
       );
     } else {
       profilePhoto = (
-        <a class="mdl-navigation__link"
+        <a className="bobon-logo"
           onClick={ (e) => {
               e.preventDefault();
               history.push('/');
             } }
-          style={ {
-              display: 'inline-block',
-              width: '50px',
-              height: '50px',
-              overflow: 'hidden',
-              marginLeft: '15px'
-            } }
         >
-          <img src={ require('../../images/logo_white_small.png') }
-            style={ {width: '100%'} }
-            title={ this.props.userName }
-          />
+          Bobon Profiles
         </a>
       );
     }

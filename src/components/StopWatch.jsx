@@ -2,6 +2,10 @@ import React from 'react';
 import C from '../constants';
 
 import Button from './utils/Button';
+import Card from './utils/Card';
+import CardTitle from './utils/CardTitle';
+import CardAction from './utils/CardAction';
+import CardContent from './utils/CardContent';
 
 require('../../scss/stopwatch.scss');
 
@@ -34,7 +38,7 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_PENDING) {
       content = (
-        <Button customClass="bobon-stopwatch-button mdl-button-with-icon"
+        <Button customClass="mdl-button-with-icon"
           onClick={ () => {
               let roastStart = Date.now();
               this.props.startStopWatch(
@@ -62,7 +66,7 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_IN_PROGRESS) {
       content = (
-        <Button customClass="bobon-stopwatch-button mdl-button-width-icon"
+        <Button customClass="mdl-button-width-icon"
           onClick={ () => {
               this.props.stopStopWatch(
                 this.props.roastId,
@@ -98,19 +102,24 @@ class StopWatch extends React.Component {
 
   render() {
     let content = null;
-
+    // <div className="mdl-cell mdl-cell--12-col bobon-stopwatch-container">
     if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
       content = (
-        <div className="mdl-cell mdl-cell--12-col bobon-stopwatch-container">
-          <div className="bobon-stopwatch">
-            <div className="bobon-stopwatch-time">
-              { this.currentElapsedTime() }
+        <Card customClass="bobon-util__full-width">
+          <CardTitle>
+            <div className="bobon-text-with-icon">
+              <i className="material-icons">timer</i>
+              Timer
             </div>
-
+          </CardTitle>
+          <CardContent customClass="bobon-stopwatch-time">
+            { this.currentElapsedTime() }
+          </CardContent>
+          <CardAction>
             { this.startButton() }
             { this.stopButton() }
-          </div>
-        </div>
+          </CardAction>
+        </Card>
       );
     }
 

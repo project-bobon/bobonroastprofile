@@ -25,7 +25,7 @@ class RoastPointInput extends React.Component {
         <form
           action="#"
           onSubmit={ this.props.onSubmit }
-          className="bobon-roast-temp-form mdl-cell mdl-cel--12-col"
+          className="bobon-util__full-width"
           disabled={ this.disabled() }
         >
           <input

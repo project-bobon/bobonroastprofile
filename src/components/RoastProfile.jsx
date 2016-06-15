@@ -30,15 +30,11 @@ class RoastProfile extends React.Component {
                this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
-        <div className="mdl-cell mdl-cell--6-col
-                        mdl-color--white mdl-grid mdl-cell--12-col-tablet"
-        >
-          <StopWatchContainer
-            roastId={ this.props.roastId }
-            roastStart={ this.props.roastStart }
-            status={ this.props.status }
-          />
-        </div>
+        <StopWatchContainer
+          roastId={ this.props.roastId }
+          roastStart={ this.props.roastStart }
+          status={ this.props.status }
+        />
       );
     }
 
@@ -56,9 +52,14 @@ class RoastProfile extends React.Component {
       this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
-        <div className="mdl-cell mdl-cell--6-col
-                        mdl-color--white mdl-grid mdl-cell--12-col-tablet"
-        >
+        <Card customClass="bobon-util__full-width">
+          <CardTitle>
+            <div className="bobon-text-with-icon">
+              <i className="material-icons">timer</i>
+              Temperature input
+            </div>
+          </CardTitle>
+
           <RoastPointInputContainer
             roastId={ this.props.roastId }
             roastStart={ this.props.roastStart }
@@ -67,26 +68,29 @@ class RoastProfile extends React.Component {
             undoTemperature={ this.props.undoTemperature }
           />
 
-          <Button customClass="mdl-button-with-icon"
-            onClick={() => {
-                this.props.undoLastTemperature(this.props.roastId, this.props.roastPoints);
-              } }
-            disabled={ this.props.status === C.ROAST_IN_PROGRESS && Object.keys(this.props.roastPoints).length > 1 ? false : true }
-          >
-            <i className="material-icons">replay</i>
-            Undo
-          </Button>
+          <CardAction>
+            <Button customClass="mdl-button-with-icon"
+              onClick={() => {
+                  this.props.undoLastTemperature(this.props.roastId, this.props.roastPoints);
+                } }
+              disabled={ this.props.status === C.ROAST_IN_PROGRESS && Object.keys(this.props.roastPoints).length > 1 ? false : true }
+            >
+              <i className="material-icons">replay</i>
+              Undo
+            </Button>
 
-          <Button customClass="mdl-button-with-icon"
-            onClick={() => {
-              this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
-              } }
-            disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
-          >
-            <i className="material-icons">fiber_manual_record</i>
-            First Crack!
-          </Button>
-        </div>
+            <Button customClass="mdl-button-with-icon"
+              onClick={() => {
+                  this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
+                } }
+              disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
+            >
+              <i className="material-icons">fiber_manual_record</i>
+              First Crack!
+            </Button>
+          </CardAction>
+
+        </Card>
       );
     }
 
@@ -108,9 +112,9 @@ class RoastProfile extends React.Component {
     return content;
   }
 
-  roastDetails() {
+  roastNote() {
     return(
-      <Card customClass="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet">
+      <Card customClass="mdl-cell mdl-cell--12-col-desktop">
         <CardTitle>
           Roasting Notes
         </CardTitle>
@@ -155,7 +159,7 @@ class RoastProfile extends React.Component {
       return null;
     } else {
       return (
-        <div className="mdl-cell mdl-cell--3-col">
+        <div className="mdl-cell mdl-cell--6-col">
           <div className="bobon-text-with-icon">
             <i className="material-icons">event</i>
             { moment(this.props.roastStart).format('DD/MM/YYYY - h:mm') }
@@ -186,7 +190,7 @@ class RoastProfile extends React.Component {
       }
 
       content = (
-        <div className="mdl-cell mdl-cell--3-col">
+        <div className="mdl-cell mdl-cell--6-col">
           <div className={ `bobon-text-with-icon bobon-roast-status--${ this.props.status.toLowerCase() }` }>
             <i className="material-icons">fiber_manual_record</i>
             { statusText }
@@ -222,7 +226,7 @@ class RoastProfile extends React.Component {
     }
 
     return (
-      <div className="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+      <div className="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
         <button id="select-compare"
           className="mdl-button mdl-js-button mdl-button-colored mdl-color--indigo-500 mdl-color-text--white mdl-button-with-icon"
         >
@@ -271,65 +275,79 @@ class RoastProfile extends React.Component {
     return (
       <div className="mdl-grid">
 
-        <div className="bobon-chart-title mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+        <div className="bobon-chart-title mdl-cell mdl-cell--12-col">
           <div className="bobon-text-with-icon">
             <i className="material-icons">assessment</i>
             { this.props.beansName }
           </div>
         </div>
 
-        { this.selectCompare() }
-        { this.stopWatch() }
-        { this.tempInput() }
 
-        <RoastChart
-          roastPoints={ this.props.roastPoints }
-          beansName={ this.props.beansName }
-          roastStart={ this.props.roastStart }
-          compare={ this.props.compare }
-          firstCrack={ this.props.firstCrack }
-        />
+        <div className="mdl-cell mdl-cell--8-col">
+          <RoastChart
+            roastPoints={ this.props.roastPoints }
+            beansName={ this.props.beansName }
+            roastStart={ this.props.roastStart }
+            compare={ this.props.compare }
+            firstCrack={ this.props.firstCrack }
+          />
+        </div>
 
-        <Card customClass="mdl-cell mdl-cell--12-col">
-          <CardTitle>
-            Roast details
-          </CardTitle>
-          <CardContent customClass="mdl-grid bobon-util__full-width">
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">label</i>
-                { this.props.beansName }
+        <div className="mdl-cell mdl-cel--4-col mdl-grid">
+
+          { this.selectCompare() }
+
+          <div className="mdl-cell mdl-cell--12-col">
+            { this.stopWatch() }
+          </div>
+
+
+          <div className="mdl-cell mdl-cell--12-col">
+            { this.tempInput() }
+          </div>
+
+          <Card customClass="mdl-cell mdl-cell--12-col">
+            <CardTitle>
+              Roast details
+            </CardTitle>
+            <CardContent customClass="mdl-grid bobon-util__full-width">
+              <div className="mdl-cell mdl-cell--6-col">
+                <div className="bobon-text-with-icon">
+                  <i className="material-icons">label</i>
+                  { this.props.beansName }
+                </div>
               </div>
-            </div>
 
-            { this.status() }
-            { this.roastTime() }
+              { this.status() }
+              { this.roastTime() }
 
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">alarm</i>
-                { this.roastDuration() }
+              <div className="mdl-cell mdl-cell--6-col">
+                <div className="bobon-text-with-icon">
+                  <i className="material-icons">alarm</i>
+                  { this.roastDuration() }
+                </div>
               </div>
-            </div>
 
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">shopping_basket</i>
-                { this.props.batchSize } kg
+              <div className="mdl-cell mdl-cell--6-col">
+                <div className="bobon-text-with-icon">
+                  <i className="material-icons">shopping_basket</i>
+                  { this.props.batchSize } kg
+                </div>
               </div>
-            </div>
 
-            <div className="mdl-cell mdl-cell--3-col">
-              <div className="bobon-text-with-icon">
-                <i className="material-icons">opacity</i>
-                { this.props.beansMoisture } %
+              <div className="mdl-cell mdl-cell--6-col">
+                <div className="bobon-text-with-icon">
+                  <i className="material-icons">opacity</i>
+                  { this.props.beansMoisture } %
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        { this.roastDetails() }
-        { this.postRoastNote() }
+          { this.roastNote() }
+          { this.postRoastNote() }
+
+        </div>
       </div>
     );
   }

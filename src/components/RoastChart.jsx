@@ -221,9 +221,9 @@ class RoastChart extends React.Component {
               position: 'right',
               type: 'linear',
               ticks: {
-                max: 170,
-                min: -50,
-                stepSize: 10
+                max: 55,
+                min: 0,
+                stepSize: 5
               }
             },
           ]
@@ -255,7 +255,7 @@ class RoastChart extends React.Component {
                  data={ chartData }
                  options={ chartOptions }
                  width="400"
-                 height="170"
+                 height="280"
                  redraw
                />;
       } else {
@@ -263,7 +263,7 @@ class RoastChart extends React.Component {
                  data={ chartData }
                  options={ chartOptions }
                  width="400"
-                 height="170"
+                 height="280"
                />;
       }
 

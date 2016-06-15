@@ -32,7 +32,7 @@ class Instructions extends React.Component {
 
         <div className="mdl-cell mdl-shadow--2dp mdl-color--teal-500 mdl-cell--3-col mdl-cell--12-col-tablet">
           <div className="mdl-typography--headline mdl-typography--font-thin">
-            4. Stop timer 
+            4. Stop timer & complete the roast
           </div>
           <img src={ imgStop } />
         </div>

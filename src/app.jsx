@@ -39,8 +39,8 @@ const routes = (
 
       <Route path="new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
 
-      <Redirect from="roasts" to="/"/>
-      <Route path="roasts/:roastId" component={ RoastProfileContainer }/>
+      <Redirect from="roasts" to="/" onEnter={ auth.checkAuth }/>
+      <Route path="roasts/:roastId" component={ RoastProfileContainer } onEnter={ auth.checkAuth }/>
     </Route>
   </Router>
 );
@@ -77,7 +77,6 @@ C.FIREBASE.auth().onAuthStateChanged((user) => {
     C.FIREBASE.auth().getRedirectResult().then(function(result) {
       if (!result.user) {
         store.dispatch(logout());
-        history.push('/');
       } else {
         store.dispatch(loginSuccess(result.user));
       }

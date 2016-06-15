@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch => {
   return {
     logout: e => {
       e.preventDefault();
-      dispatch(logout());
       C.FIREBASE.auth().signOut().then(() => {
-        history.push('/');
+        dispatch(logout());
+        location.reload();
       });
     }
   };

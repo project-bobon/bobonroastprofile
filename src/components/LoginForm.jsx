@@ -13,7 +13,7 @@ const LoginForm = ({ authStatus, onLoginBtnClick }) => {
 
   if (authStatus !== C.LOGGED_IN) {
     content = (
-      <Card customClass="bobon-login-form">
+      <Card customClass="bobon-login-form mdl-shadow--2dp">
         <CardTitle>
           <h2 className="mdl-card__title-text">Bobon Roast Profiles Beta</h2>
         </CardTitle>

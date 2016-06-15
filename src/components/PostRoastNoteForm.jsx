@@ -132,7 +132,10 @@ class PostRoastNoteForm extends React.Component {
       content = (
         <Card customClass="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
           <CardTitle>
-            Post-roasting notes
+            <div className="bobon-text-with-icon">
+              <i className="material-icons">receipt</i>
+              Post-roasting notes
+            </div>
           </CardTitle>
 
           { this.noteForm() }

@@ -38,7 +38,7 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_PENDING) {
       content = (
-        <Button customClass="mdl-button-with-icon"
+        <Button customClass="mdl-button-with-icon mdl-color-text--red-500"
           onClick={ () => {
               let roastStart = Date.now();
               this.props.startStopWatch(
@@ -66,7 +66,7 @@ class StopWatch extends React.Component {
 
     if (this.props.status === C.ROAST_IN_PROGRESS) {
       content = (
-        <Button customClass="mdl-button-width-icon"
+        <Button customClass="mdl-button-width-icon mdl-colo--text-red-500"
           onClick={ () => {
               this.props.stopStopWatch(
                 this.props.roastId,

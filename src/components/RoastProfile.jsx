@@ -58,7 +58,7 @@ class RoastProfile extends React.Component {
           <Card customClass="bobon-util__full-width">
             <CardTitle>
               <div className="bobon-text-with-icon">
-                <i className="material-icons">timer</i>
+                <i className="material-icons">add_circle</i>
                 Temperature input
               </div>
             </CardTitle>
@@ -82,13 +82,13 @@ class RoastProfile extends React.Component {
                 Undo
               </Button>
 
-              <Button customClass="mdl-button-with-icon"
+              <Button customClass="mdl-button-with-icon mdl-color-text--red-500"
                 onClick={() => {
                     this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
                   } }
                 disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
               >
-                <i className="material-icons">fiber_manual_record</i>
+                <i className="material-icons">whatshot</i>
                 First Crack!
               </Button>
             </CardAction>
@@ -119,7 +119,10 @@ class RoastProfile extends React.Component {
     return(
       <Card customClass="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
         <CardTitle>
-          Roasting Notes
+          <div className="bobon-text-with-icon">
+            <i className="material-icons">description</i>
+            Roasting Notes
+          </div>
         </CardTitle>
         <CardContent>
           <plaintext>
@@ -305,7 +308,10 @@ class RoastProfile extends React.Component {
 
           <Card customClass="mdl-cell mdl-cell--12-col">
             <CardTitle>
-              Roast details
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">playlist_add_check</i>
+                Roast details
+              </div>
             </CardTitle>
             <CardContent customClass="mdl-grid bobon-util__full-width">
               <div className="mdl-cell mdl-cell--6-col">

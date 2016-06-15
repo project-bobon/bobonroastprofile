@@ -130,7 +130,7 @@ class PostRoastNoteForm extends React.Component {
 
     if (this.props.status === C.ROAST_COMPLETED) {
       content = (
-        <Card customClass="mdl-cell mdl-cell--12-col">
+        <Card customClass="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
           <CardTitle>
             Post-roasting notes
           </CardTitle>

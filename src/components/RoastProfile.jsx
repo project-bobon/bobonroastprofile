@@ -30,11 +30,13 @@ class RoastProfile extends React.Component {
                this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
-        <StopWatchContainer
-          roastId={ this.props.roastId }
-          roastStart={ this.props.roastStart }
-          status={ this.props.status }
-        />
+        <div className="mdl-cell mdl-cell--12-col">
+          <StopWatchContainer
+            roastId={ this.props.roastId }
+            roastStart={ this.props.roastStart }
+            status={ this.props.status }
+          />
+        </div>
       );
     }
 
@@ -52,45 +54,46 @@ class RoastProfile extends React.Component {
       this.props.status === C.ROAST_IN_PROGRESS
     ) {
       content = (
-        <Card customClass="bobon-util__full-width">
-          <CardTitle>
-            <div className="bobon-text-with-icon">
-              <i className="material-icons">timer</i>
-              Temperature input
-            </div>
-          </CardTitle>
+        <div className="mdl-cell mdl-cell--12-col">
+          <Card customClass="bobon-util__full-width">
+            <CardTitle>
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">timer</i>
+                Temperature input
+              </div>
+            </CardTitle>
 
-          <RoastPointInputContainer
-            roastId={ this.props.roastId }
-            roastStart={ this.props.roastStart }
-            status={ this.props.status }
-            addFirstCrack={ this.props.addFirstCrack }
-            undoTemperature={ this.props.undoTemperature }
-          />
+            <RoastPointInputContainer
+              roastId={ this.props.roastId }
+              roastStart={ this.props.roastStart }
+              status={ this.props.status }
+              addFirstCrack={ this.props.addFirstCrack }
+              undoTemperature={ this.props.undoTemperature }
+            />
 
-          <CardAction>
-            <Button customClass="mdl-button-with-icon"
-              onClick={() => {
-                  this.props.undoLastTemperature(this.props.roastId, this.props.roastPoints);
-                } }
-              disabled={ this.props.status === C.ROAST_IN_PROGRESS && Object.keys(this.props.roastPoints).length > 1 ? false : true }
-            >
-              <i className="material-icons">replay</i>
-              Undo
-            </Button>
+            <CardAction>
+              <Button customClass="mdl-button-with-icon"
+                onClick={() => {
+                    this.props.undoLastTemperature(this.props.roastId, this.props.roastPoints);
+                  } }
+                disabled={ this.props.status === C.ROAST_IN_PROGRESS && Object.keys(this.props.roastPoints).length > 1 ? false : true }
+              >
+                <i className="material-icons">replay</i>
+                Undo
+              </Button>
 
-            <Button customClass="mdl-button-with-icon"
-              onClick={() => {
-                  this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
-                } }
-              disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
-            >
-              <i className="material-icons">fiber_manual_record</i>
-              First Crack!
-            </Button>
-          </CardAction>
-
-        </Card>
+              <Button customClass="mdl-button-with-icon"
+                onClick={() => {
+                    this.props.addFirstCrack(this.props.roastId, this.props.roastStart);
+                  } }
+                disabled={ this.props.status === C.ROAST_IN_PROGRESS ? false : true }
+              >
+                <i className="material-icons">fiber_manual_record</i>
+                First Crack!
+              </Button>
+            </CardAction>
+          </Card>
+        </div>
       );
     }
 
@@ -114,7 +117,7 @@ class RoastProfile extends React.Component {
 
   roastNote() {
     return(
-      <Card customClass="mdl-cell mdl-cell--12-col-desktop">
+      <Card customClass="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
         <CardTitle>
           Roasting Notes
         </CardTitle>
@@ -283,7 +286,7 @@ class RoastProfile extends React.Component {
         </div>
 
 
-        <div className="mdl-cell mdl-cell--8-col">
+        <div className="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet">
           <RoastChart
             roastPoints={ this.props.roastPoints }
             beansName={ this.props.beansName }
@@ -293,18 +296,12 @@ class RoastProfile extends React.Component {
           />
         </div>
 
-        <div className="mdl-cell mdl-cel--4-col mdl-grid">
-
+        <div className="mdl-cell mdl-cel--4-col mdl-grid mdl-cell--12-col-tablet
+                        bobon-roast-profile-sidebar"
+        >
           { this.selectCompare() }
-
-          <div className="mdl-cell mdl-cell--12-col">
-            { this.stopWatch() }
-          </div>
-
-
-          <div className="mdl-cell mdl-cell--12-col">
-            { this.tempInput() }
-          </div>
+          { this.stopWatch() }
+          { this.tempInput() }
 
           <Card customClass="mdl-cell mdl-cell--12-col">
             <CardTitle>

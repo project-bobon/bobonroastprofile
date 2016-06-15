@@ -194,6 +194,9 @@ class RoastChart extends React.Component {
 
       let chartOptions = {
         defaultFontFamily: 'Roboto',
+        animation: {
+          duration: 1000
+        },
         scales: {
           xAxes: [{
             type: 'linear',
@@ -250,10 +253,9 @@ class RoastChart extends React.Component {
         }
       };
 
-      console.log(JSON.stringify(chartData));
-      console.log(JSON.stringify(chartOptions));
 
       if (redraw || this.state.redraw) {
+        chartOptions.animation.duration = 0;
         return <Line
                  data={ chartData }
                  options={ chartOptions }
@@ -262,6 +264,7 @@ class RoastChart extends React.Component {
                  redraw
                />;
       } else {
+        chartOptions.animation.duration = 1000;
         return <Line
                  data={ chartData }
                  options={ chartOptions }

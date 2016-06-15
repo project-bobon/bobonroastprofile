@@ -211,6 +211,7 @@ header {
 .bobon-header-button {
   position: fixed;
   top: 35px;
+  z-index: 99;
 }
 
 .bobon-header-button-add-new {
@@ -236,6 +237,7 @@ header {
   height: 100%;
   top: 0px;
   left: 0px;
+  z-index: 9999;
 
   &:before {
     content: "";
@@ -307,6 +309,18 @@ header {
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 }
+
+.bobon-header-appear {
+  transform: translateY(-30px);
+  opacity: 0.01;
+
+  &.bobon-header-appear-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+}
+
 
 .bobon-table-cell--beans-name {
   white-space: normal;

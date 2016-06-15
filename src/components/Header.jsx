@@ -3,7 +3,6 @@ import C from '../constants';
 import history from '../history';
 
 import Button from './utils/Button';
-import DialogContainer from '../containers/DialogContainer';
 
 class Header extends React.Component {
 
@@ -100,7 +99,7 @@ class Header extends React.Component {
           <div className="mdl-tooltip"
             htmlFor="bobon-button--nav-action-logout"
           >
-            My roasts
+            Logout
           </div>
 
         </div>
@@ -197,11 +196,7 @@ class Header extends React.Component {
             { this.profilePhoto() }
           </nav>
         </div>
-
         { this.newRoastBtn() }
-
-        <DialogContainer/>
-
       </header>
     );
   }

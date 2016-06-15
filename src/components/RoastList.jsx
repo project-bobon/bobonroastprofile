@@ -7,37 +7,10 @@ import C from '../constants';
 import Card from './utils/Card';
 import CardTitle from './utils/CardTitle';
 import CardContent from './utils/CardContent';
+import CardAction from './utils/CardAction';
 import Button from './utils/Button';
 
 class RoastList extends React.Component {
-
-  _roastCard(roast, key) {
-    return (
-      <div className="mdl-cell mdl-cell--4-col mdl-card mdl-shadow--2dp" key={ key }>
-        <div className="mdl-card__title mdl-color--pink-500 mdl-color-text--grey-100">
-          { roast.beansName }
-        </div>
-        <div className="mdl-card__supporting-text">
-          <div className="mdl-grid">
-            <div className="mdl-cell mdl-cell--12-col">
-              { moment(roast.roastStart).format('DD/MM/YY HH:mm') }
-            </div>
-            <div className="mdl-cell mdl-cell--6-col">
-              <i className="material-icons">shopping_basket</i>
-              { roast.batchSize } kg
-            </div>
-            <div className="mdl-cell mdl-cell--6-col">
-              <i className="material-icons">opacity</i>
-              { roast.beansMoisture } %
-            </div>
-          </div>
-        </div>
-        <NavigationLink path={ `roasts/${key}` }>
-          View Roast
-        </NavigationLink>
-      </div>
-    );
-  }
 
   roastStatus(statusText) {
     switch(statusText) {
@@ -133,8 +106,9 @@ class RoastList extends React.Component {
   }
 
   render() {
-    if (this.props.roasts) {
-      return (
+    let content = null;
+    if (this.props.roasts && Object.keys(this.props.roasts).length > 0) {
+      content = (
         <div className="mdl-grid">
           <Card customClass="mdl-cell mdl-cell--12-col">
 
@@ -167,29 +141,39 @@ class RoastList extends React.Component {
         </div>
       );
     } else {
-      return (
-        <div className="mdl-card mdl-shadow--2dp bobon-util__half-width">
-          <div className="mdl-card__title">
-            <h2 className="mdl-card__title-text">Welcome to Bobon Roast Profiles</h2>
-          </div>
-          <div className="mdl-card__supporting-text">
-            Seems like you have not had any roast profile yet! Get some grean beans, start roasting and record your profiles!
-          </div>
-          <div className="mdl-card__actions mdl-card--border">
-            <NavigationLink className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-              path="new"
-            >
-              Start recording!
-            </NavigationLink>
-          </div>
-          <div className="mdl-card__menu">
-            <button className="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-              <i className="material-icons">share</i>
-            </button>
-          </div>
+      content = (
+        <div className="mdl-grid">
+          <Card customClass="mdl-cell mdl-cell--12-col">
+
+            <CardTitle>
+              <div className="bobon-text-with-icon">
+                <i className="material-icons">timeline</i>
+                You have not recorded any roast profile, yet.
+              </div>
+            </CardTitle>
+
+            <CardContent>
+              <p></p>
+              <p>Scale some green beans, start roasting and record your first profile!</p>
+            </CardContent>
+
+            <CardAction>
+              <Button customClass="mdl-button-with-icon mdl-color-text--red-500"
+                onClick={ () => {
+                    history.push('/new');
+                  } }
+              >
+                <i className="material-icons">whatshot</i>
+                Create a new roast
+              </Button>
+            </CardAction>
+          </Card>
+
         </div>
       );
     }
+
+    return content;
   }
 }
 

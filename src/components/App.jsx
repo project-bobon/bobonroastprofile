@@ -5,6 +5,7 @@ import C from '../constants';
 import Spinner from './Spinner';
 import EasyTransition from 'react-easy-transition';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import DialogContainer from '../containers/DialogContainer';
 
 require('../../scss/app.scss');
 require('../../scss/utils.scss');
@@ -45,26 +46,38 @@ class App extends React.Component {
 
   render() {
     let extraClass = '';
+    let content = null;
+
     if (this.props.authStatus !== C.LOGGED_IN) {
-     extraClass = "bobon-anon mdl-js-ripple-effect";
+      extraClass = "bobon-anon";
     }
+
     if (this.props.authStatus === C.LOGGING_IN) {
-      return <Spinner/>;
+      content = <Spinner/>;
     } else {
-      var path = this.props.location.pathname;
-      var segment = path.split('/')[1] || 'root';
-      return (
+      content = (
         <div className={ `mdl-layout mdl-js-layout layout--fixed-header ${ extraClass }` }>
-          <HeaderContainer location={ this.props.location }/>
+          <ReactCSSTransitionGroup
+            transitionName="bobon-header"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+            transitionAppear={true}
+          >
+            <HeaderContainer location={ this.props.location }/>
+          </ReactCSSTransitionGroup>
 
           <main className="mdl-layout__content">
             <div className="bobon-page-content page-content">
               { this.pageContent() }
             </div>
           </main>
+
+          <DialogContainer/>
         </div>
       );
     }
+
+    return content;
   }
 };
 

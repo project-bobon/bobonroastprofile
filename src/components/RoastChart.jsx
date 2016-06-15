@@ -255,7 +255,6 @@ class RoastChart extends React.Component {
 
 
       if (redraw || this.state.redraw) {
-        chartOptions.animation.duration = 0;
         return <Line
                  data={ chartData }
                  options={ chartOptions }
@@ -264,7 +263,6 @@ class RoastChart extends React.Component {
                  redraw
                />;
       } else {
-        chartOptions.animation.duration = 1000;
         return <Line
                  data={ chartData }
                  options={ chartOptions }

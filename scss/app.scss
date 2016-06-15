@@ -299,3 +299,55 @@ header {
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
 }
+
+.bobon-table-cell--beans-name {
+  white-space: normal;
+  min-width: 150px;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .mdl-layout__header {
+    display: flex;
+  }
+
+  .mdl-button-nav-start-roast {
+    display: none;
+  }
+
+  .bobon-button-text--nav-action {
+    display: none;
+  }
+
+  .bobon-util__half-width {
+    width: 100% !important;
+  }
+
+  .bobon-header-button {
+    top: 25px;
+  }
+
+  header {
+    .mdl-navigation {
+      .mdl-button {
+        padding: 0 10px;
+        min-width: 10px;
+
+        .material-icons {
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 839px) {
+  .mdl-grid {
+    padding: 8px 0;
+  }
+
+  .bobon-table-cell--hidden-mobile {
+    display: none;
+  }
+
+}

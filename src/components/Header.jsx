@@ -77,17 +77,31 @@ class Header extends React.Component {
                 e.preventDefault();
                 history.push('/');
               } }
+            id="bobon-button--nav-action-my-roasts"
           >
             <i className="material-icons">timeline</i>
-            My roasts
+            <span className="bobon-button-text--nav-action">My roasts</span>
           </Button>
+
+          <div className="mdl-tooltip"
+            htmlFor="bobon-button--nav-action-my-roasts"
+          >
+            My roasts
+          </div>
 
           <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
             onClick={ (e) => { this.props.logout(e); } }
+            id="bobon-button--nav-action-logout"
           >
             <i className="material-icons">exit_to_app</i>
-            Logout
+            <span className="bobon-button-text--nav-action">Logout</span>
           </Button>
+
+          <div className="mdl-tooltip"
+            htmlFor="bobon-button--nav-action-logout"
+          >
+            My roasts
+          </div>
 
         </div>
       );
@@ -125,7 +139,8 @@ class Header extends React.Component {
       this.props.roastInProgress === null
     ) {
       content = (
-        <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
+        <Button customClass="mdl-button-with-icon mdl-color-text--grey-100
+                             mdl-button-nav-start-roast"
           onClick={ (e) => {
               e.preventDefault();
               history.push('/new');

@@ -393,7 +393,7 @@ header {
   left: 50%;
   margin-left: -150px;
   top: 50%;
-  margin-top: -95px;
+  margin-top: -145px;
   border: 0;
 }
 
@@ -418,5 +418,12 @@ header {
     bottom: 0px;
     left: 50%;
     margin-left: -1200px;
+  }
+
+  .bobon-instructions {
+    position: fixed;
+    width: 100%;
+    bottom: 80px;
+    color: #fff;
   }
 }

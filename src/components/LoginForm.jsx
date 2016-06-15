@@ -15,11 +15,15 @@ const LoginForm = ({ authStatus, onLoginBtnClick }) => {
     content = (
       <Card customClass="bobon-login-form mdl-shadow--2dp">
         <CardTitle>
-          <h2 className="mdl-card__title-text">Bobon Roast Profiles Beta</h2>
+          <div className="mdl-typography--display-2 mdl-typography--font-thin bobon-util__full-width">
+            Bobon Profiles
+          </div>
         </CardTitle>
-        <CardContent>
-          To continue, please login as a user
-        </CardContent>
+        <CardTitle>
+          <div className="mdl-typography--headline mdl-typography--font-thin bobon-util__full-width">
+            A profile platform for home coffee roasting
+          </div>
+        </CardTitle>
         <CardAction>
           <Button onClick={ (e) => onLoginBtnClick(e, 'google') }>
             Login with Google

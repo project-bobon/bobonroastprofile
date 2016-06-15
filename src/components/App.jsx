@@ -20,9 +20,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.authStatus === C.LOGGED_IN) {
-      componentHandler.upgradeDom();
-    }
+    componentHandler.upgradeDom();
   }
 
   pageContent() {
@@ -46,13 +44,17 @@ class App extends React.Component {
   }
 
   render() {
+    let extraClass = '';
+    if (this.props.authStatus !== C.LOGGED_IN) {
+     extraClass = "bobon-anon mdl-js-ripple-effect";
+    }
     if (this.props.authStatus === C.LOGGING_IN) {
       return <Spinner/>;
     } else {
       var path = this.props.location.pathname;
       var segment = path.split('/')[1] || 'root';
       return (
-        <div className="mdl-layout mdl-js-layout layout--fixed-header">
+        <div className={ `mdl-layout mdl-js-layout layout--fixed-header ${ extraClass }` }>
           <HeaderContainer location={ this.props.location }/>
 
           <main className="mdl-layout__content">

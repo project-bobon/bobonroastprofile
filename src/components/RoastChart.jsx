@@ -250,6 +250,9 @@ class RoastChart extends React.Component {
         }
       };
 
+      console.log(JSON.stringify(chartData));
+      console.log(JSON.stringify(chartOptions));
+
       if (redraw || this.state.redraw) {
         return <Line
                  data={ chartData }

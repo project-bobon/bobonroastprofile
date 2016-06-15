@@ -16,6 +16,7 @@ $deep-orange-900: #BF360C;
 body {
   background: $grey-200;
   color: $grey-700;
+  min-height: 100%;
 }
 
 plaintext {
@@ -370,5 +371,38 @@ header {
   .bobon-table-cell--hidden-mobile {
     display: none;
   }
+}
 
+.bobon-login-form {
+  position: fixed;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  margin-top: -95px;
+  border: 0;
+}
+
+.bobon-anon {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #009688;
+}
+
+.bobon-home-anonymous {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+
+  canvas {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -1200px;
+  }
 }

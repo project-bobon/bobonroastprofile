@@ -49,7 +49,7 @@ render(
   <Provider store={ store }>
     { routes }
   </Provider>,
-  document.getElementById('main')
+  document.body
 );
 
 

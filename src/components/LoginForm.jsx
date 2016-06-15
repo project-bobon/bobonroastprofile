@@ -8,18 +8,12 @@ import CardTitle from './utils/CardTitle';
 import CardContent from './utils/CardContent';
 import CardAction from './utils/CardAction';
 
-const style = {
-  margin: '0 auto',
-  marginTop: '80px',
-  width: '512px'
-};
-
 const LoginForm = ({ authStatus, onLoginBtnClick }) => {
   let content = null;
 
   if (authStatus !== C.LOGGED_IN) {
     content = (
-      <Card style={ style }>
+      <Card customClass="bobon-login-form">
         <CardTitle>
           <h2 className="mdl-card__title-text">Bobon Roast Profiles Beta</h2>
         </CardTitle>

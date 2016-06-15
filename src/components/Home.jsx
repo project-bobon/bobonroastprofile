@@ -3,11 +3,7 @@ import LoginFormContainer from '../containers/LoginFormContainer';
 
 class Home extends React.Component {
   render() {
-    return(
-      <div>
-        <LoginFormContainer/>
-      </div>
-    );
+    return <LoginFormContainer/>;
   }
 }
 

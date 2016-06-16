@@ -19,7 +19,6 @@ class Dialog extends React.Component {
                 <Button
                   onClick={ (e) => {
                       e.preventDefault();
-                      console.log(this.props);
                       if (this.props.yesAction) {
                         this.props.yesAction();
                       }

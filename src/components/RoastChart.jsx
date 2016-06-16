@@ -2,8 +2,6 @@ import React from 'react';
 import { Line } from 'react-chartjs';
 import C from '../constants';
 
-require('../../scss/chart.scss');
-
 class RoastChart extends React.Component {
 
   constructor(props) {

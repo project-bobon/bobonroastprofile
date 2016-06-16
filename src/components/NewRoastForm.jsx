@@ -6,8 +6,6 @@ import Card from './utils/Card';
 import CardTitle from './utils/CardTitle';
 import Button from './utils/Button';
 
-require('../../scss/roast_form.scss');
-
 class NewRoastForm extends React.Component {
   cancelButton() {
     return(

@@ -8,7 +8,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import DialogContainer from '../containers/DialogContainer';
 
 require('../../scss/app.scss');
-require('../../scss/utils.scss');
 
 class App extends React.Component {
 

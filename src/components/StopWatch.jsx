@@ -7,8 +7,6 @@ import CardTitle from './utils/CardTitle';
 import CardAction from './utils/CardAction';
 import CardContent from './utils/CardContent';
 
-require('../../scss/stopwatch.scss');
-
 class StopWatch extends React.Component {
 
   constructor(props) {

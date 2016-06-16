@@ -1,39 +1,44 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Link, Redirect } from 'react-router';
-import { createStore, applyMiddleware, compose } from 'redux';
+import ReactGA from 'react-ga';
 import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { Router, Route, IndexRoute, Link, Redirect } from 'react-router';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { render } from 'react-dom';
 
 import AppContainer from './containers/AppContainer';
-import Home from './components/Home';
-import Dashboard from './components/Dashboard';
-import rootReducer from './reducers/index';
-
-import {
-  listeningToAuth,
-  loginSuccess,
-  logout,
-  fetchedRoasts,
-  checkRoastInProgress,
-  loadingData,
-  loadedData
-} from './actions';
-
-import auth from './auth';
 import C from './constants';
-import history from './history';
+import Dashboard from './components/Dashboard';
+import Home from './components/Home';
 import MainContainer from './containers/MainContainer';
 import NewRoastFormContainer from './containers/NewRoastFormContainer';
 import RoastProfileContainer from './containers/RoastProfileContainer';
-
+import auth from './auth';
+import history from './history';
+import rootReducer from './reducers/index';
+import {
+  checkRoastInProgress,
+  fetchedRoasts,
+  listeningToAuth,
+  loadedData,
+  loadingData,
+  loginSuccess,
+  logout
+} from './actions';
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
 //,window.devToolsExtension && window.devToolsExtension()
 );
 
+// Analytics
+ReactGA.initialize(C.GOOGLE_ANALYTICS_CODE);
+
+const logPageView = () => {
+  ReactGA.pageview(window.location.pathname);
+};
+
 const routes = (
-  <Router history={ history }>
+  <Router history={ history } onUpdate={ logPageView }>
     <Route path="/" component={ AppContainer }>
       <IndexRoute component={ MainContainer }/>
       <Route path="new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
@@ -49,7 +54,6 @@ render(
   </Provider>,
   document.body
 );
-
 
 store.dispatch(listeningToAuth());
 

@@ -1,3 +1,4 @@
+// Colors.
 $indigo-500: #3F51B5;
 $indigo-400: #5C6BC0;
 $indigo-900: #1A237E;
@@ -13,6 +14,17 @@ $grey-900: #212121;
 
 $deep-orange-900: #BF360C;
 
+// Util classes.
+.bobon-util__full-width {
+  width: 100%;
+}
+
+.bobon-util__half-width {
+  width: 50%;
+  float: left;
+}
+
+// Layout.
 body {
   background: $grey-200;
   color: $grey-700;
@@ -37,6 +49,19 @@ plaintext {
 .mdl-card__title {
   background: #009688;
   color: $grey-100;
+}
+
+.mdl-card {
+  .mdl-card {
+    margin: 0px;
+  }
+}
+
+.bobon-logo {
+  color: #fff;
+  font-weight: 200;
+  width: 60px;
+  font-size: 18px;
 }
 
 .bobon-page-content {
@@ -110,12 +135,6 @@ plaintext {
   line-height: 50px;
   &:focus {
     outline-width: 0;
-  }
-}
-
-.mdl-card {
-  .mdl-card {
-    margin: 0px;
   }
 }
 
@@ -342,41 +361,6 @@ header {
   align-items: flex-start;
 }
 
-@media screen and (max-width: 1024px) {
-  .mdl-layout__header {
-    display: flex;
-  }
-
-  .mdl-button-nav-start-roast {
-    display: none;
-  }
-
-  .bobon-button-text--nav-action {
-    display: none;
-  }
-
-  .bobon-util__half-width {
-    width: 100% !important;
-  }
-
-  .bobon-header-button {
-    top: 25px;
-  }
-
-  header {
-    .mdl-navigation {
-      .mdl-button {
-        padding: 0 10px;
-        min-width: 10px;
-
-        .material-icons {
-          margin-right: 0px;
-        }
-      }
-    }
-  }
-}
-
 .bobon-login-form {
   position: fixed;
   width: 300px;
@@ -445,11 +429,60 @@ header {
   }
 }
 
-.bobon-logo {
+.bobon-footer {
+  padding: 5px 25px;
+  background: #009688;
   color: #fff;
   font-weight: 200;
-  width: 60px;
-  font-size: 18px;
+  font-size: 0.8em;
+  text-align: right;
+
+  a {
+    color: #fff;
+  }
+}
+
+.bobon-form__new-roast {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  float: left;
+}
+
+@media screen and (max-width: 1024px) {
+  .mdl-layout__header {
+    display: flex;
+  }
+
+  .mdl-button-nav-start-roast {
+    display: none;
+  }
+
+  .bobon-button-text--nav-action {
+    display: none;
+  }
+
+  .bobon-util__half-width {
+    width: 100% !important;
+  }
+
+  .bobon-header-button {
+    top: 25px;
+  }
+
+  header {
+    .mdl-navigation {
+      .mdl-button {
+        padding: 0 10px;
+        min-width: 10px;
+
+        .material-icons {
+          margin-right: 0px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 839px) {
@@ -469,18 +502,5 @@ header {
         position: relative;
       }
     }
-  }
-}
-
-.bobon-footer {
-  padding: 5px 25px;
-  background: #009688;
-  color: #fff;
-  font-weight: 200;
-  font-size: 0.8em;
-  text-align: right;
-
-  a {
-    color: #fff;
   }
 }

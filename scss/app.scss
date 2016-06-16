@@ -12,6 +12,8 @@ $grey-700: #616161;
 $grey-800: #424242;
 $grey-900: #212121;
 
+$teal-500: #009688;
+
 $deep-orange-900: #BF360C;
 
 // Util classes.
@@ -430,15 +432,15 @@ header {
 }
 
 .bobon-footer {
-  padding: 5px 25px;
-  background: #009688;
-  color: #fff;
+  padding: 50px 20px 15px 20px;
+  color: $teal-500;
   font-weight: 200;
-  font-size: 0.8em;
+  font-size: 0.7em;
   text-align: right;
 
   a {
-    color: #fff;
+    font-weight: 200;
+    color: $teal-500;
   }
 }
 

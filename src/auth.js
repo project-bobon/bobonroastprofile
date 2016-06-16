@@ -31,8 +31,6 @@ const auth = {
 
   checkAuth: (nextState, replace, cb) => {
     if (!C.FIREBASE.auth().currentUser) {
-      console.log(replace);
-      console.log(nextState);
       replace({
         pathname: '/',
         state: { nextPathname: nextState.location.pathname }

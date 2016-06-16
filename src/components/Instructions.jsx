@@ -25,7 +25,7 @@ class Instructions extends React.Component {
 
         <div className="mdl-cell mdl-shadow--2dp mdl-color--teal-500 mdl-cell--3-col-desktop mdl-cell--12-col-tablet">
           <div className="mdl-typography--headline mdl-typography--font-thin">
-            3. Enter temperatures & push 1st crack button
+            3. Enter temperatures. Push FIRST CRACK when it happens
           </div>
           <img src={ imgInput } />
         </div>

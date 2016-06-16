@@ -29,7 +29,6 @@ const authReducer = (currentState = initialState, action) => {
       break;
 
     case C.LOGIN_SUCCESS:
-      let userName = null;
       return {
         ...currentState,
         authStatus: C.LOGGED_IN,

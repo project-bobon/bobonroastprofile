@@ -1,4 +1,14 @@
-{
-  ".read": true,
-  ".write": true
+{"rules":
+	{
+  	"roasts": {
+      "$uid": {
+        ".write": "auth !== null",
+        ".read": "$uid === auth.uid",
+        "$roast": {
+          ".read": "data.child('uid').val() === auth.uid",
+          ".write": "data.child('uid').val() === auth.uid"
+        }
+      }
+    }
+	}
 }

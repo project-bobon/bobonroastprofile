@@ -73,6 +73,11 @@ class App extends React.Component {
           </main>
 
           <DialogContainer/>
+
+          <footer className="bobon-footer">
+            Have a question? Contact us at <a href="mailto:bobonprofiles@gmail.com">BobonProfiles@gmail.com</a><br/>
+            © Bobon Profiles 2016
+          </footer>
         </div>
       );
     }

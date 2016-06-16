@@ -1,5 +1,6 @@
 import C from './constants';
 import firebase from 'firebase';
+import history from './history';
 
 // Auth actions.
 export const listeningToAuth = () => {
@@ -17,6 +18,7 @@ export const loginRequest = (method = 'google', nextPath = '/') => {
 };
 
 export const loginSuccess = (user, nextPath = '/') => {
+  history.push(nextPath);
   return {
     type: C.LOGIN_SUCCESS,
     user,
@@ -25,6 +27,7 @@ export const loginSuccess = (user, nextPath = '/') => {
 };
 
 export const logout = (nextPath = '/') => {
+  history.push(nextPath);
   return {
     type: C.LOGOUT,
     nextPath

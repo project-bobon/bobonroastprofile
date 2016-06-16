@@ -20,7 +20,7 @@ class StopWatch extends React.Component {
 
   componentWillMount() {
     // If already in progress, continue stopwatch.
-    if (this.props.status === C.ROAST_IN_PROGRESS && !this.props.tick) {
+    if (this.props.status === C.ROAST_IN_PROGRESS) {
       this.props.resumeStopWatch(
         this.props.roastId,
         this.props.roastStart,
@@ -32,6 +32,7 @@ class StopWatch extends React.Component {
       );
     }
   }
+
 
   startButton() {
     let content = null;

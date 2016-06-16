@@ -36,9 +36,7 @@ const routes = (
   <Router history={ history }>
     <Route path="/" component={ AppContainer }>
       <IndexRoute component={ MainContainer }/>
-
       <Route path="new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
-
       <Redirect from="roasts" to="/" onEnter={ auth.checkAuth }/>
       <Route path="roasts/:roastId" component={ RoastProfileContainer } onEnter={ auth.checkAuth }/>
     </Route>

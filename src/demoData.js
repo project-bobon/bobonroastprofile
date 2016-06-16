@@ -46,7 +46,19 @@ export const demoChartOptions = {
   "tooltips": {
     "titleFontFamily":"Roboto",
     "titleFontStyle":"normal",
-    "callbacks": {},
-    "enabled": false
+    "callbacks": {
+      title: (item, data) => {
+        let xLabel = item[0].xLabel;
+        let min = xLabel / 1 << 0;
+        let sec = xLabel % 1 * 60 << 0;
+        if (sec < 10) {
+          sec = '0' + sec;
+        }
+        if (min < 10) {
+          min = '0' + min;
+        }
+        return 'elapsed: ' + min + ':' + sec;
+      }
+    }
   }
 };

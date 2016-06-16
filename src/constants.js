@@ -71,7 +71,10 @@ const C = {
 
   // Data loading.
   LOADING_DATA: 'LOADING_DATA',
-  LOADED_DATA: 'LOADED_DATA'
+  LOADED_DATA: 'LOADED_DATA',
+
+  // Google analytics
+  GOOGLE_ANALYTICS_CODE: 'UA-79419231-1'
 };
 
 export default C;

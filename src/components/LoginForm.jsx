@@ -21,7 +21,7 @@ const LoginForm = ({ authStatus, onLoginBtnClick }) => {
         </CardTitle>
         <CardTitle>
           <div className="mdl-typography--headline mdl-typography--font-thin bobon-util__full-width">
-            A profile platform for home roasting coffee
+            A real-time profile platform for home roasting coffee
           </div>
         </CardTitle>
         <CardAction>

@@ -70,10 +70,11 @@ class App extends React.Component {
               { this.pageContent() }
             </div>
 
-            <footer className="bobon-footer">
-              © Bobon Profiles 2016. Support: <a href="mailto:bobonprofiles@gmail.com">BobonProfiles@gmail.com</a>
-            </footer>
           </main>
+
+          <footer className="bobon-footer">
+            © Bobon Profiles 2016. Support: <a href="mailto:bobonprofiles@gmail.com">BobonProfiles@gmail.com</a>
+          </footer>
 
           <DialogContainer/>
         </div>

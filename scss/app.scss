@@ -432,15 +432,16 @@ header {
 }
 
 .bobon-footer {
-  padding: 50px 20px 15px 20px;
-  color: $teal-500;
+  padding: 5px 20px;
+  background: $teal-500;
+  color: #fff;
   font-weight: 200;
   font-size: 0.7em;
   text-align: right;
 
   a {
     font-weight: 200;
-    color: $teal-500;
+    color: #fff;
   }
 }
 

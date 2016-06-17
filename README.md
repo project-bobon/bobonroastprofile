@@ -2,7 +2,7 @@
 
 > A place to record and keep track of your coffee roast profiles in real-time.
 
-This is the codebase for (Bobon Profiles)[https://roast.bobon.coffee]
+This is the codebase for [Bobon Profiles](https://roast.bobon.coffee)
 
 ## Prerequisite
 
@@ -28,7 +28,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 **Nathan Dao**
 
-* [github/nathandao]https://github.com/nathandao)
+* [github/nathandao](https://github.com/nathandao)
 * [twitter/nathan_dao](http://twitter.com/nathan_dao)
 
 ## License

@@ -6,12 +6,15 @@ This is the codebase for [Bobon Profiles](https://roast.bobon.coffee)
 
 ## Prerequisite
 
-Bobon Profiles is a React - Redux app built on top of Firebase backend.
+Bobon Profiles is a React - Redux app built on top of a Firebase database.
 
-If you are planning to develop a separate project from this (using a different database), a new Firebase project is required. After that, update your own FIREBASE configurations of in `src/constants.js`
+### If you are developing a separate project from this (using a different database)
+
+Create your own Firebase project. After that, update FIREBASE constant in `src/constants.js` with your own info.
+
+Enable Google and Facebook authentication for the Firebase App.
 
 ## Development
-
 
 ```sh
 $ npm install

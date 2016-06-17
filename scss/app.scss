@@ -438,6 +438,9 @@ header {
   font-weight: 200;
   font-size: 0.7em;
   text-align: right;
+  bottom: 0px;
+  box-sizing: border-box;
+  min-height: 30px;
 
   a {
     font-weight: 200;
@@ -456,6 +459,12 @@ header {
 @media screen and (max-width: 1024px) {
   .mdl-layout__header {
     display: flex;
+  }
+
+  .mdl-layout {
+    > span {
+      z-index: 9999;
+    }
   }
 
   .mdl-button-nav-start-roast {

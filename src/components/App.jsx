@@ -56,14 +56,7 @@ class App extends React.Component {
     } else {
       content = (
         <div className={ `mdl-layout mdl-js-layout layout--fixed-header ${ extraClass }` }>
-          <ReactCSSTransitionGroup
-            transitionName="bobon-header"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}
-            transitionAppear={true}
-          >
-            <HeaderContainer location={ this.props.location }/>
-          </ReactCSSTransitionGroup>
+          <HeaderContainer location={ this.props.location }/>
 
           <main className="mdl-layout__content">
             <div className="bobon-page-content page-content">
@@ -73,7 +66,7 @@ class App extends React.Component {
           </main>
 
           <footer className="bobon-footer">
-            © Bobon Profiles 2016. Support: <a href="mailto:roast@bobon.coffee">roast@bobon.coffee</a>
+            © Bobon Profiles 2016. Support: <a href="mailto:roast@bobon.coffee">roast@bobon.coffee</a>.
           </footer>
 
           <DialogContainer/>

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import C from '../constants';
-import history from '../history';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Button from './utils/Button';
+import C from '../constants';
+import history from '../history';
 
 class Header extends React.Component {
 
@@ -175,19 +176,26 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header className="mdl-layout__header">
-        <div className="mdl-layout__header-row">
-          <span className="mdl-layout-title">
-          </span>
-          <div className="mdl-layout-spacer"></div>
-          <nav className="mdl-navigation">
-            { this.roastInProgress() }
-            { this.actionButton() }
-            { this.profilePhoto() }
-          </nav>
-        </div>
-        { this.newRoastBtn() }
-      </header>
+      <ReactCSSTransitionGroup
+        transitionName="bobon-header"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+        transitionAppear={true}
+      >
+        <header className="mdl-layout__header">
+          <div className="mdl-layout__header-row">
+            <span className="mdl-layout-title">
+            </span>
+            <div className="mdl-layout-spacer"></div>
+            <nav className="mdl-navigation">
+              { this.roastInProgress() }
+              { this.actionButton() }
+              { this.profilePhoto() }
+            </nav>
+          </div>
+          { this.newRoastBtn() }
+        </header>
+      </ReactCSSTransitionGroup>
     );
   }
 

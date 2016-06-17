@@ -22,7 +22,7 @@ After that, access the site at https://localhost:8080 (IMPORTANT: HTTPS, not HTT
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/github.com/nathandao/bobonroastprofile/issues)
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/nathandao/bobonroastprofile/issues)
 
 ## Author
 

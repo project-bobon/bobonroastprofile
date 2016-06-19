@@ -3,7 +3,6 @@ import { Link, browserHistory } from 'react-router';
 import HeaderContainer from '../containers/HeaderContainer';
 import C from '../constants';
 import Spinner from './Spinner';
-import EasyTransition from 'react-easy-transition';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import DialogContainer from '../containers/DialogContainer';
 

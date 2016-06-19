@@ -8,7 +8,6 @@ import { render } from 'react-dom';
 
 import AppContainer from './containers/AppContainer';
 import C from './constants';
-import Dashboard from './components/Dashboard';
 import Home from './components/Home';
 import MainContainer from './containers/MainContainer';
 import NewRoastFormContainer from './containers/NewRoastFormContainer';

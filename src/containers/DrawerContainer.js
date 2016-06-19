@@ -3,9 +3,9 @@ import Drawer from '../components/Drawer';
 
 const mapStateToProps = state => {
   return {
-    authStatus: state.auth.authStatus,
+    photoURL: state.auth.photoURL,
     userName: state.auth.userName,
-    photoURL: state.auth.photoURL
+    authStatus: state.auth.authStatus
   };
 };
 

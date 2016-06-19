@@ -4,12 +4,12 @@ import { clearDialog } from '../actions';
 
 const mapStateToProps = state => {
   return {
+    dialogType: state.dialog.dialogType,
+    noAction: state.dialog.noAction,
+    noText: state.dialog.noText,
     text: state.dialog.text,
     yesAction: state.dialog.yesAction,
-    noAction: state.dialog.noAction,
-    yesText: state.dialog.yesText,
-    noText: state.dialog.noText,
-    dialogType: state.dialog.dialogType
+    yesText: state.dialog.yesText
   };
 };
 

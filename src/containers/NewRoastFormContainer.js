@@ -13,15 +13,15 @@ const mapStateToProps = state => {
   }
 
   return {
-    roastNote: roast.roastNote || '',
-    beansName: roast.beansName || '',
-    beansMoisture: roast.beansMoisture || '',
     batchSize: roast.batchSize || '',
-    initialTemp: roast.initialTemp || '',
-    uid: state.auth.uid,
+    beansMoisture: roast.beansMoisture || '',
+    beansName: roast.beansName || '',
     disabled,
+    initialTemp: roast.initialTemp || '',
     processing: roast.status === C.ROAST_PENDING,
-    roastInProgress: state.roastInProgress
+    roastInProgress: state.roastInProgress,
+    roastNote: roast.roastNote || '',
+    uid: state.auth.uid
   };
 };
 

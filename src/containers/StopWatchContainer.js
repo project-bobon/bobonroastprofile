@@ -5,9 +5,9 @@ import StopWatch from '../components/StopWatch';
 const mapStateToProps = (state, ownProps) => {
   return {
     elapsed: state.stopWatch.elapsed,
-    status: ownProps.status,
     roastId: ownProps.roastId,
     roastStart: ownProps.roastStart,
+    status: ownProps.status,
     tick: state.stopWatch.tick
   };
 };

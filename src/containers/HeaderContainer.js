@@ -7,11 +7,11 @@ import C from '../constants';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    location: ownProps.location,
     authStatus: state.auth.authStatus,
-    userName: state.auth.userName,
+    location: ownProps.location,
     photoURL: state.auth.photoURL,
-    roastInProgress: state.roastInProgress
+    roastInProgress: state.roastInProgress,
+    userName: state.auth.userName
   };
 };
 

@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { browserHistory } from 'react-router';
-import C from '../constants';
 
 import Button from './utils/Button';
+import C from '../constants';
 import Card from './utils/Card';
-import CardTitle from './utils/CardTitle';
-import CardContent from './utils/CardContent';
 import CardAction from './utils/CardAction';
+import CardContent from './utils/CardContent';
+import CardTitle from './utils/CardTitle';
 
 const LoginForm = ({ authStatus, onLoginBtnClick }) => {
   let content = null;

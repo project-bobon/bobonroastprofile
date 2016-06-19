@@ -1,15 +1,15 @@
 import React from 'react';
-import NavigationLink from '../components/utils/NavigationLink';
 import moment from 'moment';
 
-import history from '../history';
+import Button from './utils/Button';
 import C from '../constants';
 import Card from './utils/Card';
-import CardTitle from './utils/CardTitle';
-import CardContent from './utils/CardContent';
 import CardAction from './utils/CardAction';
-import Button from './utils/Button';
+import CardContent from './utils/CardContent';
+import CardTitle from './utils/CardTitle';
 import Instructions from './Instructions';
+import NavigationLink from '../components/utils/NavigationLink';
+import history from '../history';
 
 class RoastList extends React.Component {
 
@@ -62,22 +62,32 @@ class RoastList extends React.Component {
                 history.push(`/roasts/${key}`);
               }}
           >
-            <td className="bobon-table-cell--beans-name mdl-data-table__cell--non-numeric">
+            <td className="bobon-table-cell--beans-name
+                           mdl-data-table__cell--non-numeric"
+            >
               <strong>{ roast.beansName }</strong>
             </td>
 
-            <td className="bobon-table-cell--hidden-mobile mdl-data-table__cell--non-numeric">
+            <td className="bobon-table-cell--hidden-mobile
+                           mdl-data-table__cell--non-numeric"
+            >
               <div className={ `bobon-text-with-icon bobon-roast-status--${ roast.status.toLowerCase() }` }>
                 <i className="material-icons">fiber_manual_record</i>
                 { this.roastStatus(roast.status) }
               </div>
             </td>
 
-            <td className="mdl-data-table__cell--non-numeric">{ roastDate } </td>
+            <td className="mdl-data-table__cell--non-numeric">
+              { roastDate }
+            </td>
 
-            <td className="bobon-table-cell--hidden-mobile ">{ roast.beansMoisture } % </td>
+            <td className="bobon-table-cell--hidden-mobile ">
+              { roast.beansMoisture } %
+            </td>
 
-            <td className="bobon-table-cell--hidden-mobile">{ roast.batchSize } kg</td>
+            <td className="bobon-table-cell--hidden-mobile">
+              { roast.batchSize } kg
+            </td>
 
             <td className="bobon-table-cell--hidden-mobile ">
               { this.lastRoastPointDuration(roast.roastPoints) }
@@ -87,12 +97,20 @@ class RoastList extends React.Component {
               { roast.firstCrack ? moment(roast.firstCrack).format('mm:ss') : '-' }
             </td>
 
-            <td className="mdl-color-text--amber-500 mdl-data-table__cell--non-numeric">
-              <button className="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
+            <td className="mdl-color-text--amber-500
+                           mdl-data-table__cell--non-numeric"
+            >
+              <button
+                className="mdl-button mdl-js-button mdl-button--icon
+                                 mdl-js-ripple-effect"
                 onClick={ (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    this.props.removeRoast(key, roast.beansName, roast.roastStart);
+                    this.props.removeRoast(
+                      key,
+                      roast.beansName,
+                      roast.roastStart
+                    );
                   } }
               >
                 <i className="material-icons">delete</i>
@@ -120,17 +138,39 @@ class RoastList extends React.Component {
               </div>
             </CardTitle>
 
-            <table className="mdl-data-table mdl-js-data-table bobon-util__full-width">
+            <table className="mdl-data-table mdl-js-data-table
+                              bobon-util__full-width"
+            >
               <thead>
                 <tr>
-                  <th className="bobon-table-cell--beans-name mdl-data-table__cell--non-numeric">Bean's name</th>
-                  <th className="bobon-table-cell--hidden-mobile mdl-data-table__cell--non-numeric">Status</th>
-                  <th className="mdl-data-table__cell--non-numeric">Roast date</th>
-                  <th className="bobon-table-cell--hidden-mobile ">Moisture</th>
-                  <th className="bobon-table-cell--hidden-mobile">Batch Size</th>
-                  <th className="bobon-table-cell--hidden-mobile">Duration</th>
-                  <th className="bobon-table-cell--hidden-mobile">1st crack</th>
-                  <th className="mdl-data-table__cell--non-numeric">Del</th>
+                  <th className="bobon-table-cell--beans-name
+                                 mdl-data-table__cell--non-numeric"
+                  >
+                    Bean's name
+                  </th>
+                  <th className="bobon-table-cell--hidden-mobile
+                                 mdl-data-table__cell--non-numeric"
+                  >
+                    Status
+                  </th>
+                  <th className="mdl-data-table__cell--non-numeric">
+                    Roast date
+                  </th>
+                  <th className="bobon-table-cell--hidden-mobile">
+                    Moisture
+                  </th>
+                  <th className="bobon-table-cell--hidden-mobile">
+                    Batch Size
+                  </th>
+                  <th className="bobon-table-cell--hidden-mobile">
+                    Duration
+                  </th>
+                  <th className="bobon-table-cell--hidden-mobile">
+                    1st crack
+                  </th>
+                  <th className="mdl-data-table__cell--non-numeric">
+                    Del
+                  </th>
                 </tr>
               </thead>
 

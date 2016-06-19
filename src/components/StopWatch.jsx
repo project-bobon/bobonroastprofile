@@ -101,8 +101,10 @@ class StopWatch extends React.Component {
 
   render() {
     let content = null;
-    // <div className="mdl-cell mdl-cell--12-col bobon-stopwatch-container">
-    if (this.props.status === C.ROAST_PENDING || this.props.status === C.ROAST_IN_PROGRESS) {
+    if (
+      this.props.status === C.ROAST_PENDING ||
+      this.props.status === C.ROAST_IN_PROGRESS
+    ) {
       content = (
         <Card customClass="bobon-util__full-width">
           <CardTitle>

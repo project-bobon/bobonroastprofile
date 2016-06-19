@@ -13,9 +13,9 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    roastId: ownProps.roastId,
+    editing: editings[C.FIELD_POST_ROAST_NOTE] || C.FIELD_STATUS_NOT_EDITING,
     postRoastNote,
-    editing: editings[C.FIELD_POST_ROAST_NOTE] || C.FIELD_STATUS_NOT_EDITING
+    roastId: ownProps.roastId
   };
 };
 

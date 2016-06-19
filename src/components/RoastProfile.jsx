@@ -10,8 +10,8 @@ import CardTitle from './utils/CardTitle';
 import PostRoastNoteFormContainer from '../containers/PostRoastNoteFormContainer';
 import RoastChart from './RoastChart';
 import RoastPointInputContainer from '../containers/RoastPointInputContainer';
-import StopWatchContainer from '../containers/StopWatchContainer';
 import RoastPointsListContainer from '../containers/RoastPointsListContainer';
+import StopWatchContainer from '../containers/StopWatchContainer';
 
 class RoastProfile extends React.Component {
 

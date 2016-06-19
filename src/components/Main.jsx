@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import C from '../constants';
-import RoastListContainer from '../containers/RoastListContainer';
 import { Line } from 'react-chartjs';
+
+import C from '../constants';
 import Home from './Home';
+import RoastListContainer from '../containers/RoastListContainer';
 import { demoDataset, demoChartOptions } from '../demoData';
 
 
@@ -20,7 +21,12 @@ class Main extends React.Component {
     } else {
       content = (
         <div className="bobon-home-anonymous">
-          <Line options={ demoChartOptions } data={ demoDataset } width="2400" height="1200" />
+          <Line
+            options={ demoChartOptions }
+            data={ demoDataset }
+            width="2400"
+            height="1200"
+          />
           <Home/>
         </div>
       );

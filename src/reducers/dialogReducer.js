@@ -15,12 +15,12 @@ const dialogReducer = (currentState = initialState, action) => {
   switch(action.type) {
     case C.SHOW_DIALOG:
       return {
+        dialogType: action.dialogType,
+        noAction: action.noAction,
+        noText: action.noText || 'No',
         text: action.text,
         yesAction: action.yesAction,
-        noAction: action.noAction,
-        yesText: action.yesText || 'Yes',
-        noText: action.noText || 'No',
-        dialogType: action.dialogType
+        yesText: action.yesText || 'Yes'
       };
       break;
 

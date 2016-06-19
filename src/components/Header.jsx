@@ -34,7 +34,10 @@ class Header extends React.Component {
               marginLeft: '15px'
             } }
         >
-          <img src={this.props.photoURL} style={ {width: '100%'} } title={ this.props.userName }/>
+          <img src={this.props.photoURL}
+            style={ {width: '100%'} }
+            title={ this.props.userName }
+          />
         </a>
       );
     } else {

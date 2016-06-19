@@ -1,5 +1,6 @@
-import C from './constants';
 import firebase from 'firebase';
+
+import C from './constants';
 import history from './history';
 
 // Auth actions.
@@ -203,15 +204,22 @@ export const checkRoastInProgress = roasts => {
 };
 
 // Dialog actions.
-export const showDialog = ({ dialogType='info', text, yesAction, noAction = null, yesText = 'Yes', noText = 'No' }) => {
+export const showDialog = ({
+  dialogType='info',
+  noAction = null,
+  noText = 'No',
+  text,
+  yesAction,
+  yesText = 'Yes'
+}) => {
   return {
-    type: C.SHOW_DIALOG,
-    text,
-    yesAction,
+    dialogType,
     noAction,
-    yesText,
     noText,
-    dialogType
+    text,
+    type: C.SHOW_DIALOG,
+    yesAction,
+    yesText
   };
 };
 

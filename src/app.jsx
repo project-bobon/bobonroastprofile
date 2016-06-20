@@ -35,7 +35,9 @@ const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
 ReactGA.initialize(C.GOOGLE_ANALYTICS_CODE);
 
 const logPageView = () => {
-  ReactGA.pageview(window.location.hash);
+  if (window.location.hostname !== 'localhost') {
+    ReactGA.pageview(window.location.hash);
+  }
 };
 
 const routes = (

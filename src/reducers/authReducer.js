@@ -2,12 +2,13 @@ import C from '../constants';
 import history from '../history';
 
 const initialState = {
-  authStatus: C.LOGGING_IN,
   authProvider: null,
-  uid: null,
+  authStatus: C.LOGGING_IN,
+  email: null,
+  listeningToAuth: false,
   photoURL: null,
-  userName: null,
-  listeningToAuth: false
+  uid: null,
+  userName: null
 };
 
 const authReducer = (currentState = initialState, action) => {
@@ -34,7 +35,8 @@ const authReducer = (currentState = initialState, action) => {
         authStatus: C.LOGGED_IN,
         uid: action.user.uid,
         photoURL: action.user.photoURL,
-        userName: action.user.displayName
+        userName: action.user.displayName,
+        email: action.user.email
       };
       break;
 
@@ -43,7 +45,10 @@ const authReducer = (currentState = initialState, action) => {
         ...currentState,
         authStatus: C.LOGGED_OUT,
         uid: null,
-        userName: null
+        userName: null,
+        photoURL: null,
+        userName: null,
+        email: null
       };
       break;
 

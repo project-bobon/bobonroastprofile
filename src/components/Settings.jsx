@@ -45,7 +45,7 @@ class Settings extends React.Component {
               htmlFor="unit-system-imperial"
               name="unitSystem"
               value={ C.IMPERIAL }
-              label="°F - kg"
+              label="°F - lbs"
               checked={ this.props.unitSystem === C.IMPERIAL }
             />
           </form>

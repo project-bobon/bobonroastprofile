@@ -30,18 +30,6 @@ $deep-orange-900: #BF360C;
   margin-right: 25px;
 }
 
-// Layout.
-body {
-  background: $grey-200;
-  color: $grey-700;
-  min-height: 100%;
-}
-
-plaintext {
-  white-space: pre-wrap;
-  font-family: 'Roboto', 'Helvetica', "Arial";
-}
-
 .mdl-card {
   background: none;
   background: $grey-50;
@@ -63,11 +51,61 @@ plaintext {
   }
 }
 
+.mdl-card {
+  min-height: 100px;
+}
+
+.mdl-cell {
+  min-height: 0;
+}
+
+.material-icons {
+  margin-right: 10px;
+}
+
+// Layout.
+body {
+  background: $grey-200;
+  color: $grey-700;
+  min-height: 100%;
+}
+
+plaintext {
+  white-space: pre-wrap;
+  font-family: 'Roboto', 'Helvetica', "Arial";
+}
+
 .bobon-logo {
   color: #fff;
   font-weight: 200;
   width: 60px;
   font-size: 18px;
+}
+
+.bobon-user-avatar {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  line-height: 50px !important;
+  padding: 0px !important;
+  text-align: center;
+  position: relative;
+  margin-left: 10px;
+
+  img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+  }
+
+  .material-icons {
+    font-size: 50px;
+    margin: 0px;
+  }
 }
 
 .bobon-page-content {
@@ -88,14 +126,6 @@ plaintext {
 .bobon-main-content {
   width: 100%;
   margin: 0 auto;
-}
-
-.mdl-card {
-  min-height: 100px;
-}
-
-.mdl-cell {
-  min-height: 0;
 }
 
 .bobon-text-with-icon {
@@ -142,10 +172,6 @@ plaintext {
   &:focus {
     outline-width: 0;
   }
-}
-
-.material-icons {
-  margin-right: 10px;
 }
 
 @keyframes hot {

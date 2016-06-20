@@ -3,6 +3,7 @@ var path = require('path');
 var srcPath = path.resolve(__dirname, 'src');
 
 module.exports = {
+  devtool: 'source-map',
   entry: {
     bundle: path.join(srcPath, 'app.jsx'),
     common: ['react', 'react-router', 'redux', 'react-redux', 'moment']

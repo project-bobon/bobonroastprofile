@@ -15,37 +15,94 @@ class Header extends React.Component {
     };
   }
 
-  profilePhoto() {
-    let profilePhoto = null;
+  userMenu() {
+    let content = null;
 
     if (this.props.authStatus === C.LOGGED_IN) {
-      profilePhoto = (
-        <a class="mdl-navigation__link"
-          onClick={ (e) => {
-              e.preventDefault();
-              history.push('/');
-            } }
-          style={ {
-              display: 'inline-block',
-              width: '50px',
-              height: '50px',
-              overflow: 'hidden',
-              borderRadius: '50%',
-              marginLeft: '15px'
-            } }
+      content = (
+        <ul
+          className="mdl-menu mdl-menu--bottom-right mdl-js-menu
+                     mdl-js-ripple-effect"
+          htmlFor="bobon-user-menu"
         >
-          <img src={this.props.photoURL}
-            style={ {width: '100%'} }
-            title={ this.props.userName }
-          />
-        </a>
+
+          <li
+            className="mdl-menu__item mdl-button mdl-button-with-icon"
+            disabled
+          >
+            <i className="material-icons">account_circle</i>
+            { this.props.userName ? this.props.userName : this.props.email  }
+          </li>
+
+          <li
+            className="mdl-menu__item mdl-button mdl-button-with-icon"
+            onClick={ () => {
+                history.push('/')
+              } }
+          >
+            <i className="material-icons">timeline</i>
+            My roasts
+          </li>
+
+          <li
+            className="mdl-menu__item mdl-menu__item--full-bleed-divider
+                       mdl-button mdl-button-with-icon"
+            onClick={ () => {
+                history.push('/settings');
+              } }
+          >
+            <i className="material-icons">settings</i>
+            Settings
+          </li>
+
+          <li
+            className="mdl-menu__item mdl-button mdl-button-with-icon"
+            onClick={ this.props.logout }
+          >
+            <i className="material-icons">exit_to_app</i>
+            Logout
+          </li>
+
+        </ul>
       );
+    }
+
+    return content;
+  }
+
+  profilePhoto() {
+    let photo = null;
+
+    if (this.props.authStatus === C.LOGGED_IN) {
+      if (this.props.photoURL && this.props.photoURL !== '') {
+        photo = (
+          <button
+            id="bobon-user-menu"
+            className="mdl-navigation__link bobon-user-avatar"
+          >
+            <img src={ this.props.photoURL }
+              style={ { width: '100%' } }
+              title={ this.props.userName }
+            />
+          </button>
+        );
+      } else {
+        photo = (
+          <button
+            id="bobon-user-menu"
+            className="mdl-navigation__link bobon-user-avatar mdl-button
+                       mdl-button-with-icon"
+          >
+            <i className="material-icons">account_circle</i>
+          </button>
+        );
+      }
     } else {
-      profilePhoto = (
+      photo = (
         <a className="bobon-logo"
           onClick={ (e) => {
               e.preventDefault();
-              history.push('/');
+              history.push('/')
             } }
         >
           Bobon Profiles
@@ -53,7 +110,7 @@ class Header extends React.Component {
       );
     }
 
-    return profilePhoto;
+    return photo;
   }
 
   actionButton() {
@@ -81,21 +138,6 @@ class Header extends React.Component {
           >
             My roasts
           </div>
-
-          <Button customClass="mdl-button-with-icon mdl-color-text--grey-100"
-            onClick={ (e) => { this.props.logout(e); } }
-            id="bobon-button--nav-action-logout"
-          >
-            <i className="material-icons">exit_to_app</i>
-            <span className="bobon-button-text--nav-action">Logout</span>
-          </Button>
-
-          <div className="mdl-tooltip"
-            htmlFor="bobon-button--nav-action-logout"
-          >
-            Logout
-          </div>
-
         </div>
       );
     }
@@ -198,6 +240,7 @@ class Header extends React.Component {
           </div>
           { this.newRoastBtn() }
         </header>
+        { this.userMenu() }
       </ReactCSSTransitionGroup>
     );
   }

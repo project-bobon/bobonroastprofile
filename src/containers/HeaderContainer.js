@@ -11,13 +11,15 @@ const mapStateToProps = (state, ownProps) => {
     location: ownProps.location,
     photoURL: state.auth.photoURL,
     roastInProgress: state.roastInProgress,
-    userName: state.auth.userName
+    userName: state.auth.userName,
+    email: state.auth.email
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     logout: e => {
+      console.log(e);
       e.preventDefault();
       C.FIREBASE.auth().signOut().then(() => {
         dispatch(logout());

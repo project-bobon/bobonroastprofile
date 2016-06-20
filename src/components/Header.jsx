@@ -22,7 +22,7 @@ class Header extends React.Component {
       content = (
         <ul
           className="mdl-menu mdl-menu--bottom-right mdl-js-menu
-                     mdl-js-ripple-effect"
+                     mdl-js-ripple-effect bobon-menu-user-menu"
           htmlFor="bobon-user-menu"
         >
 

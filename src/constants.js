@@ -74,7 +74,14 @@ const C = {
   LOADED_DATA: 'LOADED_DATA',
 
   // Google analytics
-  GOOGLE_ANALYTICS_CODE: 'UA-79419231-1'
+  GOOGLE_ANALYTICS_CODE: 'UA-79419231-1',
+
+  // Settings actions.
+  UPDATE_SETTING: 'UPDATE_SETTING',
+
+  // Settings.
+  METRIC: 'METRIC',
+  IMPERIAL: 'IMPERIAL'
 };
 
 export default C;

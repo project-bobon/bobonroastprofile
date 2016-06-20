@@ -12,6 +12,7 @@ import Home from './components/Home';
 import MainContainer from './containers/MainContainer';
 import NewRoastFormContainer from './containers/NewRoastFormContainer';
 import RoastProfileContainer from './containers/RoastProfileContainer';
+import SettingsContainer from './containers/SettingsContainer';
 import auth from './auth';
 import history from './history';
 import rootReducer from './reducers/index';
@@ -40,9 +41,13 @@ const routes = (
   <Router history={ history } onUpdate={ logPageView }>
     <Route path="/" component={ AppContainer }>
       <IndexRoute component={ MainContainer }/>
+
       <Route path="new" component={ NewRoastFormContainer } onEnter={ auth.checkAuth }/>
+
       <Redirect from="roasts" to="/" onEnter={ auth.checkAuth }/>
       <Route path="roasts/:roastId" component={ RoastProfileContainer } onEnter={ auth.checkAuth }/>
+
+      <Route path="settings" component={ SettingsContainer } onEnter={ auth.checkAuth }/>
     </Route>
   </Router>
 );

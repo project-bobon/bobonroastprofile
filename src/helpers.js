@@ -18,18 +18,18 @@ export const metricTemp = (temp, unitSystem) => {
 };
 
 // When displaying data, convert from metric to imperial when needed.
-export const displayTemp = (temp, unitSystem) => {
+export const displayTemp = (temp, unitSystem, fixed = true) => {
+  let result = temp;
   if (unitSystem === C.IMPERIAL) {
-    return (temp * 1.8 + 32).toFixed(2);
-  } else {
-    return temp.toFixed(2);
+    result = temp * 1.8 + 32;
   }
+  return fixed ? result.toFixed(2) : result;
 };
 
-export const displayWeight = (weight, unitSystem) => {
+export const displayWeight = (weight, unitSystem, fixed = true) => {
+  let result = weight;
   if (unitSystem === C.IMPERIAL) {
-    return (weight / 0.454592).toFixed(2);
-  } else {
-    return weight.toFixed(2);
+    result = weight / 0.454592;
   }
+  return fixed ? result.toFixed(2) : result;
 };

@@ -5,6 +5,7 @@ import C from '../constants';
 
 const mapStateToProps = (state, ownProps) => {
   if (typeof state.roasts[ownProps.params.roastId] !== 'undefined') {
+    const unitSystem = state.settings.unitSystem;
     let compare = null;
 
     if (state.roasts[ownProps.params.roastId].hasOwnProperty('compare') &&
@@ -18,6 +19,9 @@ const mapStateToProps = (state, ownProps) => {
       roastId: ownProps.params.roastId,
       roastInProgress: state.roastInProgress,
       compare,
+      unitSystem,
+      tempUnit: unitSystem === C.IMPERIAL ? C.IMPERIAL_TEMP_SYMBOL : C.METRIC_TEMP_SYMBOL,
+      weightUnit: unitSystem === C.IMPERIAL ? C.IMPERIAL_WEIGHT_SYMBOL : C.METRIC_WEIGHT_SYMBOL,
       roastIds: Object.keys(state.roasts).map(roastId => {
         return {
           id: roastId,

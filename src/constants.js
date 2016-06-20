@@ -82,7 +82,11 @@ const C = {
 
   // Settings.
   METRIC: 'METRIC',
-  IMPERIAL: 'IMPERIAL'
+  IMPERIAL: 'IMPERIAL',
+  METRIC_TEMP_SYMBOL: '°C',
+  METRIC_WEIGHT_SYMBOL: 'kg',
+  IMPERIAL_TEMP_SYMBOL: '°F',
+  IMPERIAL_WEIGHT_SYMBOL: 'lbs'
 };
 
 export default C;

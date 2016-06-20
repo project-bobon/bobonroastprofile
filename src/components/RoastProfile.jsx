@@ -12,12 +12,12 @@ import RoastChart from './RoastChart';
 import RoastPointInputContainer from '../containers/RoastPointInputContainer';
 import RoastPointsListContainer from '../containers/RoastPointsListContainer';
 import StopWatchContainer from '../containers/StopWatchContainer';
+import {
+  displayTemp,
+  displayWeight
+} from '../helpers';
 
 class RoastProfile extends React.Component {
-
-  componentDidUpdate() {
-    componentHandler.upgradeDom();
-  }
 
   stopWatch() {
     let content = null;
@@ -76,7 +76,8 @@ class RoastProfile extends React.Component {
                 onClick={() => {
                     this.props.undoLastTemperature(this.props.roastId, this.props.roastPoints);
                   } }
-                disabled={ this.props.status === C.ROAST_IN_PROGRESS && Object.keys(this.props.roastPoints).length > 1 ? false : true }
+                disabled={ this.props.status === C.ROAST_IN_PROGRESS &&
+                          Object.keys(this.props.roastPoints).length > 1 ? false : true }
               >
                 <i className="material-icons">replay</i>
                 Undo
@@ -296,6 +297,7 @@ class RoastProfile extends React.Component {
             roastStart={ this.props.roastStart }
             compare={ this.props.compare }
             firstCrack={ this.props.firstCrack }
+            unitSystem={ this.props.unitSystem }
           />
         </div>
 
@@ -334,7 +336,10 @@ class RoastProfile extends React.Component {
               <div className="mdl-cell mdl-cell--6-col">
                 <div className="bobon-text-with-icon">
                   <i className="material-icons">shopping_basket</i>
-                  { this.props.batchSize } kg
+                  { displayWeight(
+                      this.props.batchSize,
+                      this.props.unitSystem
+                    ) } { this.props.weightUnit }
                 </div>
               </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs';
 
 import C from '../constants';
+import { displayTemp } from '../helpers';
 
 class RoastChart extends React.Component {
 
@@ -57,7 +58,7 @@ class RoastChart extends React.Component {
       key => {
         return {
           x: roastPoints[key].elapsed / 60000,
-          y: roastPoints[key].temperature
+          y: displayTemp(roastPoints[key].temperature, this.props.unitSystem)
         };
       }
     ).sort((a,b) => {
@@ -86,6 +87,17 @@ class RoastChart extends React.Component {
 
   render() {
     let redraw = false;
+    let tempMax = 270;
+    let tempMin = 50;
+    let tempStepSize = 10;
+    let rateMax = 55;
+
+    if (this.props.unitSystem === C.IMPERIAL) {
+      tempMax = 520;
+      tempMin = 120;
+      tempStepSize = 20;
+      rateMax = 100;
+    }
 
     if (this.props.roastPoints) {
       let chartData = {};
@@ -213,9 +225,9 @@ class RoastChart extends React.Component {
               type: 'linear',
               position: 'left',
               ticks: {
-                max: 270,
-                min: 50,
-                stepSize: 10
+                max: tempMax,
+                min: tempMin,
+                stepSize: tempStepSize
               }
             },
             {
@@ -223,7 +235,7 @@ class RoastChart extends React.Component {
               position: 'right',
               type: 'linear',
               ticks: {
-                max: 55,
+                max: rateMax,
                 min: 0,
                 stepSize: 5
               }
@@ -251,7 +263,6 @@ class RoastChart extends React.Component {
           }
         }
       };
-
 
       if (redraw || this.state.redraw) {
         return <Line

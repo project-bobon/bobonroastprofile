@@ -158,7 +158,7 @@ class Header extends React.Component {
             } }
         >
           <i className="material-icons">fiber_manual_record</i>
-          Roast in-progress!
+          !
         </Button>
       );
     }

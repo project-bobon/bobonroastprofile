@@ -112,7 +112,7 @@ class NewRoastForm extends React.Component {
                     className="mdl-textfield__label"
                     htmlFor="beansMoisture"
                   >
-                    Bean's Moisture (%)
+                    Bean's Moisture / %
                   </label>
 
                 </div>
@@ -135,7 +135,7 @@ class NewRoastForm extends React.Component {
                     className="mdl-textfield__label"
                     htmlFor="batchSize"
                   >
-                    Batch Size (kg)
+                    { `Batch size / ${ this.props.weightUnit }` }
                   </label>
                 </div>
               </div>
@@ -157,7 +157,7 @@ class NewRoastForm extends React.Component {
                     className="mdl-textfield__label"
                     htmlFor="batchSize"
                   >
-                    Initial Temperature (°C)
+                    { `Initial temperature / ${ this.props.tempUnit }` }
                   </label>
 
                 </div>
@@ -190,6 +190,13 @@ class NewRoastForm extends React.Component {
                 name="uid"
                 id="uid"
                 defaultValue={ this.props.uid }
+              />
+
+              <input
+                type="hidden"
+                name="unitSystem"
+                id="unitSystem"
+                defaultValue={ this.props.unitSystem }
               />
 
               <div className="bobon-textfield-wrapper bobon-util__full-width">

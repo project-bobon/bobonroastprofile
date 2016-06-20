@@ -1,14 +1,31 @@
 import { connect } from 'react-redux';
-import NewRoastForm from '../components/NewRoastForm';
-import { createNewRoast, createNewRoastFailed, updateCurrentRoastValue, createNewRoastSuccess } from '../actions';
+
 import C from '../constants';
+import NewRoastForm from '../components/NewRoastForm';
 import history from '../history';
+import {
+  createNewRoast,
+  createNewRoastFailed,
+  updateCurrentRoastValue,
+  createNewRoastSuccess
+} from '../actions';
+import {
+  metricTemp,
+  metricWeight
+} from '../helpers';
 
 const mapStateToProps = state => {
   const roast = state.newRoast;
   let disabled = true;
+  let tempUnit = '°C';
+  let weightUnit = 'kg';
 
-  if (roast.roastNote && roast.beansName && roast.batchSize) {
+  if (state.settings.unitSystem === C.IMPERIAL) {
+    tempUnit = '°F';
+    weightUnit = 'lbs';
+  }
+
+  if (roast.initialTemp && roast.beansName && roast.batchSize) {
     disabled = false;
   }
 
@@ -21,7 +38,10 @@ const mapStateToProps = state => {
     processing: roast.status === C.ROAST_PENDING,
     roastInProgress: state.roastInProgress,
     roastNote: roast.roastNote || '',
-    uid: state.auth.uid
+    uid: state.auth.uid,
+    tempUnit,
+    weightUnit,
+    unitSystem: state.settings.unitSystem
   };
 };
 
@@ -31,13 +51,21 @@ const mapDispatchToProps = dispatch => {
       e.preventDefault();
 
       const f = e.target;
-      let roastNote = f.roastNote.value;
-      let beansName = f.beansName.value;
-      let beansMoisture = parseFloat(f.beansMoisture.value);
-      let batchSize = parseFloat(f.batchSize.value);
-      let initialTemp = parseFloat(f.initialTemp.value);
-      let uid = f.uid.value;
+      const unitSystem = f.unitSystem.value;
+      const roastNote = f.roastNote.value;
+      const uid = f.uid.value;
+      const beansName = f.beansName.value;
+      const beansMoisture = parseFloat(f.beansMoisture.value);
+      const batchSize = metricWeight(
+        parseFloat(f.batchSize.value),
+        unitSystem
+      );
+      const initialTemp = metricTemp(
+        parseFloat(f.initialTemp.value),
+        unitSystem
+      );
 
+      // Always convert to metric in database.
       if (beansName !== '' && batchSize !== '' && initialTemp !== '' && uid !== '') {
         dispatch(createNewRoast({
           roastNote,

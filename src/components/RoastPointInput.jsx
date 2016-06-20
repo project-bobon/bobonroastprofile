@@ -24,7 +24,9 @@ class RoastPointInput extends React.Component {
       return (
         <form
           action="#"
-          onSubmit={ this.props.onSubmit }
+          onSubmit={ e => {
+              this.props.onSubmit(e , this.props.unitSystem)
+            } }
           className="bobon-util__full-width"
           disabled={ this.disabled() }
         >
@@ -53,7 +55,7 @@ class RoastPointInput extends React.Component {
 
           <input
             type="submit"
-            value="Add temperature"
+            value={ "Add temperature / " + this.props.tempUnit }
             className="mdl-button mdl-button--colored mdl-js-button
                        mdl-js-ripple-effect"
             disabled={ this.disabled() }

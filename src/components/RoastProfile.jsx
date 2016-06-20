@@ -59,7 +59,7 @@ class RoastProfile extends React.Component {
             <CardTitle>
               <div className="bobon-text-with-icon">
                 <i className="material-icons">add_circle</i>
-                Temperature input
+                Temperature input / { this.props.tempUnit }
               </div>
             </CardTitle>
 

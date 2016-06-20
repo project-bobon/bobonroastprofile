@@ -13,6 +13,13 @@ let settingsReducer = (currentState = initialState, action) => {
       };
       break;
 
+    case C.FETCHED_SETTINGS:
+      return {
+        ...currentState,
+        ...action.settings
+      };
+      break;
+
     default:
       return currentState;
       break;

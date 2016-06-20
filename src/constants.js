@@ -78,6 +78,7 @@ const C = {
 
   // Settings actions.
   UPDATE_SETTING: 'UPDATE_SETTING',
+  FETCHED_SETTINGS: 'FETCHED_SETTINGS',
 
   // Settings.
   METRIC: 'METRIC',

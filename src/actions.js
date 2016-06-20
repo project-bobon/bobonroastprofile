@@ -241,3 +241,19 @@ export const loadedData = () => {
     type: C.LOADED_DATA
   };
 }
+
+// Settings.
+export const updateSetting = (setting, value) => {
+  return {
+    type: C.UPDATE_SETTING,
+    setting,
+    value
+  };
+}
+
+export const fetchedSettings = settings => {
+  return {
+    type: C.FETCHED_SETTINGS,
+    settings
+  };
+}

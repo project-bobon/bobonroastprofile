@@ -5,8 +5,13 @@ import Card from './utils/Card';
 import CardTitle from './utils/CardTitle';
 import CardAction from './utils/CardAction';
 import CardContent from './utils/CardContent';
+import Radio from './utils/Radio';
 
 class Settings extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    return nextProps.unitSystem !== this.props.unitSystem;
+  }
+
   render() {
     return (
       <Card customClass="mdl-cell mdl-cell--12-col">
@@ -23,38 +28,27 @@ class Settings extends React.Component {
           </div>
         </CardTitle>
         <CardContent>
-          <label
-            className="mdl-radio bobon-radio mdl-js-radio mdl-js-ripple-effect"
-            htmlFor="unit-system-metric"
+
+          <form onChange={ e => {
+              this.props.onChangeUnitSystem(e, this.props.unitSystem);
+            } }
           >
-            <input
-              className="mdl-radio__button"
-              id="unit-system-metric"
-              name="unit-system"
-              type="radio"
+            <Radio
+              htmlFor="unit-system-metric"
+              name="unitSystem"
               value={ C.METRIC }
+              label="°C - kg"
+              checked={ this.props.unitSystem === C.METRIC }
             />
-            <span className="mdl-radio__label">
-              °C - kg
-            </span>
-          </label>
 
-
-          <label
-            className="mdl-radio bobon-radio mdl-js-radio mdl-js-ripple-effect"
-            htmlFor="unit-system-imperial"
-          >
-            <input
-              className="mdl-radio__button"
-              id="unit-system-imperial"
-              name="unit-system"
-              type="radio"
+            <Radio
+              htmlFor="unit-system-imperial"
+              name="unitSystem"
               value={ C.IMPERIAL }
+              label="°F - kg"
+              checked={ this.props.unitSystem === C.IMPERIAL }
             />
-            <span className="mdl-radio__label">
-              °F - lbs
-            </span>
-          </label>
+          </form>
 
         </CardContent>
       </Card>

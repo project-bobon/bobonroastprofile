@@ -19,6 +19,7 @@ import rootReducer from './reducers/index';
 import {
   checkRoastInProgress,
   fetchedRoasts,
+  fetchedSettings,
   listeningToAuth,
   loadedData,
   loadingData,
@@ -27,7 +28,7 @@ import {
 } from './actions';
 
 const store = applyMiddleware(thunkMiddleware)(createStore)(rootReducer, {}
-//,window.devToolsExtension && window.devToolsExtension()
+,window.devToolsExtension && window.devToolsExtension()
 );
 
 // Analytics
@@ -77,6 +78,15 @@ C.FIREBASE.auth().onAuthStateChanged((user) => {
       store.dispatch(checkRoastInProgress(snapshot.val()));
     }, err => {
       console.log(err);
+    });
+
+    // Listen to settings changes.
+    let settingsRef = C.FIREBASE.app().database().ref(`/settings/${user.uid}`);
+
+    store.dispatch(loadingData());
+    settingsRef.on('value', snapshot => {
+      store.dispatch(loadedData());
+      store.dispatch(fetchedSettings(snapshot.val()));
     });
 
   } else {

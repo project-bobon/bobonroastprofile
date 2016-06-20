@@ -3,8 +3,10 @@ import history from '../history';
 
 import Button from './utils/Button';
 import Card from './utils/Card';
+import CardContent from './utils/CardContent';
 import CardTitle from './utils/CardTitle';
 import Spinner from './Spinner';
+import UnitSwitcherContainer from '../containers/UnitSwitcherContainer';
 
 class NewRoastForm extends React.Component {
   cancelButton() {
@@ -67,6 +69,10 @@ class NewRoastForm extends React.Component {
                 Create new roast
               </div>
             </CardTitle>
+
+            <CardContent>
+              <UnitSwitcherContainer customId="bobon-new-roast-unit-switcher"/>
+            </CardContent>
 
             <form className="bobon-form__new-roast"
               onSubmit={ this.props.onSubmit }

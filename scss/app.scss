@@ -12,8 +12,14 @@ $grey-700: #616161;
 $grey-800: #424242;
 $grey-900: #212121;
 
+$red-500: #F44336;
+$red-800: #C62828;
+$red-900: #B71C1C;
+
 $teal-500: #009688;
 $teal-600: #00897B;
+$teal-800: #00695C;
+$teal-700: #00796B;
 
 $deep-orange-900: #BF360C;
 
@@ -123,6 +129,30 @@ plaintext {
       background: $teal-500;
     }
   }
+}
+
+.bobon-unit-switcher-menu {
+  button {
+    color: $grey-100;
+    background: $teal-600;
+    border-radius: 18px;
+
+    &:hover {
+      background: $teal-800;
+    }
+  }
+
+  .mdl-menu {
+    background: $teal-600;
+
+    .mdl-menu__item {
+      color: $grey-100;
+      &:hover {
+        background: $teal-500;
+      }
+    }
+  }
+
 }
 
 .bobon-page-content {

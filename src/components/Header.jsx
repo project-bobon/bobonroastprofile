@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Button from './utils/Button';
 import C from '../constants';
 import history from '../history';
+import UnitSwitcherContainer from '../containers/UnitSwitcherContainer';
 
 class Header extends React.Component {
 
@@ -219,6 +220,15 @@ class Header extends React.Component {
     return content;
   }
 
+  unitSwitcher() {
+    let content = null;
+    if (this.props.authStatus === C.LOGGED_IN) {
+      content = <UnitSwitcherContainer/>;
+    }
+
+    return content;
+  }
+
   render() {
     return (
       <ReactCSSTransitionGroup
@@ -235,6 +245,7 @@ class Header extends React.Component {
             <nav className="mdl-navigation">
               { this.roastInProgress() }
               { this.actionButton() }
+              { this.unitSwitcher() }
               { this.profilePhoto() }
             </nav>
           </div>

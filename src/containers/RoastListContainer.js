@@ -6,8 +6,12 @@ import { showDialog } from '../actions';
 import moment from 'moment';
 
 const mapStateToProps = state => {
+  let unitSystem = state.settings.unitSystem;
   return {
-    roasts: state.roasts
+    roasts: state.roasts,
+    unitSystem,
+    tempUnit: unitSystem === C.IMPERIAL ? '°F' : '°C',
+    weightUnit: unitSystem === C.IMPERIAL ? 'lbs' : 'kg'
   };
 };
 

@@ -10,6 +10,10 @@ import CardTitle from './utils/CardTitle';
 import Instructions from './Instructions';
 import NavigationLink from '../components/utils/NavigationLink';
 import history from '../history';
+import {
+  displayTemp,
+  displayWeight
+} from '../helpers';
 
 class RoastList extends React.Component {
 
@@ -86,7 +90,7 @@ class RoastList extends React.Component {
             </td>
 
             <td className="bobon-table-cell--hidden-mobile">
-              { roast.batchSize } kg
+              { displayWeight(roast.batchSize, this.props.unitSystem) } { this.props.weightUnit }
             </td>
 
             <td className="bobon-table-cell--hidden-mobile ">

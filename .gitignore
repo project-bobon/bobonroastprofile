@@ -7,4 +7,8 @@ node_modules
 
 public/bundle.js
 public/commons.js
-public/nm-debug.log
+public/bundle.js.map
+public/commons.js.map
+
+*/npm-debug.log
+*/**/npm-debug.log

@@ -39,6 +39,10 @@ class RoastChart extends React.Component {
     ) {
       this.setState({ redraw: true });
     }
+
+    if (this.props.unitSystem !== nextProps.unitSystem) {
+      this.setState({ redraw: true });
+    }
   }
 
   beautifyTime(value) {

@@ -256,11 +256,14 @@ header {
   .mdl-button {
     &.mdl-button--colored  {
       &.bobon-roast-status--roast_in_progress {
-        border: 1px solid #fff;
-        box-sizing: border-box;
         border-radius: 18px;
         color: #fff;
+        background: $teal-600;
         margin-right: 15px;
+
+        &:hover {
+          background: $teal-800;
+        }
       }
     }
   }

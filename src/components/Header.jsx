@@ -243,8 +243,8 @@ class Header extends React.Component {
             </span>
             <div className="mdl-layout-spacer"></div>
             <nav className="mdl-navigation">
-              { this.roastInProgress() }
               { this.actionButton() }
+              { this.roastInProgress() }
               { this.unitSwitcher() }
               { this.profilePhoto() }
             </nav>

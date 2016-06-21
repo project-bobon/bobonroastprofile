@@ -105,7 +105,7 @@ class RoastChart extends React.Component {
 
     if (this.props.roastPoints) {
       let chartData = {};
-      let maxX = 14;
+      let maxX = 12;
       let data = this.createRoastPointsDataset(this.props.roastPoints);
       let ror = this.createRateOfRoastDataset(data);
 
@@ -114,6 +114,7 @@ class RoastChart extends React.Component {
         let lastMin = data[data.length - 1].x;
         if (lastMin + 1 > maxX) {
           maxX = lastMin + 1;
+          redraw = true;
         }
       }
 
@@ -164,6 +165,12 @@ class RoastChart extends React.Component {
         let comparePoints = compare.roastPoints;
         let compareData = this.createRoastPointsDataset(comparePoints);
         let compareRor = this.createRateOfRoastDataset(compareData);
+
+        let lastMin = compareData[compareData.length - 1].x;
+        if (lastMin + 1 > maxX) {
+          maxX = lastMin + 1;
+          redraw = true;
+        }
 
         chartData.datasets.push({
           label: 'temp 2',

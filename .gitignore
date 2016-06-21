@@ -6,9 +6,9 @@ bower_components
 node_modules
 
 public/bundle.js
-public/commons.js
+public/common.js
 public/bundle.js.map
-public/commons.js.map
+public/common.js.map
 
 */npm-debug.log
 */**/npm-debug.log

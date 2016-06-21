@@ -243,7 +243,13 @@ plaintext {
 
 .bobon-roast-status--roast_in_progress {
   color: #B71C1C;
+  min-width: 1px;
+  width: 38px;
+  padding: 0px;
+  text-align: center;
+
   .material-icons {
+    margin: 0px;
     animation: hot 1s ease-out infinite;
   }
 }

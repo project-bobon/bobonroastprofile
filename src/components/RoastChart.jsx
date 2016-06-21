@@ -105,7 +105,7 @@ class RoastChart extends React.Component {
 
     if (this.props.roastPoints) {
       let chartData = {};
-      let maxX = 12;
+      let maxX = 14;
       let data = this.createRoastPointsDataset(this.props.roastPoints);
       let ror = this.createRateOfRoastDataset(data);
 

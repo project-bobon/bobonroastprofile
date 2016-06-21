@@ -19,6 +19,22 @@ import {
 
 class RoastProfile extends React.Component {
 
+  beansMoisture() {
+    let content = null;
+    if (this.props.beansMoisture) {
+      content = (
+        <div className="mdl-cell mdl-cell--6-col">
+          <div className="bobon-text-with-icon">
+            <i className="material-icons">opacity</i>
+            { this.props.beansMoisture } %
+          </div>
+        </div>
+      );
+    }
+
+    return content;
+  }
+
   stopWatch() {
     let content = null;
 
@@ -343,12 +359,8 @@ class RoastProfile extends React.Component {
                 </div>
               </div>
 
-              <div className="mdl-cell mdl-cell--6-col">
-                <div className="bobon-text-with-icon">
-                  <i className="material-icons">opacity</i>
-                  { this.props.beansMoisture } %
-                </div>
-              </div>
+              { this.beansMoisture() }
+
             </CardContent>
           </Card>
 

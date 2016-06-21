@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => {
       const roastNote = f.roastNote.value;
       const uid = f.uid.value;
       const beansName = f.beansName.value;
-      const beansMoisture = parseFloat(f.beansMoisture.value);
+      const beansMoisture = f.beansMoisture.value ? parseFloat(f.beansMoisture.value) : '';
       const batchSize = metricWeight(
         parseFloat(f.batchSize.value),
         unitSystem

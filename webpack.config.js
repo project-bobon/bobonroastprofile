@@ -27,12 +27,17 @@ module.exports = {
       },
       {
         test: /\.(jpg|png)$/,
-        loader: 'url?limit=25000',
+        loaders: ['url?limit=25000'],
         include: path.resolve(__dirname, 'images')
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css?sourceMap&-restructuring&aggressiveMerging", "autoprefixer", "sass?sourceMap"]
+        loaders: [
+          'style',
+          'css?sourceMap&-restructuring&aggressiveMerging',
+          'autoprefixer',
+          'sass?sourceMap'
+        ]
       }
     ]
   },

@@ -36,8 +36,6 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
-## License
-
 Bobon Profiles is distributed under GPLv2 license. TLDR:
 
 You MUST:

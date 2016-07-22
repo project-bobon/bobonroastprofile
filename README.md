@@ -36,5 +36,30 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
+## License
+
+Bobon Profiles is distributed under GPLv2 license. TLDR:
+
+You MUST:
+
+- Include the original code and where to get Bobon Roast
+- Opensource your project
+- Include Bobon Roast's copyright
+- State changes made to Bobon Roast
+- Include the GPLv2 lincense in your source code
+
+You can:
+
+- Commercial use
+- Modify
+- Distribute
+- Place Warranty
+
+You cannot:
+
+- Sublicense
+- Hold liable
+
+
 Copyright © 2016 [Nathan Dao](https://guynathan.com)
-Licensed under the MIT license.
+Licensed under the GPLv2 license.

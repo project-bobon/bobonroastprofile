@@ -256,7 +256,7 @@ class RoastProfile extends React.Component {
           <i className="material-icons">assessment</i>
           { buttonText }
         </button>
-        <ul className="mdl-menu mdl-js-menu mdl-js-ripple-effect"
+        <ul className="bobon-list__compare-select mdl-menu mdl-js-menu mdl-js-ripple-effect"
           htmlFor="select-compare"
         >
           { roastIdList }

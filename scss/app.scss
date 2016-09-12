@@ -518,15 +518,15 @@ header {
 }
 
 .bobon-footer {
-  padding: 5px 20px;
+  padding: 10px 20px;
   background: $teal-500;
   color: #fff;
   font-weight: 200;
-  font-size: 0.7em;
+  font-size: 0.9em;
   text-align: right;
   bottom: 0px;
   box-sizing: border-box;
-  min-height: 30px;
+  min-height: 40px;
 
   a {
     font-weight: 200;
@@ -540,6 +540,11 @@ header {
   padding: 10px;
   box-sizing: border-box;
   float: left;
+}
+
+.bobon-list__compare-select {
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 1024px) {

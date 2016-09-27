@@ -9,8 +9,8 @@
   },
   "scripts": {
     "watch": "webpack-dev-server --https --hot --inline --progress --colors --content-base public",
-    "build": "webpack.js --progress --colors -p",
-    "deploy": "webpack.js --progress --colors -p && firebase deploy"
+    "build": "webpack --progress --colors -p",
+    "deploy": "webpack --progress --colors -p && firebase deploy"
   },
   "repository": {
     "type": "git",

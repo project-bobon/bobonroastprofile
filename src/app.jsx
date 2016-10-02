@@ -59,7 +59,7 @@ render(
   <Provider store={ store }>
     { routes }
   </Provider>,
-  document.body
+  document.getElementById("root")
 );
 
 store.dispatch(listeningToAuth());
